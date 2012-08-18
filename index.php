@@ -36,7 +36,7 @@
 		<div class="entry-header">
 			<div class="jmv-logo"><p>JOIN MY VILLAGE</p></div>
 			<div class="social-media">
-				<div id="facebook" class="share"><div class="fb-send"></div></div>
+				<div id="facebook" class="share"><div class="fb-like" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div></div>
 				<div id="twitter" class="share"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Check out Join My Village!">Tweet</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div>
 			</div>
@@ -59,7 +59,7 @@
 		<div class="entry-header">
 			<div class="jmv-logo"><p>JOIN MY VILLAGE</p></div>
 			<div class="social-media">
-				<div id="facebook" class="share"><div class="fb-like"></div></div>
+				<div id="facebook" class="share"><div class="fb-like" data-send="false" data-layout="button_count" data-width="50" data-show-faces="false"></div></div>
 				<div id="twitter" class="share"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Check out Join My Village!">Tweet</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div>
 			</div>
@@ -89,7 +89,7 @@
 		<div id="header">
 			<div class="jmv-logo"><p>JOIN MY VILLAGE</p></div>
 			<div class="social-media">
-				<div id="facebook" class="share"><div class="fb-like"></div></div>
+				<div id="facebook" class="share"><div class="fb-like" data-send="false" data-layout="button_count" data-width="50" data-show-faces="false"></div></div>
 				<div id="twitter" class="share"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Check out Join My Village!">Tweet</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div>
 			</div>
@@ -109,7 +109,7 @@
 				<div class="modal-content">
 					<p id="intro"></p>
 					<div class="like-message"></div>
-					<div class="facebook-like"></div>
+					<div class="facebook-like"><div class="fb-like" data-send="false" data-layout="button_count" data-width="50" data-show-faces="false"></div></div>
 					<div class="modal-divider"></div>
 					<p class="like-count-total">When <span class="like-count"></span> likes are reached, <span class="next-chapter-message"></span></p>
 					<div id="percentage-bar" class="percentage-bar">

@@ -24,7 +24,7 @@ var Config = {
 var Story = {
 	chapter_open_status: {1:false, 2:false, 3:false, 4:false, 5:false, 6:false},
 	chapter_close_status: {1:false, 2:false, 3:false, 4:false, 5:false, 6:false},
-	chapter_widths: {1:5677, 2:5713, 3:5503, 4:4930, 5:5005, 6:5000},
+	chapter_widths: {1:5677, 2:5713, 3:5591, 4:4930, 5:5005, 6:5000},
 	current_chapter: null,
 	init: function() {
 		if(!$.cookie('current_chapter')) {
@@ -99,25 +99,10 @@ var Story = {
 		Likes.init(chapter);
 		Likes.updateCounts();
 		this.setWidth(chapter);
-		switch(chapter) {
-			case 2:
-				ChapterTwo.init();
-			break;
-			case 3:
-				ChapterThree.init();
-			break;
-			case 4:
-				ChapterFour.init();
-			break;
-			case 5:
-				ChapterFive.init();
-			break;
-			case 6:
-				ChapterSix.init();
-			break;
-			default:
-				ChapterOne.init();
-			break;
+		// open all chapters before this one
+		for(var i=1; i<=chapter; i++) {
+			Story[i].init();
+			$('#chapter-' + i).delay(300).fadeIn(200);
 		}
 	},
 	closeChapter: function(chapter) {
@@ -129,7 +114,6 @@ var Story = {
 			width += Story.chapter_widths[i];
 		}
 		this.width = width;
-		$('#chapter-' + chapter).delay(300).fadeIn(200);
 		$('#footer').css('width', this.width + 'px');
 		$('#container').css('width', this.width + 'px');
 		$('#content').css('width', this.width + 'px');
@@ -144,8 +128,197 @@ var Story = {
 		$(object).
   		delay(delay).
   		animate({opacity:1,bottom:'0px'},speed);
-	}
+	},
+	/**********************************
+	 * BEGIN CHAPTER OBJECTS
+	 * Controls each chapter's behaviors
+	 **********************************/
+	// Chapter 1
+	1: {
+		init: function() {
+			this.animate();
+			this.bindScrollPoints();
+		},
+		animate: function() {
+			Maya.enter('child');
+			//Story.animateObject('#tree-1', 2400, 800);
+			//Story.animateObject('#hill-1', 2800, 800);
+			
+			// cloud animations
+			$("#cloud-1").
+		    animate({left:'+=-600px', opacity:0.0}, 27000).
+		    animate({left:'+=600px'},0).
+		    animate({opacity:0.8},3000);
+		},
+		bindScrollPoints: function() {
+			$(window).bind('scroll', function() {
+		    	if (Maya.xPosition() > 2000 && Maya.xPosition() < 3000) {
+		    		Animations.animateCrops(1);
+		    	}
+		    	if (Maya.xPosition() > 2400 && Maya.xPosition() < 3000) {
+		    		Animations.animateCrops(1);
+		    	}
+		    	if (Maya.xPosition() > 2800 && Maya.xPosition() < 3300) {
+		    		$('#girl-1').animate({bottom: '110px'}, 3500);
+		    	}
+		    	if (Maya.xPosition() > 3800 && Maya.xPosition() < 4000) {
+		    		$('#boy-1').animate({bottom: '110px'}, 4500);
+					$('#boy-2').animate({bottom: '120px'}, 4000);
+		    	}
+	    	});
+		},
+		end: function() {
+			//Maya.exit();
+		}
+	},
+	// Chapter 2
+	2: {
+		init: function() {
+			Maya.enter('child');
+			this.bindScrollPoints();
+			Animations.animateWaterChapterTwo();
+			this.animateParachutes();
+		},
+		animateParachutes: function() {
+			// float parachutes
+			$('#chapter-2 #parachute-1').
+				animate({top:'200px'}, 2500, 'linear').
+				animate({top:'120px'}, 2500, 'linear', this.animateParachutes);
+		},
+		bindScrollPoints: function() {
+			$(window).bind('scroll', function() {
+				var bubble = $('#chapter-2 #bubble-1');
+				if (Maya.xPosition() > Story.chapterStartPoint(2) + 4400 && bubble.css('opacity') == 0) {
+		    		bubble.animate({opacity:1}, 1000);
+		    	}
+		  });
+		},
+		end: function() {
+			//Maya.exit();
+		}
+	},
+	// Chapter 3
+	3: {
+		plane_flown: false,
+		money_tree_shown: false,
+		init: function() {
+			this.animate();
+			this.bindScrollPoints();
+		},
+		animate: function() {
+			//$('#chapter-3 #parachute-1').jqFloat({width: 50, height: 20, speed: 2000});
+		},
+		bindScrollPoints: function() {
+			$(window).bind('scroll', function() {
+		    	if (Maya.xPosition() > Story.chapterStartPoint(3) + 1450 && Maya.current_life_stage == 'child') {
+		    		Maya.lifeTransition('teen'); // Maya becomes a teenager
+		    	}
+		    	if (Maya.xPosition() > Story.chapterStartPoint(3) + 2000) {
+		    		$('#chapter-3 #bubble-1').
+		    			animate({opacity:1}, 1000).
+		    			delay(3000).
+		    			fadeOut(4000)
+		    	}
+		    	if (Maya.xPosition() > Story.chapterStartPoint(3) + 2100) {
+		    		$('#chapter-3 #bubble-2').
+		    			animate({opacity:1}, 1000).
+		    			delay(3000).
+		    			fadeOut(4000)
+		    	}
+		    	if (Maya.xPosition() > Story.chapterStartPoint(3) + 2300 && ChapterThree.plane_flown != true) {
+		    		$("#plane-1").animate({left: '+=600px'}, 2000)
+		    		ChapterThree.plane_flown = true;
+		    		Animations.animatePlane();
+		    	}
+		    	if (Maya.xPosition() > Story.chapterStartPoint(3) + 2900 && ChapterThree.money_tree_shown != true) {
+		    		//FIXME: Add the money tree animation
+		    	}
+	    	});
+		},
+		end: function() {
+			//Maya.exit();
+		}
+	},
+	// Chapter 4
+	4: {
+		init: function() {
+			this.animate();
+			this.bindScrollPoints();
+		},
+		animate: function() {
+			
+		},
+		bindScrollPoints: function() {
+			$(window).bind('scroll', function() {
+		    	if (Maya.xPosition() > Story.chapterStartPoint(5)-1500 && Maya.xPosition() < Story.chapterStartPoint(5)-1200) {
+		    		Animations.animateCrops(4);
+		    	}
+		    	if (Maya.xPosition() > Story.chapterStartPoint(4) + 2400 && Maya.current_life_stage == 'teen') {
+		    		Maya.lifeTransition('woman'); // Maya becomes a woman
+		    	}
+	    	});
+		},
+		end: function() {
+			//Maya.exit();
+		}
+	},
+	// Chapter 5
+	5: {
+		man_chosen: false,
+		init: function() {
+			this.animate();
+			this.bindScrollPoints();
+		},
+		animate: function() {
+			
+		},
+		bindScrollPoints: function() {
+			$(window).bind('scroll', function() {
+		    	if (Maya.xPosition() > Story.chapterStartPoint(5)+1200 && Maya.xPosition() < Story.chapterStartPoint(5)+2000) {
+		    		Animations.animateCrops(5);
+		    	}
+		    	if (Maya.xPosition() > Story.chapterStartPoint(5) + 1900 && Maya.current_life_stage == 'woman') {
+		    		Maya.lifeTransition('pregnant'); // Maya becomes pregnant
+		    	}
+		    	if (Maya.xPosition() > Story.chapterStartPoint(5) + 1300 && ChapterFive.man_chosen != true) {
+		    		var chosen_man = $('#chapter-5 #man-3');
+		    		chosen_man.removeClass('man-3').addClass('husband').animate({left: '+=600px'}, 4000)
+		    		ChapterFive.man_chosen = true;
+		    		
+		    	}
+	    	});
+		},
+		end: function() {
+			//Maya.exit();
+		}
+	},
+	// Chapter 6
+	6: {
+		init: function() {
+			//Animations.animateWater();
+			this.bindScrollPoints();
+		},
+		animate: function() {
+			
+		},
+		bindScrollPoints: function() {
+			$(window).bind('scroll', function() {
+		    	if (Maya.xPosition() > Story.chapterStartPoint(6)+400 && Maya.xPosition() < Story.chapterStartPoint(6)+1200) {
+		    		Animations.animateCrops(6);
+		    	}
+		    	if (Maya.xPosition() > Story.chapterStartPoint(6) + 200 && Maya.current_life_stage == 'pregnant') {
+		    		Maya.lifeTransition('mother'); // Maya enters motherhood
+		    	}
+	    	});
+		},
+		end: function() {
+			//Maya.exit();
+		}
+	},
 	
+	/*********************
+	 * END CHAPTER OBJECTS
+	 *********************/
 };
 
 
@@ -156,11 +329,12 @@ var Likes = {
 	count: null,
 	remaining: null,
 	limit: null,
-	current_chapter: null,
-	chapter_like_limits: {1:1, 2:300, 3:300, 4:300, 5:300, 6:300},
-	init: function( current_chapter ) {
-		this.current_chapter = current_chapter;
-		this.limit = this.chapter_like_limits[this.current_chapter];
+	chapter: null,
+	chapter_like_limits: {1:1, 2:1, 3:1, 4:300, 5:300, 6:300},
+	init: function( chapter ) {
+		this.chapter = chapter;
+		this.limit = this.chapter_like_limits[this.chapter];
+		this.bindFacebookLike();
 	},
 	bindFacebookLike: function() {
 		$('.facebook-like').fbjlike({
@@ -174,12 +348,8 @@ var Likes = {
 		  	lang:'en_US'
 		});
 	},
-	displayCounts: function() {
-		$('#likes-modal .likes-remaining span').text(Likes.remaining);
-		$('#likes-modal .like-count-total span.like-count').text(Likes.limit);
-	},
 	updateCounts: function() {
-		var query = 'http://graph.facebook.com/fql?q=SELECT url, normalized_url, share_count, like_count, comment_count, total_count, commentsbox_count, comments_fbid, click_count FROM link_stat WHERE url="' + Config.root_url + '/?chapter=' + this.current_chapter + '"';
+		var query = 'http://graph.facebook.com/fql?q=SELECT url, normalized_url, share_count, like_count, comment_count, total_count, commentsbox_count, comments_fbid, click_count FROM link_stat WHERE url="' + Config.root_url + '/?chapter=' + this.chapter + '"';
 		$.getJSON(query, function(data) {
 			Likes.count = data.data[0].like_count;
 			Likes.remaining = Likes.limit - Likes.count;
@@ -188,13 +358,17 @@ var Likes = {
 			Likes.isLimitReached();
 		});
 	},
+	displayCounts: function() {
+		$('#likes-modal .likes-remaining span').text(Likes.remaining);
+		$('#likes-modal .like-count-total span.like-count').text(Likes.limit);
+	},	
 	displayPercentageBar: function() {
 		var percentage = (Likes.count / Likes.limit) * 100;
-		$('#chapter-' + this.current_chapter + ' #percentage-bar #percentage').animate({width: percentage + '%'}, 4000);
+		$('#likes-modal #percentage-bar #percentage').animate({width: percentage + '%'}, 4000);
 	},
 	isLimitReached: function() {
 		if(this.limit <= this.count) {
-			Story.openChapter(this.current_chapter + 1);
+			Story.openChapter(this.chapter + 1);
 		}
 	}
 }
@@ -251,6 +425,7 @@ var LikesModal = {
 		},
 	],
 	init: function( chapter ) {
+		this.modal = $('#likes-modal');
 		this.chapter = chapter;
 		this.show();
 	},
@@ -259,8 +434,11 @@ var LikesModal = {
 		$('#likes-modal .like-message').html(this.content[this.chapter-1].like_message);
 		$('#likes-modal .next-chapter-message').html(this.content[this.chapter-1].next_chapter_message);
 		$('#likes-modal .modal-banner').css('background-image', 'url(img/milestone_' + this.chapter + '.png)');
-		$('#likes-modal').css('left', Story.chapterStartPoint(this.chapter)+this.content[this.chapter-1].position);
-		$('#likes-modal').animate({opacity: 1}, 2000);
+		this.modal.css('left', Story.chapterStartPoint(this.chapter)+this.content[this.chapter-1].position);
+		this.modal.animate({opacity: 1}, 2000);
+	},
+	hide: function() {
+		this.modal.animate({opacity: 0}, 2000);
 	}
 	
 }
@@ -524,204 +702,6 @@ var Animations = {
 			animate({bottom:'514px'}, 1400, 'linear', this.animatePlane)
 	}
 }
-
-/***********************************
- * Chapter controller to validate
- * if user can go on to next chapter
- ***********************************/
-var ChapterAuth = {
-	
-}
-
-/**********************************
- * BEGIN CHAPTER OBJECTS
- * Controls each chapter's behaviors
- **********************************/
-var ChapterOne = {
-	init: function() {
-		this.animate();
-		this.bindScrollPoints();
-	},
-	animate: function() {
-		Maya.enter('child');
-		//Story.animateObject('#tree-1', 2400, 800);
-		//Story.animateObject('#hill-1', 2800, 800);
-		
-		// cloud animations
-		$("#cloud-1").
-	    animate({left:'+=-600px', opacity:0.0}, 27000).
-	    animate({left:'+=600px'},0).
-	    animate({opacity:0.8},3000);
-	},
-	bindScrollPoints: function() {
-		$(window).bind('scroll', function() {
-	    	if (Maya.xPosition() > 2000 && Maya.xPosition() < 3000) {
-	    		Animations.animateCrops(1);
-	    	}
-	    	if (Maya.xPosition() > 2400 && Maya.xPosition() < 3000) {
-	    		Animations.animateCrops(1);
-	    	}
-	    	if (Maya.xPosition() > 2800 && Maya.xPosition() < 3300) {
-	    		$('#girl-1').animate({bottom: '110px'}, 3500);
-	    	}
-	    	if (Maya.xPosition() > 3800 && Maya.xPosition() < 4000) {
-	    		$('#boy-1').animate({bottom: '110px'}, 4500);
-				$('#boy-2').animate({bottom: '120px'}, 4000);
-	    	}
-    	});
-	},
-	end: function() {
-		//Maya.exit();
-	}
-};
-
-var ChapterTwo = {
-	init: function() {
-		Maya.enter('child');
-		this.bindScrollPoints();
-		Animations.animateWaterChapterTwo();
-		this.animateParachutes();
-	},
-	animateParachutes: function() {
-		// float parachutes
-		$('#chapter-2 #parachute-1').
-			animate({top:'200px'}, 2500, 'linear').
-			animate({top:'120px'}, 2500, 'linear', this.animateParachutes);
-	},
-	bindScrollPoints: function() {
-		$(window).bind('scroll', function() {
-			var bubble = $('#chapter-2 #bubble-1');
-			if (Maya.xPosition() > Story.chapterStartPoint(2) + 4400 && bubble.css('opacity') == 0) {
-	    		bubble.animate({opacity:1}, 1000);
-	    	}
-	  });
-	},
-	end: function() {
-		//Maya.exit();
-	}
-};
-
-var ChapterThree = {
-	plane_flown: false,
-	money_tree_shown: false,
-	init: function() {
-		this.animate();
-		this.bindScrollPoints();
-	},
-	animate: function() {
-		//$('#chapter-3 #parachute-1').jqFloat({width: 50, height: 20, speed: 2000});
-	},
-	bindScrollPoints: function() {
-		$(window).bind('scroll', function() {
-	    	if (Maya.xPosition() > Story.chapterStartPoint(3) + 1450 && Maya.current_life_stage == 'child') {
-	    		Maya.lifeTransition('teen'); // Maya becomes a teenager
-	    	}
-	    	if (Maya.xPosition() > Story.chapterStartPoint(3) + 2000) {
-	    		$('#chapter-3 #bubble-1').
-	    			animate({opacity:1}, 1000).
-	    			delay(3000).
-	    			fadeOut(4000)
-	    	}
-	    	if (Maya.xPosition() > Story.chapterStartPoint(3) + 2100) {
-	    		$('#chapter-3 #bubble-2').
-	    			animate({opacity:1}, 1000).
-	    			delay(3000).
-	    			fadeOut(4000)
-	    	}
-	    	if (Maya.xPosition() > Story.chapterStartPoint(3) + 2300 && ChapterThree.plane_flown != true) {
-	    		$("#plane-1").animate({left: '+=600px'}, 2000)
-	    		ChapterThree.plane_flown = true;
-	    		Animations.animatePlane();
-	    	}
-	    	if (Maya.xPosition() > Story.chapterStartPoint(3) + 2900 && ChapterThree.money_tree_shown != true) {
-	    		//FIXME: Add the money tree animation
-	    	}
-    	});
-	},
-	end: function() {
-		//Maya.exit();
-	}
-};
-
-var ChapterFour = {
-	init: function() {
-		this.animate();
-		this.bindScrollPoints();
-	},
-	animate: function() {
-		
-	},
-	bindScrollPoints: function() {
-		$(window).bind('scroll', function() {
-	    	if (Maya.xPosition() > Story.chapterStartPoint(5)-1500 && Maya.xPosition() < Story.chapterStartPoint(5)-1200) {
-	    		Animations.animateCrops(4);
-	    	}
-	    	if (Maya.xPosition() > Story.chapterStartPoint(4) + 2400 && Maya.current_life_stage == 'teen') {
-	    		Maya.lifeTransition('woman'); // Maya becomes a woman
-	    	}
-    	});
-	},
-	end: function() {
-		//Maya.exit();
-	}
-};
-
-var ChapterFive = {
-	man_chosen: false,
-	init: function() {
-		this.animate();
-		this.bindScrollPoints();
-	},
-	animate: function() {
-		
-	},
-	bindScrollPoints: function() {
-		$(window).bind('scroll', function() {
-	    	if (Maya.xPosition() > Story.chapterStartPoint(5)+1200 && Maya.xPosition() < Story.chapterStartPoint(5)+2000) {
-	    		Animations.animateCrops(5);
-	    	}
-	    	if (Maya.xPosition() > Story.chapterStartPoint(5) + 1900 && Maya.current_life_stage == 'woman') {
-	    		Maya.lifeTransition('pregnant'); // Maya becomes pregnant
-	    	}
-	    	if (Maya.xPosition() > Story.chapterStartPoint(5) + 1300 && ChapterFive.man_chosen != true) {
-	    		var chosen_man = $('#chapter-5 #man-3');
-	    		chosen_man.removeClass('man-3').addClass('husband').animate({left: '+=600px'}, 4000)
-	    		ChapterFive.man_chosen = true;
-	    		
-	    	}
-    	});
-	},
-	end: function() {
-		//Maya.exit();
-	}
-};
-
-var ChapterSix = {
-	init: function() {
-		//Animations.animateWater();
-		this.bindScrollPoints();
-	},
-	animate: function() {
-		
-	},
-	bindScrollPoints: function() {
-		$(window).bind('scroll', function() {
-	    	if (Maya.xPosition() > Story.chapterStartPoint(6)+400 && Maya.xPosition() < Story.chapterStartPoint(6)+1200) {
-	    		Animations.animateCrops(6);
-	    	}
-	    	if (Maya.xPosition() > Story.chapterStartPoint(6) + 200 && Maya.current_life_stage == 'pregnant') {
-	    		Maya.lifeTransition('mother'); // Maya enters motherhood
-	    	}
-    	});
-	},
-	end: function() {
-		//Maya.exit();
-	}
-};
-
-/*********************
- * END CHAPTER OBJECTS
- *********************/
 
 /*********************
  * Initialize Story
