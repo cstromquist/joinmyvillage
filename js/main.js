@@ -18,26 +18,50 @@
 
 var Config = {
 	uuid: function(a,b){for(b=a='';a++<36;b+=a*51&52?(a^15?8^Math.random()*(a^20?16:4):4).toString(16):'-');return b},
-	root_url: document.domain
+	root_url: document.domain,
+	sub_url: '/?chapter='
 };
 
 var Story = {
+	chapters: 6,
 	chapter_open_status: {1:false, 2:false, 3:false, 4:false, 5:false, 6:false},
 	chapter_close_status: {1:false, 2:false, 3:false, 4:false, 5:false, 6:false},
-	chapter_widths: {1:5677, 2:5713, 3:5591, 4:4930, 5:5005, 6:5000},
+	chapter_widths: {1:5677, 2:5713, 3:5591, 4:5199, 5:5005, 6:5000},
 	current_chapter: null,
 	init: function() {
+		/****************
+		 * 1. If user doesn't have a cookie set, then they're a new user, so open the story for them.
+		 * 2. If a user does have a cookie set, check:
+		 * 		a. Check if the URL has a chapter in it.
+		 * 		b. If not, then load their current_chapter cookie
+		 * 		c. If so, then we need to do the following:
+		 * 			c1. Check if the requested chapter has reached the like limit
+		 * 			c2. If not, then load the last chapter
+		 * 			c3. Then load the requested chapter
+		 ****************/
 		if(!$.cookie('current_chapter')) {
 			this.current_chapter = 1;
-			this.open();
+			this.openStory();
 		} else {
-			this.current_chapter = Number($.cookie('current_chapter'));
-			$.cookie('current_chapter', this.current_chapter);
-			//window.location.hash('#chapter-' + this.current_chapter);
+			if(this.getChapter() != 'null') {
+				var chapter = this.getChapter();
+				// check to see if Like limit was reached for this chapter.
+				Likes.init(chapter);
+				if(Likes.isLimitReached()) {
+					this.current_chapter = chapter;
+				} else {
+					// trying to access next chapter which isn't available yet, so just load their last visited chapter
+					this.current_chapter = Number($.cookie('current_chapter'));
+				}
+			} else {
+				this.current_chapter = Number($.cookie('current_chapter'));
+				if(this.current_chapter > Story.chapters)
+					this.current_chapter = 1;
+			}
 			this.begin();
 		}
 	},
-	open: function() {
+	openStory: function() {
 		// user will only experience this once upon entering the site
 		Scroll.preventScrolling();
 		var modal = $('#modal-entry');
@@ -54,10 +78,12 @@ var Story = {
 	},
 	begin: function() {
 		Story.bindFixedElements();
-		Story.width = Config.chapter_1_width;
 		Flags.setup();
-		var chapter = Story.getChapter() >= 1 ? Story.getChapter() : 1;
-		Story.openChapter(Story.current_chapter);
+		this.setWidth();
+		console.log(this.current_chapter);
+		$.cookie('current_chapter', this.current_chapter, { expires: 7 });
+		this.openChapter(this.current_chapter);
+		window.location.hash('#chapter-' + this.current_chapter);
 	},
 	end: function() {
 		var modal = $('#modal-end');
@@ -84,10 +110,12 @@ var Story = {
 		}
 		return total;
 	},
+	openNextChapter: function () {
+		var next_chapter = this.current_chapter + 1;
+		$.cookie('current_chapter', next_chapter);
+		window.location.href = 'http://' + Config.root_url + Config.sub_url + next_chapter;
+	},
 	openChapter: function( chapter ) {
-		console.log(chapter);
-		this.current_chapter = chapter;
-		$.cookie('current_chapter', chapter, { expires: 7 });
 		// if the chapter has already been opened, we can stop here.
 		if(this.chapter_open_status[chapter]) {
 			return;
@@ -225,12 +253,12 @@ var Story = {
 		    			delay(3000).
 		    			fadeOut(4000)
 		    	}
-		    	if (Maya.xPosition() > Story.chapterStartPoint(3) + 2300 && ChapterThree.plane_flown != true) {
+		    	if (Maya.xPosition() > Story.chapterStartPoint(3) + 2300 && Story[3].plane_flown != true) {
 		    		$("#plane-1").animate({left: '+=600px'}, 2000)
-		    		ChapterThree.plane_flown = true;
+		    		Story[3].plane_flown = true;
 		    		Animations.animatePlane();
 		    	}
-		    	if (Maya.xPosition() > Story.chapterStartPoint(3) + 2900 && ChapterThree.money_tree_shown != true) {
+		    	if (Maya.xPosition() > Story.chapterStartPoint(3) + 2900 && Story[3].money_tree_shown != true) {
 		    		//FIXME: Add the money tree animation
 		    	}
 	    	});
@@ -280,10 +308,10 @@ var Story = {
 		    	if (Maya.xPosition() > Story.chapterStartPoint(5) + 1900 && Maya.current_life_stage == 'woman') {
 		    		Maya.lifeTransition('pregnant'); // Maya becomes pregnant
 		    	}
-		    	if (Maya.xPosition() > Story.chapterStartPoint(5) + 1300 && ChapterFive.man_chosen != true) {
+		    	if (Maya.xPosition() > Story.chapterStartPoint(5) + 1300 && Story[5].man_chosen != true) {
 		    		var chosen_man = $('#chapter-5 #man-3');
 		    		chosen_man.removeClass('man-3').addClass('husband').animate({left: '+=600px'}, 4000)
-		    		ChapterFive.man_chosen = true;
+		    		Story[5].man_chosen = true;
 		    		
 		    	}
 	    	});
@@ -330,7 +358,7 @@ var Likes = {
 	remaining: null,
 	limit: null,
 	chapter: null,
-	chapter_like_limits: {1:1, 2:1, 3:1, 4:300, 5:300, 6:300},
+	chapter_like_limits: {1:1, 2:1, 3:1, 4:1, 5:1, 6:1},
 	init: function( chapter ) {
 		this.chapter = chapter;
 		this.limit = this.chapter_like_limits[this.chapter];
@@ -349,13 +377,15 @@ var Likes = {
 		});
 	},
 	updateCounts: function() {
-		var query = 'http://graph.facebook.com/fql?q=SELECT url, normalized_url, share_count, like_count, comment_count, total_count, commentsbox_count, comments_fbid, click_count FROM link_stat WHERE url="' + Config.root_url + '/?chapter=' + this.chapter + '"';
+		var query = 'http://graph.facebook.com/fql?q=SELECT url, normalized_url, share_count, like_count, comment_count, total_count, commentsbox_count, comments_fbid, click_count FROM link_stat WHERE url="' + Config.root_url + Config.sub_url + this.chapter + '"';
 		$.getJSON(query, function(data) {
 			Likes.count = data.data[0].like_count;
 			Likes.remaining = Likes.limit - Likes.count;
 			Likes.displayCounts();
 			Likes.displayPercentageBar();
-			Likes.isLimitReached();
+			if(Likes.isLimitReached()) {
+				Story.openNextChapter();
+			}
 		});
 	},
 	displayCounts: function() {
@@ -368,7 +398,9 @@ var Likes = {
 	},
 	isLimitReached: function() {
 		if(this.limit <= this.count) {
-			Story.openChapter(this.chapter + 1);
+			return true;
+		} else {
+			return false;
 		}
 	}
 }
