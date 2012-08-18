@@ -49,6 +49,7 @@ var Story = {
 		Story.bindChapterEndPoints();
 		Flags.setup();
 		Story.openChapter(1);
+		//Story.scroll();
 	},
 	end: function() {
 		var modal = $('#modal-end');
@@ -202,6 +203,13 @@ var Story = {
 	},
 	setFacebookLikeCountLimit: function( chapter, limit ) {
 		$('#chapter-' + chapter + ' .likes-max span').text(limit)
+	},
+	scroll: function() {
+		window.scrollBy(50,0);
+		scrollDelay = setTimeout('Story.scroll()',100); // scrolls every 100 milliseconds
+	},
+	stopScroll: function() {
+    	clearTimeout(scrollDelay);
 	},
 	animateObject: function( object, delay, speed ) {
 		$(object).
