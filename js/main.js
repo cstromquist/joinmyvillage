@@ -110,7 +110,6 @@ var Story = {
 	openChapter: function( chapter ) {
 		this.current_chapter = chapter;
 		$.cookie('current_chapter', chapter, { expires: 7 });
-		console.log('cookie: ' + $.cookie('current_chapter'));
 		// if the chapter has already been opened, we can stop here.
 		if(this.chapter_open_status[chapter]) {
 			return;
