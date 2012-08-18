@@ -1,0 +1,1426 @@
+/*****************************************************
+ * GLOBAL CLASSES USED THROUGHOUT STORY ON ALL CHAPTERS
+ *****************************************************/
+/**********************
+ * BEGIN CHAPTER TITLE
+ **********************/
+.title {
+  position: absolute;
+  top: 150px;
+  color: #000;
+}
+.title h1 {
+  margin: 0;
+  padding: 0;
+  font-family: BrandonBlk;
+}
+.title h2 {
+  margin: 0;
+  padding: 0;
+  line-height: 50px;
+  color: #ffffff;
+  text-shadow: black 0.04em 0.07em 0.1em;
+  font-size: 3.0em;
+  font-family: BrandonLight;
+  font-weight: bold;
+}
+/*******************
+ * END CHAPTER TITLE
+ *******************/
+/*********************************************
+ * DEFINTIONS USED THROUGHOUT STORY SORTED A-Z
+ *********************************************/
+.maya-common {
+  opacity: 1;
+}
+.maya-child {
+  opacity: 1;
+  width: 72px;
+  height: 119px;
+  background: transparent url(../img/sprites/maya_1.png) no-repeat;
+}
+.maya-teen {
+  opacity: 1;
+  width: 81px;
+  height: 140px;
+  background: transparent url(../img/sprites/maya_2.png) no-repeat;
+}
+.maya-woman {
+  opacity: 1;
+  width: 93px;
+  height: 167px;
+  background: transparent url(../img/sprites/maya_3.png) no-repeat;
+}
+.maya-pregnant {
+  opacity: 1;
+  width: 50px;
+  height: 167px;
+  background: transparent url(../img/sprites/maya_4.png) no-repeat;
+}
+.maya-mother {
+  opacity: 1;
+  width: 93px;
+  height: 167px;
+  background: transparent url(../img/sprites/maya_5.png) no-repeat;
+}
+.books-1 {
+  background: transparent url(../img/books_1.png) no-repeat;
+  width: 319px;
+  height: 80px;
+}
+.books-2 {
+  background: transparent url(../img/books_1.png) no-repeat;
+  width: 62px;
+  height: 51px;
+}
+.box {
+  width: 300px;
+  position: absolute;
+  padding: 10px;
+  opacity: 0;
+  z-index: 100;
+}
+.box .box-content {
+  background: transparent;
+  border-top: 1px solid #fff;
+  border-left: 1px solid #fff;
+  border-right: 1px solid #fff;
+  padding: 7px 7px 0 7px;
+}
+.box .box-content p {
+  background: #fff;
+  font-size: 1em;
+  text-align: left;
+  display: block;
+  padding: 20px;
+  color: #8e7961;
+}
+.box-footer {
+  background: transparent url(../img/box_bottom.png) no-repeat;
+  width: 300px;
+  height: 31px;
+}
+.boy-1 {
+  background: transparent url(../img/c_boy_1.png) no-repeat;
+  width: 49px;
+  height: 98px;
+}
+.boy-2 {
+  background: transparent url(../img/c_boy_2.png) no-repeat;
+  width: 49px;
+  height: 105px;
+}
+.boy-3 {
+  background: transparent url(../img/animations/C_Boy_3.gif) no-repeat;
+  width: 60px;
+  height: 91px;
+}
+.bridge {
+  background: transparent url(../img/bridge.png) no-repeat;
+  width: 438px;
+  height: 120px;
+  bottom: 86px !important;
+}
+.bridge-bg-front {
+  background: transparent url(../img/bridge_bg_front.png) no-repeat;
+  width: 680px;
+  height: 100px;
+  bottom: 0px !important;
+}
+.bridge-bg-back {
+  background: transparent url(../img/bridge_bg_back.png) no-repeat;
+  width: 395px;
+  height: 100px;
+  bottom: 0px !important;
+}
+.bubble-baby {
+  background: transparent url(../img/animations/bubble_baby.gif) no-repeat;
+  width: 93px;
+  height: 92px;
+  opacity: 0;
+}
+.bubble-marriage {
+  background: transparent url(../img/animations/bubble_marriage.gif) no-repeat;
+  width: 94px;
+  height: 92px;
+  opacity: 0;
+}
+.bubble-supplies {
+  background: transparent url(../img/bubble_supplies.png) no-repeat;
+  width: 94px;
+  height: 81px;
+  opacity: 0;
+}
+.bush-small {
+  background: transparent url(../img/bush_s.png) no-repeat;
+  width: 157px;
+  height: 66px;
+}
+.bush-large {
+  background: transparent url(../img/bush_l.png) no-repeat;
+  width: 202px;
+  height: 66px;
+}
+.cloud-large {
+  background: transparent url(../img/cloud_l.png) no-repeat;
+  width: 268px;
+  height: 81px;
+}
+.cloud-small {
+  background: transparent url(../img/cloud_s.png) no-repeat;
+  width: 268px;
+  height: 81px;
+}
+.crop img {
+  width: 27px;
+  height: 42px;
+}
+.father {
+  background: transparent url(../img/animations/C_Father.gif) no-repeat;
+  width: 115px;
+  height: 171px;
+}
+.field {
+  background: transparent url(../img/field.png) no-repeat;
+  width: 918px;
+  height: 87px;
+}
+.flag {
+  background: transparent url(../img/animations/flag.gif) no-repeat;
+  width: 148px;
+  height: 199px;
+  cursor: pointer;
+}
+.goat {
+  background: transparent url(../img/animations/Goat_L.gif) no-repeat;
+  width: 94px;
+  height: 68px;
+}
+.girl-bucket {
+  background: transparent url(../img/c_girlWithBucket.png) no-repeat;
+  width: 55px;
+  height: 84px;
+}
+.girl-with-goat-1 {
+  background: transparent url(../img/animations/C_GirlWithGoat_1.gif) no-repeat;
+  width: 76px;
+  height: 69px;
+}
+.girl-with-goat-2 {
+  background: transparent url(../img/animations/C_GirlWithGoat_2.gif) no-repeat;
+  width: 76px;
+  height: 69px;
+}
+.grass-tiny {
+  background: transparent url(../img/grass_tiny.png) no-repeat;
+  width: 263px;
+  height: 59px;
+}
+.grass-small {
+  background: transparent url(../img/grass_s.png) no-repeat;
+  width: 849px;
+  height: 73px;
+}
+.grass-medium {
+  background: transparent url(../img/grass_m.png) no-repeat;
+  width: 759px;
+  height: 103px;
+}
+.grass-large {
+  background: transparent url(../img/grass_l.png) no-repeat;
+  width: 960px;
+  height: 113px;
+}
+.house {
+  background: transparent url(../img/b_house.png) no-repeat;
+  width: 325px;
+  height: 360px;
+}
+/*
+ * FIXME
+ */
+.house-front {
+  background: transparent url(../img/b_school_front.png) no-repeat;
+  width: 325px;
+  height: 360px;
+  display: none;
+}
+.house-small {
+  background: transparent url(../img/b_house_small.png) no-repeat;
+  width: 200px;
+  height: 223px;
+}
+.husband {
+  background: transparent url(../img/animations/c_husband.gif) no-repeat;
+  width: 84px;
+  height: 173px;
+}
+.man-1 {
+  background: transparent url(../img/c_man_3.png) no-repeat;
+  width: 69px;
+  height: 171px;
+}
+.man-2 {
+  background: transparent url(../img/c_man_4.png) no-repeat;
+  width: 74px;
+  height: 166px;
+}
+.man-3 {
+  background: transparent url(../img/c_man_5.png) no-repeat;
+  width: 93px;
+  height: 174px;
+}
+.medical-clinic {
+  background: transparent url(../img/b_medicalClinic.png) no-repeat;
+  width: 492px;
+  height: 364px;
+}
+.mother {
+  background: transparent url(../img/mother.png) no-repeat;
+  width: 67px;
+  height: 167px;
+}
+.nurse {
+  background: transparent url(../img/c_nurse.png) no-repeat;
+  width: 76px;
+  height: 173px;
+}
+.plane {
+  background: transparent url(../img/animations/Airplane.gif) no-repeat;
+  width: 388px;
+  height: 189px;
+}
+.police {
+  background: transparent url(../img/c_police.png) no-repeat;
+  width: 76px;
+  height: 177px;
+}
+.shop-maya {
+  background: transparent url(../img/b_mayaShop.png) no-repeat;
+  width: 323px;
+  height: 363px;
+}
+.shop-maya-sign {
+  background: transparent url(../img/animations/sign_mayaShop.gif) no-repeat;
+  width: 203px;
+  height: 132px;
+  bottom: 283px;
+  left: 300px;
+}
+.shop-1 {
+  background: transparent url(../img/b_shop_1.png) no-repeat;
+  width: 197px;
+  height: 224px;
+}
+.shop-2 {
+  background: transparent url(../img/b_shop_2.png) no-repeat;
+  width: 197px;
+  height: 225px;
+}
+.shop-3 {
+  background: transparent url(../img/b_shop_2.png) no-repeat;
+  width: 197px;
+  height: 221px;
+}
+.sign-market {
+  background: transparent url(../img/sign_market.png) no-repeat;
+  width: 158px;
+  height: 137px;
+}
+.sign-school {
+  background: transparent url(../img/sign_school.png) no-repeat;
+  width: 158px;
+  height: 137px;
+}
+.sign-school-secondary {
+  background: transparent url(../img/sign_secondarySchool.png) no-repeat;
+  width: 173px;
+  height: 166px;
+}
+.sign-village {
+  background: transparent url(../img/sign_village.png) no-repeat;
+  width: 168px;
+  height: 141px;
+}
+.school-back {
+  background: transparent url(../img/b_school_back.png) no-repeat;
+  width: 1312px;
+  height: 365px;
+}
+.school-boy-1 {
+  background: transparent url(../img/animations/C_BoyAtDesk_1.gif) no-repeat;
+  width: 86px;
+  height: 96px;
+}
+.school-boy-2 {
+  background: transparent url(../img/animations/C_BoyAtDesk_2.gif) no-repeat;
+  width: 86px;
+  height: 96px;
+}
+.school-girl-1 {
+  background: transparent url(../img/animations/C_GirlAtDesk_1.gif) no-repeat;
+  width: 95px;
+  height: 108px;
+}
+.school-girl-2 {
+  background: transparent url(../img/animations/C_GirlAtDesk_2.gif) no-repeat;
+  width: 94px;
+  height: 107px;
+}
+.school-front {
+  background: transparent url(../img/b_school_front.png) no-repeat;
+  width: 1144px;
+  height: 234px;
+}
+.stars {
+  background: transparent url(../img/stars.png) no-repeat;
+  width: 93px;
+  height: 95px;
+  bottom: -19px;
+  position: relative;
+  left: -19px;
+  opacity: 0;
+}
+.teacher-male {
+  background: transparent url(../img/c_maleTeacher.png) no-repeat;
+  width: 76px;
+  height: 171px;
+}
+.teacher-female {
+  background: transparent url(../img/c_femaleTeacher.png) no-repeat;
+  width: 67px;
+  height: 184px;
+}
+.tree-small {
+  background: transparent url(../img/tree_s.png) no-repeat;
+  width: 113px;
+  height: 176px;
+}
+.tree-medium {
+  background: transparent url(../img/tree_m.png) no-repeat;
+  width: 193px;
+  height: 265px;
+}
+.tree-large {
+  background: transparent url(../img/tree_l.png) no-repeat;
+  width: 227px;
+  height: 351px;
+}
+.tree-money {
+  background: transparent url(../img/animations/moneytree.gif) no-repeat;
+  width: 319px;
+  height: 451px;
+}
+.woman-money-1 {
+  background: transparent url(../img/c_womanWithMoney_1.png) no-repeat;
+  width: 106px;
+  height: 167px;
+}
+.woman-money-2 {
+  background: transparent url(../img/c_womanWithMoney_2.png) no-repeat;
+  width: 63px;
+  height: 167px;
+}
+.woman-pregnant-1 {
+  background: transparent url(../img/c_pregnantwoman_1.png) no-repeat;
+  width: 46px;
+  height: 167px;
+}
+.woman-pregnant-2 {
+  background: transparent url(../img/c_pregnantwoman_2.png) no-repeat;
+  width: 53px;
+  height: 138px;
+}
+.woman-pregnant-3 {
+  background: transparent url(../img/c_pregnantwoman_3.png) no-repeat;
+  width: 64px;
+  height: 163px;
+}
+.water-front {
+  background: transparent url(../img/water_front.png) no-repeat;
+  width: 564px;
+  height: 56px;
+  bottom: 0px !important;
+}
+.water-back {
+  background: transparent url(../img/water_back.png) no-repeat;
+  width: 564px;
+  height: 56px;
+  bottom: 0px !important;
+}
+/**************************************
+ * END DEFINTIONS USED THROUGHOUT STORY
+ **************************************/
+/*****************
+ * BEGIN CHAPTER 1
+ *****************/
+#chapter-1 #title-chapter-1 {
+  left: 100px;
+}
+#chapter-1 #maya {
+  left: 400px;
+  z-index: 101;
+  position: fixed;
+}
+#chapter-1 #box-1 {
+  left: 272px;
+  bottom: 300px;
+}
+#chapter-1 #box-2 {
+  left: 1708px;
+  bottom: 368px;
+}
+#chapter-1 #box-3 {
+  left: 2230px;
+  bottom: 364px;
+}
+#chapter-1 #box-4 {
+  left: 3211px;
+  bottom: 324px;
+}
+#chapter-1 #box-5 {
+  left: 4011px;
+  bottom: 345px;
+}
+#chapter-1 #cloud-1 {
+  left: 465px;
+  top: 389px;
+}
+#chapter-1 #cloud-2 {
+  left: 1425px;
+  top: 289px;
+}
+#chapter-1 #cloud-3 {
+  left: 2133px;
+  top: 197px;
+}
+#chapter-1 #cloud-4 {
+  left: 3504px;
+  top: 299px;
+}
+#chapter-1 #cloud-5 {
+  left: 4263px;
+  top: 191px;
+}
+#chapter-1 #tree-1 {
+  left: 85px;
+}
+#chapter-1 #grass-1 {
+  left: 122px;
+}
+#chapter-1 #tree-2 {
+  left: 756px;
+}
+#chapter-1 #mother-1 {
+  left: 987px;
+}
+#chapter-1 #father-1 {
+  left: 1050px;
+}
+#chapter-1 #bush-1 {
+  left: 1047px;
+}
+#chapter-1 #house-1 {
+  left: 1190px;
+}
+#chapter-1 #goat-1 {
+  left: 1623px;
+}
+#chapter-1 #grass-2 {
+  left: 1278px;
+}
+#chapter-1 #tree-3 {
+  left: 1590px;
+  bottom: 206px;
+}
+#chapter-1 #field-1 {
+  left: 2078px;
+}
+#chapter-1 #modal-1 {
+  left: 2606px;
+}
+#chapter-1 #crop-1 {
+  left: 2248px;
+  bottom: 120px;
+}
+#chapter-1 #crop-2 {
+  left: 2419px;
+  bottom: 170px;
+}
+#chapter-1 #crop-3 {
+  left: 2507px;
+}
+#chapter-1 #crop-4 {
+  left: 2627px;
+  bottom: 155px;
+}
+#chapter-1 #crop-5 {
+  left: 2786px;
+  bottom: 148px;
+}
+#chapter-1 #flag-1 {
+  left: 2860px;
+}
+#chapter-1 #grass-3 {
+  left: 2844px;
+}
+#chapter-1 #girl-1 {
+  left: 3124px;
+  bottom: 140px;
+}
+#chapter-1 #girl-2 {
+  left: 3325px;
+  bottom: 169px;
+}
+#chapter-1 #tree-4 {
+  left: 3472px;
+  bottom: 129px;
+}
+#chapter-1 #bush-2 {
+  left: 3660px;
+}
+#chapter-1 #grass-4 {
+  left: 3690px;
+}
+#chapter-1 #boy-1 {
+  left: 4090px;
+  bottom: 185px;
+}
+#chapter-1 #boy-2 {
+  left: 4155px;
+  bottom: 175px;
+}
+#chapter-1 #boy-3 {
+  left: 4208px;
+  bottom: 180px;
+}
+#chapter-1 #flag-2 {
+  left: 4413px;
+  bottom: 148px;
+}
+#chapter-1 #bush-3 {
+  left: 4622px;
+}
+#chapter-1 #end-modal-1 {
+  left: 4732px;
+}
+#chapter-1 #modal-banner-1 {
+  background: transparent url(../img/milestone_1.png) no-repeat;
+}
+#chapter-1 #flag-3 {
+  left: 5181px;
+  bottom: 188px;
+}
+/*****************
+ * END CHAPTER 1
+ *****************/
+/*****************
+ * BEGIN CHAPTER 2
+ *****************/
+#chapter-2 {
+  display: block;
+}
+#chapter-2 #cloud-1 {
+  left: 6104px;
+  top: 155px;
+}
+#chapter-2 #cloud-2 {
+  left: 7231px;
+  top: 203px;
+}
+#chapter-2 #cloud-3 {
+  left: 8382px;
+  top: 245px;
+}
+#chapter-2 #title-chapter-2 {
+  left: 5509px;
+}
+#chapter-2 #box-1 {
+  left: 6108px;
+  bottom: 501px;
+}
+#chapter-2 #box-2 {
+  left: 6816px;
+  bottom: 480px;
+}
+#chapter-2 #box-3 {
+  left: 7639px;
+  bottom: 364px;
+}
+#chapter-2 #box-4 {
+  left: 8778px;
+  bottom: 432px;
+}
+#chapter-2 #grass-1 {
+  left: 4724px;
+}
+#chapter-2 #tree-1 {
+  left: 5454px;
+  bottom: 165px;
+}
+#chapter-2 #sign-1 {
+  left: 5672px;
+}
+#chapter-2 #bush-1 {
+  left: 5785px;
+}
+#chapter-2 #grass-2 {
+  left: 5989px;
+}
+#chapter-2 #school-1 {
+  left: 6257px;
+}
+#chapter-2 #school-2 {
+  left: 6097px;
+}
+#chapter-2 #door-1 {
+  left: 6221px;
+}
+#chapter-2 #school-boy-1 {
+  left: 6491px;
+}
+#chapter-2 #school-boy-2 {
+  left: 6629px;
+}
+#chapter-2 #school-boy-3 {
+  left: 6764px;
+}
+#chapter-2 #school-boy-4 {
+  left: 6900px;
+}
+#chapter-2 #teacher-1 {
+  left: 7131px;
+}
+#chapter-2 #bush-2 {
+  left: 7318px;
+}
+#chapter-2 #grass-3 {
+  left: 7483px;
+}
+#chapter-2 #flag-1 {
+  left: 7567px;
+  bottom: 120px;
+}
+#chapter-2 #tree-2 {
+  left: 8085px;
+  bottom: 140px;
+}
+#chapter-2 #bush-3 {
+  left: 8353px;
+}
+#chapter-2 #grass-4 {
+  left: 8529px;
+}
+#chapter-2 #tree-3 {
+  left: 8574px;
+  bottom: 130px;
+}
+#chapter-2 #flag-2 {
+  left: 9216px;
+  bottom: 130px;
+}
+#chapter-2 #bridge-1 {
+  left: 9557px;
+}
+#chapter-2 #bridge-bg-1 {
+  left: 9436px;
+}
+#chapter-2 #bridge-bg-2 {
+  left: 9579px;
+}
+#chapter-2 #water-front-1 {
+  left: 9508px;
+}
+#chapter-2 #water-back-1 {
+  left: 9474px;
+}
+#chapter-2 #end-modal-1 {
+  left: 9606px;
+}
+#chapter-2 #modal-banner-1 {
+  background: transparent url(../img/milestone_2.png) no-repeat;
+}
+#chapter-2 #bush-4 {
+  left: 10027px;
+}
+#chapter-2 #grass-5 {
+  left: 10162px;
+}
+#chapter-2 #bubble-1 {
+  left: 9985px;
+  bottom: 250px;
+}
+#chapter-2 #teacher-2 {
+  left: 10076px;
+}
+#chapter-2 #house-1 {
+  left: 10209px;
+}
+#chapter-2 #parachute-1 {
+  left: 10044px;
+  top: 120px;
+}
+#chapter-2 #parachute-2 {
+  left: 10476px;
+  top: 150px;
+}
+#chapter-2 #parachute-3 {
+  left: 10312px;
+  top: 120px;
+}
+/*****************
+ * Additional defs
+ *****************/
+#chapter-2 #parachute-1 img {
+  width: 95%;
+}
+#chapter-2 #parachute-2 img {
+  width: 85%;
+}
+#chapter-2 #parachute-3 img {
+  width: 40%;
+}
+/*****************
+ * END CHAPTER 2
+ *****************/
+/*****************
+ * BEGIN CHAPTER 3
+ *****************/
+#chapter-3 {
+  display: block;
+}
+#chapter-3 #cloud-1 {
+  left: 11686px;
+  top: 259px;
+}
+#chapter-3 #cloud-2 {
+  left: 12597px;
+  top: 173px;
+}
+#chapter-3 #cloud-3 {
+  left: 13286px;
+  top: 263px;
+}
+#chapter-3 #cloud-4 {
+  left: 14779px;
+  top: 155px;
+}
+#chapter-3 #title-chapter-3 {
+  left: 10911px;
+}
+#chapter-3 #box-1 {
+  left: 11282px;
+  bottom: 293px;
+}
+#chapter-3 #box-2 {
+  left: 12148px;
+  bottom: 296px;
+}
+#chapter-3 #box-3 {
+  left: 12934px;
+  bottom: 382px;
+}
+#chapter-3 #box-4 {
+  left: 13793px;
+  bottom: 310px;
+}
+#chapter-3 #box-5 {
+  left: 14559px;
+  bottom: 418px;
+}
+#chapter-3 #tree-1 {
+  left: 10890px;
+  bottom: 168px;
+}
+#chapter-3 #bush-1 {
+  left: 11080px;
+}
+#chapter-3 #sign-1 {
+  left: 11162px;
+}
+#chapter-3 #books-1 {
+  left: 11310px;
+}
+#chapter-3 #teacher-1 {
+  left: 11670px;
+}
+#chapter-3 #house-1 {
+  left: 11752px;
+}
+#chapter-3 #house-2 {
+  left: 11752px;
+}
+#chapter-3 #door-1 {
+  left: 11873px;
+}
+#chapter-3 #books-2 {
+  left: 12006px;
+}
+#chapter-3 #parachute-1 {
+  left: 11506px;
+  top: 200px;
+}
+#chapter-3 #grass-1 {
+  left: 12348px;
+}
+#chapter-3 #tree-2 {
+  left: 12515px;
+  bottom: 178px;
+}
+#chapter-3 #flag-1 {
+  left: 12688px;
+  bottom: 192px;
+}
+#chapter-3 #bubble-1 {
+  left: 12942px;
+  bottom: 244px;
+}
+#chapter-3 #man-1 {
+  left: 13022px;
+}
+#chapter-3 #mother-1 {
+  left: 13134px;
+}
+#chapter-3 #father-1 {
+  left: 13198px;
+}
+#chapter-3 #bubble-2 {
+  left: 13250px;
+  bottom: 254px;
+}
+#chapter-3 #bush-2 {
+  left: 13460px;
+}
+#chapter-3 #grass-2 {
+  left: 13598px;
+}
+#chapter-3 #plane-1 {
+  left: 13188px;
+  bottom: 514px;
+}
+#chapter-3 #nurse-1 {
+  left: 13872px;
+}
+#chapter-3 #police-1 {
+  left: 14012px;
+}
+#chapter-3 #tree-3 {
+  left: 14256px;
+  bottom: 130px;
+}
+#chapter-3 #bush-3 {
+  left: 14692px;
+}
+#chapter-3 #grass-3 {
+  left: 14862px;
+}
+#chapter-3 #tree-4 {
+  left: 14948px;
+}
+#chapter-3 #flag-2 {
+  left: 15374px;
+  bottom: 184px;
+}
+#chapter-3 #grass-4 {
+  left: 15554px;
+}
+#chapter-3 #tree-5 {
+  left: 16100px;
+  bottom: 152px;
+}
+#chapter-3 #end-modal-1 {
+  left: 15656px;
+}
+#chapter-3 #modal-banner-1 {
+  background: transparent url(../img/milestone_3.png) no-repeat;
+}
+/*************
+ * Additional defs
+ *************/
+#chapter-3 #parachute-1 img {
+  width: 40%;
+}
+/*****************
+ * END CHAPTER 3
+ *****************/
+/*****************
+ * BEGIN CHAPTER 4
+ *****************/
+#chapter-4 {
+  display: block;
+}
+#chapter-4 #cloud-1 {
+  left: 17201px;
+  top: 209px;
+}
+#chapter-4 #cloud-2 {
+  left: 18269px;
+  top: 203px;
+}
+#chapter-4 #cloud-3 {
+  left: 18947px;
+  top: 257px;
+}
+#chapter-4 #cloud-4 {
+  left: 19769px;
+  top: 203px;
+}
+#chapter-4 #title-chapter-4 {
+  left: 16414px;
+}
+#chapter-4 #box-1 {
+  left: 16624px;
+  bottom: 318px;
+}
+#chapter-4 #box-2 {
+  left: 17588px;
+  bottom: 538px;
+}
+#chapter-4 #box-3 {
+  left: 18628px;
+  bottom: 381px;
+}
+#chapter-4 #box-4 {
+  left: 19317px;
+  bottom: 405px;
+}
+#chapter-4 #flag-1 {
+  left: 16336px;
+}
+#chapter-4 #bush-1 {
+  left: 16614px;
+}
+#chapter-4 #grass-2 {
+  left: 16625px;
+}
+#chapter-4 #sign-1 {
+  left: 16993px;
+}
+#chapter-4 #school-1 {
+  left: 17377px;
+}
+#chapter-4 #school-2 {
+  left: 17217px;
+}
+#chapter-4 #door-1 {
+  left: 17341px;
+}
+#chapter-4 #school-girl-1 {
+  left: 17611px;
+}
+#chapter-4 #school-girl-2 {
+  left: 17749px;
+}
+#chapter-4 #school-girl-3 {
+  left: 17884px;
+}
+#chapter-4 #school-girl-4 {
+  left: 18020px;
+}
+#chapter-4 #teacher-1 {
+  left: 18251px;
+}
+#chapter-4 #grass-3 {
+  left: 17814px;
+}
+#chapter-4 #bush-2 {
+  left: 18735px;
+}
+#chapter-4 #sign-2 {
+  left: 18879px;
+}
+#chapter-4 #grass-4 {
+  left: 18863px;
+}
+#chapter-4 #tree-1 {
+  left: 19075px;
+  bottom: 154px;
+}
+#chapter-4 #girl-1 {
+  left: 19221px;
+  bottom: 170px;
+}
+#chapter-4 #girl-2 {
+  left: 19257px;
+  bottom: 170px;
+}
+#chapter-4 #girl-3 {
+  left: 19297px;
+  bottom: 170px;
+}
+#chapter-4 #girl-4 {
+  left: 19483px;
+  bottom: 144px;
+}
+#chapter-4 #flag-2 {
+  left: 19625px;
+  bottom: 120px;
+}
+#chapter-4 #bush-3 {
+  left: 19673px;
+}
+#chapter-4 #field-1 {
+  left: 19829px;
+}
+#chapter-4 #crop-1 {
+  left: 19999px;
+  bottom: 120px;
+}
+#chapter-4 #crop-2 {
+  left: 20170px;
+  bottom: 170px;
+}
+#chapter-4 #crop-3 {
+  left: 20258px;
+}
+#chapter-4 #crop-4 {
+  left: 20378px;
+  bottom: 155px;
+}
+#chapter-4 #crop-5 {
+  left: 20537px;
+  bottom: 148px;
+}
+#chapter-4 #girl-5 {
+  left: 20293px;
+  bottom: 188px;
+}
+#chapter-4 #grass-5 {
+  left: 20641px;
+}
+#chapter-4 #house-1 {
+  left: 20739px;
+}
+#chapter-4 #end-modal-1 {
+  left: 20223px;
+}
+#chapter-4 #modal-banner-1 {
+  background: transparent url(../img/milestone_4.png) no-repeat;
+}
+/*****************
+ * END CHAPTER 4
+ *****************/
+/*****************
+ * BEGIN CHAPTER 5
+ *****************/
+#chapter-5 {
+  display: block;
+}
+#chapter-5 #cloud-1 {
+  left: 22113px;
+  top: 237px;
+}
+#chapter-5 #cloud-2 {
+  left: 23186px;
+  top: 173px;
+}
+#chapter-5 #cloud-3 {
+  left: 23863px;
+  top: 209px;
+}
+#chapter-5 #cloud-4 {
+  left: 24475px;
+  top: 153px;
+}
+#chapter-5 #cloud-5 {
+  left: 25836px;
+  top: 303px;
+}
+#chapter-5 #title-chapter-5 {
+  left: 21344px;
+}
+#chapter-5 #box-1 {
+  left: 21566px;
+  bottom: 295px;
+}
+#chapter-5 #box-2 {
+  left: 22504px;
+  bottom: 392px;
+}
+#chapter-5 #box-3 {
+  left: 23615px;
+  bottom: 398px;
+}
+#chapter-5 #box-4 {
+  left: 24676px;
+  bottom: 444px;
+}
+#chapter-5 #girl-1 {
+  left: 21432px;
+  bottom: 174px;
+}
+#chapter-5 #bush-1 {
+  left: 21562px;
+}
+#chapter-5 #grass-1 {
+  left: 21618px;
+}
+#chapter-5 #girl-2 {
+  left: 21846px;
+}
+#chapter-5 #house-1 {
+  left: 21948px;
+  bottom: 170px;
+}
+#chapter-5 #tree-1 {
+  left: 22168px;
+  bottom: 158px;
+}
+#chapter-5 #man-1 {
+  left: 22304px;
+}
+#chapter-5 #man-2 {
+  left: 22408px;
+}
+#chapter-5 #man-3 {
+  left: 22508px;
+}
+#chapter-5 #field-1 {
+  left: 22508px;
+}
+#chapter-5 #crop-1 {
+  left: 22678px;
+  bottom: 120px;
+}
+#chapter-5 #crop-2 {
+  left: 22849px;
+  bottom: 170px;
+}
+#chapter-5 #crop-3 {
+  left: 22937px;
+}
+#chapter-5 #house-2 {
+  left: 23020px;
+}
+#chapter-5 #door-1 {
+  left: 23142px;
+}
+#chapter-5 #flag-1 {
+  left: 23582px;
+}
+#chapter-5 #bush-2 {
+  left: 23666px;
+}
+#chapter-5 #grass-2 {
+  left: 23780px;
+}
+#chapter-5 #tree-2 {
+  left: 23842px;
+}
+#chapter-5 #clinic-1 {
+  left: 24178px;
+}
+#chapter-5 #woman-1 {
+  left: 24068px;
+}
+#chapter-5 #woman-2 {
+  left: 24144px;
+}
+#chapter-5 #woman-3 {
+  left: 24226px;
+}
+#chapter-5 #nurse-1 {
+  left: 24374px;
+}
+#chapter-5 #grass-3 {
+  left: 24764px;
+}
+#chapter-5 #rip-1 {
+  left: 24720px;
+}
+#chapter-5 #rip-2 {
+  left: 24836px;
+  bottom: 134px;
+}
+#chapter-5 #rip-3 {
+  left: 24930px;
+  bottom: 150px;
+}
+#chapter-5 #flag-2 {
+  left: 25164px;
+  bottom: 164px;
+}
+#chapter-5 #bush-3 {
+  left: 25540px;
+}
+/*
+#chapter-5 #grass-4 {
+  left: 4466px + @chapter_5_start;
+}
+*/
+#chapter-5 #end-modal-1 {
+  left: 25403px;
+}
+#chapter-5 #modal-banner-1 {
+  background: transparent url(../img/milestone_5.png) no-repeat;
+}
+/*****************
+ * END CHAPTER 5
+ *****************/
+/*****************
+ * BEGIN CHAPTER 6
+ *****************/
+#chapter-6 {
+  display: block;
+}
+#chapter-6 #cloud-1 {
+  left: 27064px;
+  top: 287px;
+}
+#chapter-6 #cloud-2 {
+  left: 28112px;
+  top: 203px;
+}
+#chapter-6 #cloud-3 {
+  left: 28810px;
+  top: 291px;
+}
+#chapter-6 #cloud-4 {
+  left: 29212px;
+  top: 203px;
+}
+#chapter-6 #cloud-5 {
+  left: 30898px;
+  top: 299px;
+}
+#chapter-6 #title-chapter-6 {
+  left: 26282px;
+}
+#chapter-6 #box-1 {
+  left: 26380px;
+  bottom: 355px;
+}
+#chapter-6 #box-2 {
+  left: 27494px;
+  bottom: 515px;
+}
+#chapter-6 #box-3 {
+  left: 28310px;
+  bottom: 438px;
+}
+#chapter-6 #box-4 {
+  left: 29064px;
+  bottom: 376px;
+}
+#chapter-6 #box-5 {
+  left: 29737px;
+  bottom: 440px;
+}
+#chapter-6 #grass-1 {
+  left: 25882px;
+}
+#chapter-6 #tree-1 {
+  left: 26251px;
+  bottom: 165px;
+}
+#chapter-6 #bush-1 {
+  left: 26500px;
+}
+#chapter-6 #field-1 {
+  left: 26676px;
+}
+#chapter-6 #crop-1 {
+  left: 26846px;
+  bottom: 120px;
+}
+#chapter-6 #girl-1 {
+  left: 26908px;
+  bottom: 171px;
+}
+#chapter-6 #crop-2 {
+  left: 27017px;
+  bottom: 170px;
+}
+#chapter-6 #crop-3 {
+  left: 27105px;
+}
+#chapter-6 #girl-2 {
+  left: 27148px;
+  bottom: 176px;
+}
+#chapter-6 #crop-4 {
+  left: 27225px;
+  bottom: 155px;
+}
+#chapter-6 #crop-5 {
+  left: 27384px;
+  bottom: 148px;
+}
+#chapter-6 #sign-1 {
+  left: 27308px;
+}
+#chapter-6 #shop-maya {
+  left: 27528px;
+}
+#chapter-6 #grass-2 {
+  left: 27600px;
+}
+#chapter-6 #shop-1 {
+  left: 28129px;
+  bottom: 130px;
+}
+#chapter-6 #bush-2 {
+  left: 28411px;
+}
+#chapter-6 #grass-3 {
+  left: 28536px;
+}
+#chapter-6 #shop-2 {
+  left: 28667px;
+  bottom: 130px;
+}
+#chapter-6 #tree-2 {
+  left: 28908px;
+}
+#chapter-6 #woman-1 {
+  left: 29161px;
+}
+#chapter-6 #woman-2 {
+  left: 29277px;
+}
+#chapter-6 #bush-3 {
+  left: 29401px;
+}
+#chapter-6 #flag-1 {
+  left: 29510px;
+}
+#chapter-6 #bridge-1 {
+  left: 29719px;
+}
+#chapter-6 #bridge-bg-1 {
+  left: 29598px;
+}
+#chapter-6 #bridge-bg-2 {
+  left: 29741px;
+}
+#chapter-6 #water-front-1 {
+  left: 29670px;
+}
+#chapter-6 #water-back-1 {
+  left: 29636px;
+}
+#chapter-6 #grass-4 {
+  left: 30197px;
+}
+#chapter-6 #flag-2 {
+  left: 30234px;
+}
+#chapter-6 #bush-4 {
+  left: 30425px;
+}
+#chapter-6 #grass-5 {
+  left: 30510px;
+}
+#chapter-6 #shop-3 {
+  left: 30866px;
+  bottom: 166px;
+}
+#chapter-6 #end-modal-1 {
+  left: 30443px;
+}
+#chapter-6 #modal-banner-1 {
+  background: transparent url(../img/milestone_6.png) no-repeat;
+}
+/*****************
+ * END CHAPTER 6
+ *****************/

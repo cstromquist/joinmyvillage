@@ -1,0 +1,261 @@
+.common-modal {
+  background: transparent;
+  border: 1px solid #fff;
+  padding: 9px;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+}
+.modal {
+  width: 520px;
+  position: absolute;
+  display: none;
+  background: transparent;
+  border: 1px solid #fff;
+  padding: 9px;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+}
+.modal a {
+  color: #ed6f31;
+}
+.modal-content {
+  background: #fff;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+}
+.modal .modal-content {
+  padding: 59px 70px 20px 20px;
+}
+.modal-content h2 {
+  position: absolute;
+  top: 23px;
+  left: 80px;
+  font-family: BrandonBlk;
+  font-size: 1.3em;
+}
+.modal-content p {
+  font-size: 1em;
+  padding-top: 20px;
+}
+.modal-icon {
+  background: transparent url(../img/modal_logo_circle.png) no-repeat;
+  width: 88px;
+  height: 89px;
+  position: absolute;
+  z-index: 1003;
+  top: -18px;
+  left: -18px;
+}
+#modal-overlay {
+  background-color: black;
+}
+/*
+ * CHAPTER END MODALS
+ */
+.modal-end {
+  top: 200px;
+  background: transparent;
+  border: 1px solid #fff;
+  padding: 9px;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+}
+.modal-end .modal-content {
+  width: 278px;
+  padding: 25px 17px 17px 17px;
+}
+.modal-end .modal-banner {
+  z-index: 1003;
+  position: absolute;
+  width: 418px;
+  height: 79px;
+  left: -42px;
+  top: -40px;
+}
+.modal-end .modal-content p {
+  padding-top: 10px;
+  color: #8e7961;
+}
+.modal-end .modal-divider {
+  width: 311px;
+  border: 1px solid #e6e6e6;
+  margin: 20px 0 6px -18px;
+}
+.modal-end .modal-top {
+  border-bottom: 1px solid #ff0000;
+  padding-bottom: 35px;
+}
+.modal-end .like-message {
+  font-size: 70%;
+  width: 150px;
+  margin-top: 15px;
+  font-family: BrandonBlk;
+}
+.modal-end .facebook-like {
+  z-index: 3;
+  position: absolute;
+  top: 138px;
+  left: 215px;
+}
+.modal-end .percentage-bar {
+  margin-top: 15px;
+  height: 25px;
+  background-color: #e6e6e6;
+  border-top: 2px solid #d0d0d0;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  padding: 4px;
+}
+.modal-end .percentage {
+  background-color: #ed6f31;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  height: 100%;
+  border-bottom: 1px solid #c4c4c4;
+  width: 0;
+}
+.modal-end .likes-min {
+  float: left;
+  font-size: 60%;
+  font-family: BrandonBlk;
+}
+.modal-end .likes-max {
+  float: right;
+  font-family: BrandonBlk;
+}
+.modal-end .like-count {
+  font-weight: bold;
+  font-size: 1.1em;
+  text-decoration: underline;
+}
+/**************
+ * JMV MODALS
+ *************/
+#jmv-modal {
+  z-index: 10000;
+  top: 100px;
+}
+/*****************
+ * MODAL ENTRY/END
+ *****************/
+.modal-info {
+  padding: 0;
+  width: 800px;
+  height: 660px;
+  background: transparent url(../img/top-bg.png) repeat-x top left;
+}
+.modal-info .entry-header {
+  height: 75px;
+  background-color: #fff;
+  margin-bottom: 30px;
+}
+.modal-info .modal-footer {
+  width: 800px;
+  height: 100px;
+  background: transparent url(../img/grass_s.png) repeat-x bottom center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}
+.modal-info h1 {
+  font-size: 3.5em;
+  color: #ffffff;
+  text-shadow: black 0.04em 0.07em 0.1em;
+  font-family: BrandonBlk;
+}
+.modal-info h2 {
+  font-size: 1.7em;
+  font-weight: bold;
+  font-family: BrandonLight;
+}
+.modal-info h3 {
+  font-size: 1.5em;
+}
+.modal-info p {
+  color: #8e7961;
+  padding-bottom: 20px;
+  font-size: .9em;
+}
+a.button {
+  display: block;
+  text-decoration: none;
+  font-size: .75em;
+  font-weight: bold;
+  color: #fff;
+  padding: 10px 30px 10px 5px;
+  text-align: center;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-box-shadow: 0 3px 2px 0 rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0 3px 2px 0 rgba(0, 0, 0, 0.25);
+  box-shadow: 0 3px 2px 0 rgba(0, 0, 0, 0.25);
+  z-index: 2;
+  position: absolute;
+}
+.modal-info .modal-footer-copy {
+  color: #fff;
+  font-size: .65em;
+  clear: both;
+  text-align: center;
+  margin-top: 75px;
+}
+/***************
+ * ENTRY MODAL
+ **************/
+#modal-entry #maya-welcome {
+  width: 206px;
+  height: 400px;
+  float: left;
+  margin-left: 60px;
+  background: transparent url(../img/maya_welcome.png) repeat-x top left;
+}
+#modal-entry #welcome-content {
+  float: left;
+  left: 338px;
+  width: 400px;
+  margin-left: 40px;
+}
+#modal-entry a.button {
+  width: 220px;
+  background: #ed6f31 url(../img/btn_bg_arrow.png) no-repeat bottom right;
+  background-position: 234px -4px;
+}
+/****************
+ * END MODAL
+ *****************/
+#modal-end #thank-you {
+  float: left;
+  width: 400px;
+  margin-left: 40px;
+}
+#modal-end #contribute {
+  float: left;
+  width: 240px;
+  margin: 30px 0 0 40px;
+}
+#modal-end a.button {
+  width: 130px;
+  background: #ed6f31 url(../img/btn_bg_arrow.png) no-repeat bottom right;
+  background-position: 143px -4px;
+}
+#modal-end #family {
+  position: absolute;
+  width: 371px;
+  height: 305px;
+  /*background: transparent url(../img/family.png) repeat-x top left;*/
+
+  z-index: 2;
+  top: 375px;
+  left: 140px;
+}
+#modal-end #family img {
+  width: 300px;
+}
