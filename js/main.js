@@ -24,18 +24,28 @@ var Config = {
 var Story = {
 	chapter_open_status: {1:false, 2:false, 3:false, 4:false, 5:false, 6:false},
 	chapter_close_status: {1:false, 2:false, 3:false, 4:false, 5:false, 6:false},
-	chapter_like_limits: {1:300, 2:300, 3:300, 4:300, 5:300, 6:300},
-	chapter_widths: {1:5409, 2:5402, 3:5503, 4:4930, 5:5005, 6:5000},
+	chapter_widths: {1:5677, 2:5713, 3:5503, 4:4930, 5:5005, 6:5000},
 	current_chapter: null,
 	init: function() {
-		// prevent scrolling on load
-		this.preventScrolling();
+		if(!$.cookie('current_chapter')) {
+			this.current_chapter = 1;
+			this.open();
+		} else {
+			this.current_chapter = Number($.cookie('current_chapter'));
+			$.cookie('current_chapter', this.current_chapter);
+			//window.location.hash('#chapter-' + this.current_chapter);
+			this.begin();
+		}
+	},
+	open: function() {
+		// user will only experience this once upon entering the site
+		Scroll.preventScrolling();
 		var modal = $('#modal-entry');
 		modal.fadeIn('slow');
 		modal.modal({onClose: function (dialog) {
 			dialog.data.animate({left:'-=2000px'}, 2000, function () {
 				dialog.overlay.slideUp(1200, function () {
-					Story.enableScrolling();
+					Scroll.enableScrolling();
 					$.modal.close(); // must call this!
 					Story.begin();
 				});
@@ -45,28 +55,14 @@ var Story = {
 	begin: function() {
 		Story.bindFixedElements();
 		Story.width = Config.chapter_1_width;
-		Story.bindFacebookLike();
-		Story.bindChapterEndPoints();
 		Flags.setup();
-		Story.openChapter(1);
-		//Story.scroll();
+		var chapter = Story.getChapter() >= 1 ? Story.getChapter() : 1;
+		Story.openChapter(Story.current_chapter);
 	},
 	end: function() {
 		var modal = $('#modal-end');
 		modal.fadeIn('slow');
 		modal.modal();
-	},
-	bindFacebookLike: function() {
-		$('.facebook-like').fbjlike({
-		  	siteTitle:'jQuery-Like-Button Plugin with callback functions',
-		  	onlike:function(response){
-		  		Story.setFacebookLikeCount(1, Config.chapter_like_limits[1]);
-		  	},
-		  	onunlike:function(response){
-		  		Story.setFacebookLikeCount(1, Config.chapter_like_limits[1]);
-		  	},
-		  	lang:'en_US'
-		});
 	},
 	bindFixedElements: function() {
 		var lastScroll = 0;
@@ -76,30 +72,10 @@ var Story = {
 			$('#header .jmv-logo').css('top', 20-$(window).scrollTop() + 'px');
 		});
 	},
-	bindChapterEndPoints: function() {
-		$(window).bind('scroll', function() {
-			var scrollPos = $(window).scrollLeft();
-			var p = Maya.xPosition();
-			if (p > Story.chapter_widths[1]-1600) {
-	    		Story.openChapter(2);
-	    	}
-	    	if (p > 9400) {
-	    		Story.openChapter(3);
-	    	} 
-	    	if (p > 15000) {
-	    		Story.openChapter(4);
-	    	}
-	    	if (p > 19900) {
-	    		Story.openChapter(5);
-	    	}
-	    	if (p > 24700) {
-	    		Story.openChapter(6);
-	    	} 
-	    	
-	    	if(!Story.chapter_open_status[1]) {
-	    		Story.openChapter(1);
-	    	}
-	 });
+	getChapter: function() {
+	    return decodeURI(
+	        (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
+	    );
 	},
 	chapterStartPoint: function( chapter ) {
 		var total = 0;
@@ -109,6 +85,7 @@ var Story = {
 		return total;
 	},
 	openChapter: function( chapter ) {
+		console.log(chapter);
 		this.current_chapter = chapter;
 		$.cookie('current_chapter', chapter, { expires: 7 });
 		// if the chapter has already been opened, we can stop here.
@@ -118,11 +95,10 @@ var Story = {
 			// if not, just set the open status to true.
 			this.chapter_open_status[chapter] = true
 		}
-		this.setFacebookLikeCount(chapter, Story.chapter_like_limits[chapter]);
-		this.setFacebookLikeCountLimit(chapter, Story.chapter_like_limits[chapter]);
+		LikesModal.init(chapter);
+		Likes.init(chapter);
+		Likes.updateCounts();
 		this.setWidth(chapter);
-		// let's close the previous chapter
-		this.closeChapter(chapter-1);
 		switch(chapter) {
 			case 2:
 				ChapterTwo.init();
@@ -164,6 +140,136 @@ var Story = {
 		$('#loading-container').delay(1000).fadeOut(800);
 		$('#container').delay(1000).fadeIn(1600);
 	},
+	animateObject: function( object, delay, speed ) {
+		$(object).
+  		delay(delay).
+  		animate({opacity:1,bottom:'0px'},speed);
+	}
+	
+};
+
+
+/**************************
+ * Facebook Like controller
+ **************************/
+var Likes = {
+	count: null,
+	remaining: null,
+	limit: null,
+	current_chapter: null,
+	chapter_like_limits: {1:1, 2:300, 3:300, 4:300, 5:300, 6:300},
+	init: function( current_chapter ) {
+		this.current_chapter = current_chapter;
+		this.limit = this.chapter_like_limits[this.current_chapter];
+	},
+	bindFacebookLike: function() {
+		$('.facebook-like').fbjlike({
+		  	siteTitle:'Join My Village - Story of Maya',
+		  	onlike:function(response){
+		  		Likes.updateCounts();
+		  	},
+		  	onunlike:function(response){
+		  		Likes.updateCounts();
+		  	},
+		  	lang:'en_US'
+		});
+	},
+	displayCounts: function() {
+		$('#likes-modal .likes-remaining span').text(Likes.remaining);
+		$('#likes-modal .like-count-total span.like-count').text(Likes.limit);
+	},
+	updateCounts: function() {
+		var query = 'http://graph.facebook.com/fql?q=SELECT url, normalized_url, share_count, like_count, comment_count, total_count, commentsbox_count, comments_fbid, click_count FROM link_stat WHERE url="' + Config.root_url + '/?chapter=' + this.current_chapter + '"';
+		$.getJSON(query, function(data) {
+			Likes.count = data.data[0].like_count;
+			Likes.remaining = Likes.limit - Likes.count;
+			Likes.displayCounts();
+			Likes.displayPercentageBar();
+			Likes.isLimitReached();
+		});
+	},
+	displayPercentageBar: function() {
+		var percentage = (Likes.count / Likes.limit) * 100;
+		$('#chapter-' + this.current_chapter + ' #percentage-bar #percentage').animate({width: percentage + '%'}, 4000);
+	},
+	isLimitReached: function() {
+		if(this.limit <= this.count) {
+			Story.openChapter(this.current_chapter + 1);
+		}
+	}
+}
+
+/***********************************************
+ * Likes modal object
+ * Controls where the Like should be displayed 
+ * (ie at the end of the next available chapter)
+ ***********************************************/
+var LikesModal = {
+	chapter: null,
+	content: [
+		// Chapter 1
+		{
+			intro: 'Going to school is important...it is the only way Maya will ever be able to help herself, and her family.',
+			like_message: 'TO HELP MAYA GO TO SCHOOL, LIKE THIS POST',
+			next_chapter_message: 'Maya will be off to school, and Chapter Two will be revealed. Stay Tuned!',
+			position: 2606
+		},
+		// Chapter 2
+		{
+			intro: 'Female teachers are reluctant to come to rural villages...they need a safe place to live.',
+			like_message: 'TO HELP TEACHERS AND SUPPLIES GET TO MAYA\'S VILLAGE, LIKE THIS POST',
+			next_chapter_message: 'Maya\'s school will open, and Chapter Three will be revealed. Stay tuned!',
+			position: 4197
+		},
+		// Chapter 3
+		{
+			intro: 'Most secondary schools are boarding schools. Maya needs a scholarship to cover her expenses.',
+			like_message: 'TO HELP MAYA EARN SCHOLARSHIP FUNDS, LIKE THIS POST',
+			next_chapter_message: 'Maya will get her scholarship, and Chapter Four will be revealed. Stay tuned!',
+			position: 4845
+		},
+		// Chapter 4
+		{
+			intro: 'Maya needs to talk with the younger girls in her village on the importance of an education.',
+			like_message: 'TO HELP MAYA MENTOR YOUNGER GIRLS IN THE VILLAGE, LIKE THIS POST',
+			next_chapter_message: 'all the girls will be mentored, and Chapter Five will be revealed.  Stay tuned!',
+			position: 3909
+		},
+		// Chapter 5
+		{
+			intro: 'Medical professionals are needed to help Maya understand her body\'s needs and show her husband how to care for her.',
+			like_message: 'TO HELP ENSURE GOOD PRENATAL CARE FOR MAYA, LIKE THIS POST',
+			next_chapter_message: 'Maya will have her baby, and Chapter Six will be revealed. Stay tuned!',
+			position: 4159
+		},
+		// Chapter 6
+		{
+			intro: 'As Maya\'s skill and business grow, she will earn respect and earn a chance to take a leadership position in her community.',
+			like_message: 'TO HELP MAYA BORROW MONEY FROM THE VSLA, LIKE THIS POST.',
+			next_chapter_message: 'Maya will receive a loan, and our story\'s ending will be revealed. Stay tuned!',
+			position: 4261
+		},
+	],
+	init: function( chapter ) {
+		this.chapter = chapter;
+		this.show();
+	},
+	show: function() {
+		$('#likes-modal #intro').html(this.content[this.chapter-1].intro);
+		$('#likes-modal .like-message').html(this.content[this.chapter-1].like_message);
+		$('#likes-modal .next-chapter-message').html(this.content[this.chapter-1].next_chapter_message);
+		$('#likes-modal .modal-banner').css('background-image', 'url(img/milestone_' + this.chapter + '.png)');
+		$('#likes-modal').css('left', Story.chapterStartPoint(this.chapter)+this.content[this.chapter-1].position);
+		$('#likes-modal').animate({opacity: 1}, 2000);
+	}
+	
+}
+
+
+/***********************
+ * Scroll control object
+ ***********************/
+var Scroll = {
 	preventScrolling: function() {
 		// lock scroll position, but retain settings for later
 		var scrollPosition = [
@@ -183,41 +289,14 @@ var Story = {
 		html.css('overflow', html.data('previous-overflow'));
 		window.scrollTo(scrollPosition[0], scrollPosition[1])
 	},
-	setFacebookLikeCount: function( chapter, limit ) {
-		var query = 'http://graph.facebook.com/fql?q=SELECT url, normalized_url, share_count, like_count, comment_count, total_count, commentsbox_count, comments_fbid, click_count FROM link_stat WHERE url="' + Config.root_url + '"';
-		//console.log(query);
-		$.getJSON(query, function(data) {
-			/*
-			 * return json object from Facebook that's in the following format:
-			 * {
-			 *	 "id": "http://jvm.local",
-			 *	 "like_count": 1
-			 *	}
-			 */
-			//console.log('limit: ' + limit);
-			this.likes = data.data[0].total_count;
-			this.likes_remaining = limit - this.likes;
-			var like_remaining_word = this.likes_remaining == 1 ? 'like' : 'likes';
-			$('#chapter-' + chapter + ' #likes-remaining').text(this.likes_remaining);
-		});
-	},
-	setFacebookLikeCountLimit: function( chapter, limit ) {
-		$('#chapter-' + chapter + ' .likes-max span').text(limit)
-	},
 	scroll: function() {
 		window.scrollBy(50,0);
 		scrollDelay = setTimeout('Story.scroll()',100); // scrolls every 100 milliseconds
 	},
 	stopScroll: function() {
     	clearTimeout(scrollDelay);
-	},
-	animateObject: function( object, delay, speed ) {
-		$(object).
-  		delay(delay).
-  		animate({opacity:1,bottom:'0px'},speed);
 	}
-	
-};
+}
 
 /********************************
  * Flags object that controls all 
@@ -231,27 +310,33 @@ var Flags = {
 	 * (e.g. this.content[2][2] for content in Chapter 2, Flag 2)
 	 **********************************************/
 	content: [
+		// Chapter 1
 		[ 
 			'Meet <a href="http://www.joinmyvillage.com" target="_blank">Join My Village</a>, a unique online intiative working through CARE to lift women and girls out of poverty in India and Malawi through education and community initiatives...to empower women and girls to strengthen themselves, their families, their communities&mdash;and the world.',
 			'Education is a birthright for all children. But only 1 out of 3 girls graduates from primary school in developing countries, leaving them stuck in a <a href="http://joinmyvillage.com/what-is-jmv" target="_blank">cycle of poverty.</a>',
 			'<a href="http://joinmyvillage.com/how-it-works" target="_blank">Our support model is a little different</a>. It involves action on your part. Each post you like and every click on our website releases $1 from General Mills and Merck to fund the important work of empowering girls through CARE.'
 		],
+		// Chapter 2
 		[
 			'In India, Join My Village supports an accelerated learning program, called <a href="http://joinmyvillage.com/project/accelerated-learning" target="_blank">Udaan</a>, targeting older girls who have not completed primary school. The program brings them up to a fifth-grade level in just 11 months—and 95% go onto secondary school or college.',
 			'Join My Village is working in Malawi to build <a href="http://joinmyvillage.com/project/primary-school-support" target="_blank">new teacher housing</a> that will bring more female teachers to rural villages—bringing more mentors and reducing class size.'
 		],
+		// Chapter 3
 		[
 			'In India, Join My Village supports <a href="http://joinmyvillage.com/project/kgbv-school-support" target="_blank">KGBV schools—upper primary schools for girls</a> that help them prepare for secondary school while gaining important social skills including working in groups, problem solving, critical thinking, persistence in the face of difficulty and respect for others and themselves.',
 			'Join My Village has provided over 800 <a href="http://joinmyvillage.com/project/scholarships">secondary boarding school scholarships</a> in Malawi to help more girls get higher education.'
 		],
+		// Chapter 4
 		[
 			'In India, with help from Join My Village, secondary school girls have started a <a href="http://joinmyvillage.com/blog-post/a-bond-thicker-than-blood">leadership program called Kishori Samoohs</a> to make a positive difference in their communities.',
 			'In Malawi, Join My Village has provided <a href="http://www.joinmyvillage.com/blog-post/making-the-impossible-possible" target="_blank">mentoring to over 250 girls</a> in secondary schools to encourage them to continue their education.'
 		],
+		// Chapter 5
 		[
 			'<a href="http://joinmyvillage.com/project/maternal-health" target="_blank">Maternal mortality is a global tragedy</a>. Every day nearly 1,000 expectant mothers die; 98 percent of them in poor countries.',
 			'India has the highest number of maternal deaths in the world. Join My Village supports <a href="http://joinmyvillage.com/blog-post/motherhood-is-to-be-cherished" target="_blank">maternal and newborn health programs</a> in 1,000 villages in Uttar Pradesh, helping women deliver and raise healthier families.'
 		],
+		// Chapter 6
 		[
 			'For every $1 invested in a woman, <a href="http://joinmyvillage.com/blog-post/the-power-of-being-a-vsla-member" target="_blank">she will put 80% towards her family’s health</a>, education and well-being.',
 			'Join My Village has helped to create <a href="http://joinmyvillage.com/project/vsla" target="_blank">over 50 women-owned VSLAs</a> in Malawi, lending out over $60,000 to start small businesses, the equivalent of $___ in U.S. dollars.'
@@ -268,7 +353,7 @@ var Flags = {
 		$('#chapter-' + chapter + ' #flag-' + index).click(function() {
 			var chapter = $(this).parent().attr('id').substr(8,9);
 			var flag_num = this.id.substr(5,6);
-			var x = $(this).position().left
+			var x = $(this).position().left;
 			$('#jmv-modal').css('left', x - 200);
 			$('#jmv-modal .modal-content p').html(Flags.content[chapter-1][flag_num-1]);
 			$('#jmv-modal .modal-content img').attr('src', 'img/jmv_banners/c' + chapter + '_f' + flag_num + '.jpg');
@@ -283,6 +368,10 @@ var Flags = {
 	},
 }
 
+/*****************************
+ * Boxes object that controls 
+ * box behaviors in Story
+ *****************************/
 var Boxes = {
 	init: function() {
 		// if the chapter is closed, then the user has already gone through this chapter, so we don't need to do this again and show the boxes.
@@ -296,6 +385,8 @@ var Boxes = {
 	slideIn: function( box ) {
 		var p = box.css('bottom');
 		box.css({bottom: '+700px'});
+		if(box.css('opacity') != 0)
+			return;
 		box.animate({bottom: p, opacity: 1}, 3000);
 	},
 	xPosition: function ( box ) {
@@ -322,6 +413,11 @@ var Boxes = {
 	}
 }
 
+/******************************
+ * Maya object
+ * Controls all Maya's behaviors
+ * throughout the story
+ ******************************/
 var Maya = {
 	bg_points: null,
 	current_life_stage: 'child', // Maya starts life as a child :)
@@ -399,6 +495,11 @@ var Maya = {
 	}
 }
 
+/*******************
+ * Animations object
+ * Controls animations
+ * throughout story
+ *******************/
 var Animations = {
 	animateCrops: function( chapter ) {
 		$('#chapter-' + chapter + ' #crop-1 img').animate({width:35,height:53}, 1000);
@@ -424,6 +525,18 @@ var Animations = {
 	}
 }
 
+/***********************************
+ * Chapter controller to validate
+ * if user can go on to next chapter
+ ***********************************/
+var ChapterAuth = {
+	
+}
+
+/**********************************
+ * BEGIN CHAPTER OBJECTS
+ * Controls each chapter's behaviors
+ **********************************/
 var ChapterOne = {
 	init: function() {
 		this.animate();
@@ -439,9 +552,6 @@ var ChapterOne = {
 	    animate({left:'+=-600px', opacity:0.0}, 27000).
 	    animate({left:'+=600px'},0).
 	    animate({opacity:0.8},3000);
-	    
-		$('#chapter-1 #percentage-bar #percentage').animate({width: '75%'}, 4000);
-		$('#chapter-6 #percentage-bar #percentage').animate({width: '25%'}, 4000);
 	},
 	bindScrollPoints: function() {
 		$(window).bind('scroll', function() {
@@ -609,6 +719,13 @@ var ChapterSix = {
 	}
 };
 
+/*********************
+ * END CHAPTER OBJECTS
+ *********************/
+
+/*********************
+ * Initialize Story
+ *********************/
 jQuery(function( $ ) {
 	Story.init();
 });

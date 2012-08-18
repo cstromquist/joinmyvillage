@@ -125,7 +125,7 @@
   font-size: 60%;
   font-family: BrandonBlk;
 }
-.modal-end .likes-max {
+.modal-end .likes-remaining {
   float: right;
   font-family: BrandonBlk;
 }
@@ -258,4 +258,10 @@ a.button {
 }
 #modal-end #family img {
   width: 300px;
+}
+/***************
+ * LIKES MODAL
+ ***************/
+#likes-modal {
+  opacity: 0;
 }

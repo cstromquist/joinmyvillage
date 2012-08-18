@@ -1,3 +1,6 @@
+<?php
+	$chapter = isset($_GET['chapter']) ? $_GET['chapter'] : 1;
+?>
 <!DOCTYPE html>
 <html xmlns:fb="http://ogp.me/ns/fb#">
 <head>
@@ -10,7 +13,7 @@
 	<meta property="og:title" content="Join My Village" />
 	<meta property="og:site_name" content="join my village, empower women, getting women out of poverty" />
 	<meta property="og:description" content="Meet Join My Village, a unique online initiative working through CARE to lift women and girls out of poverty in India and Malawi through education and community initiatives...to empower women and girls to strengthen themselves, their families, their communities-and the world." />
-	<meta property="og:url" content="http://joinmyvillage.com/" />
+	<meta property="og:url" content="http://jmv.local/?chapter=<?php echo $chapter ?>" />
 	<meta property="og:type" content="website" />
 	<meta property="og:image" content="/img/facebook.jpeg" />
 
@@ -56,7 +59,7 @@
 		<div class="entry-header">
 			<div class="jmv-logo"><p>JOIN MY VILLAGE</p></div>
 			<div class="social-media">
-				<div id="facebook" class="share"><div class="fb-send"></div></div>
+				<div id="facebook" class="share"><div class="fb-like"></div></div>
 				<div id="twitter" class="share"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Check out Join My Village!">Tweet</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div>
 			</div>
@@ -86,7 +89,7 @@
 		<div id="header">
 			<div class="jmv-logo"><p>JOIN MY VILLAGE</p></div>
 			<div class="social-media">
-				<div id="facebook" class="share"><div class="fb-send"></div></div>
+				<div id="facebook" class="share"><div class="fb-like"></div></div>
 				<div id="twitter" class="share"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Check out Join My Village!">Tweet</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div>
 			</div>
@@ -99,6 +102,22 @@
 					<h2>JOIN MY VILLAGE CONNECTION</h2>
 					<img />
 					<p></p>
+				</div>
+			</div>
+			<div id="likes-modal" class="modal-end layer-level-100">
+				<div class="modal-banner"></div>
+				<div class="modal-content">
+					<p id="intro"></p>
+					<div class="like-message"></div>
+					<div class="facebook-like"></div>
+					<div class="modal-divider"></div>
+					<p class="like-count-total">When <span class="like-count"></span> likes are reached, <span class="next-chapter-message"></span></p>
+					<div id="percentage-bar" class="percentage-bar">
+						<div id="percentage" class="percentage"></div>
+					</div>
+					<div class="likes-min">0 LIKES</div>
+					<div class="likes-remaining"><span class="like-count"></span> LIKES TO GO!</div>
+					<div class="clear"></div>
 				</div>
 			</div>
 			<!-- BEGIN CHAPTER 1 -->
@@ -171,22 +190,8 @@
 				<div id="boy-3" class="boy-3 layer-level-100"></div>
 				<div id="flag-2" class="flag layer-level-97 x0"></div>
 				<div id="bush-3" class="bush-large layer-level-101 x0"></div>
-				<div id="end-modal-1" class="modal-end layer-level-100">
-					<div class="modal-banner" id="modal-banner-1"></div>
-					<div class="modal-content">
-					<p>Going to school is important...it is the only way Maya will ever be able to help herself, and her family.</p>
-					<div class="like-message">TO HELP MAYA GO TO SCHOOL, LIKE THIS POST</div>
-					<div class="facebook-like"></div>
-					<div class="modal-divider"></div>
-					<p class="like-count-message">When <span id="likes-remaining" class="like-count"></span> likes are reached, Maya will be off to school, and Chapter Two will be revealed. Stay Tuned!</p>
-					<div id="percentage-bar" class="percentage-bar">
-						<div id="percentage" class="percentage"></div>
-					</div>
-					<div class="likes-min">0 LIKES</div>
-					<div class="likes-max"><span class="like-count"></span> LIKES TO GO!</div>
-					<div class="clear"></div>
-				</div></div>
 				<div id="flag-3" class="flag layer-level-97 x0"></div>
+				<div id="grass-5" class="grass-large layer-level-99 x0"></div>
 			</div>
 			<!-- END CHAPTER 1 -->
 			<!-- BEGIN CHAPTER 2 -->
@@ -224,7 +229,7 @@
 				<div id="cloud-3" class="cloud-large layer-level-96"></div>
 				<div id="grass-1" class="grass-large layer-level-99 x0"></div>
 				<div id="tree-1" class="tree-small layer-level-98 "></div>
-				<div id="sign-1" class="sign-school layer-level-102 x0"></div>
+				<div id="sign-1" class="sign-school layer-level-98 x0"></div>
 				<div id="bush-1" class="bush-large layer-level-98 x0"></div>
 				<div id="grass-2" class="grass-small layer-level-97 x0"></div>
 				<div id="school-1" class="school-front layer-level-102 x0"></div>
@@ -248,21 +253,6 @@
 				<div id="bridge-bg-2" class="bridge-bg-back layer-level-98 x0"></div>
 				<div id="water-front-1" class="water-front layer-level-99 x0"></div>
 				<div id="water-back-1" class="water-back layer-level-98 x0"></div>
-				<div id="end-modal-1" class="modal-end layer-level-100"><div class="modal-banner" id="modal-banner-1"></div>
-					<div class="modal-content">
-					<p>Female teachers are reluctant to come to rural villages...they need a safe place to live.</p>
-					<div class="like-message">TO HELP TEACHERS AND SUPPLIES GET TO MAYA'S VILLAGE, LIKE THIS POST</div>
-					<div class="facebook-like"></div>
-					<div class="modal-divider"></div>
-					<p class="like-count-message">When <span id="likes-remaining" class="like-count"></span> likes are reached, Maya's school will open, and Chapter Three will be revealed. Stay tuned!</p>
-					<div id="percentage-bar" class="percentage-bar">
-						<div id="percentage" class="percentage"></div>
-					</div>
-					<div class="likes-min">0 LIKES</div>
-					<div class="likes-max"><span class="like-count"></span> LIKES TO GO!</div>
-					<div class="clear"></div>
-				</div></div>
-				<div id="modal-banner-1" class="modal-banner layer-level-100 x0"></div>
 				<div id="bush-4" class="bush-small layer-level-99 x0"></div>
 				<div id="grass-5" class="grass-large layer-level-98 x0"></div>
 				<div id="bubble-1" class="bubble-supplies layer-level-98 "></div>
@@ -342,21 +332,6 @@
 				<div id="flag-2" class="flag layer-level-98"></div>
 				<div id="grass-4" class="grass-small layer-level-99 x0"></div>
 				<div id="tree-5" class="tree-small layer-level-98"></div>
-				<div id="end-modal-1" class="modal-end layer-level-100"><div class="modal-banner" id="modal-banner-1"></div>
-					<div class="modal-content">
-					<p>Most secondary schools are boarding schools. Maya needs a scholarship to cover her expenses.</p>
-					<div class="like-message">TO HELP MAYA EARN SCHOLARSHIP FUNDS, LIKE THIS POST</div>
-					<div class="facebook-like"></div>
-					<div class="modal-divider"></div>
-					<p class="like-count-message">When <span id="likes-remaining" class="like-count"></span> likes are reached, Maya will get her scholarship, and Chapter Four will be revealed. Stay tuned!</p>
-					<div id="percentage-bar" class="percentage-bar">
-						<div id="percentage" class="percentage"></div>
-					</div>
-					<div class="likes-min">0 LIKES</div>
-					<div class="likes-max"><span class="like-count"></span> LIKES TO GO!</div>
-					<div class="clear"></div>
-				</div></div>
-				<div id="modal-banner-1" class="modal-banner layer-level-100 x0"></div>
 			</div>
 			<!-- END CHAPTER 3 -->
 			<!-- BEGIN CHAPTER 4 -->
@@ -425,21 +400,6 @@
 				<div id="girl-5" class="girl-5 layer-level-99"></div>
 				<div id="grass-5" class="grass-large layer-level-99 x0"></div>
 				<div id="house-1" class="house layer-level-100 x0"></div>
-				<div id="end-modal-1" class="modal-end layer-level-100"><div class="modal-banner" id="modal-banner-1"></div>
-					<div class="modal-content">
-					<p>Maya needs to talk with the younger girls in her village on the importance of an education.</p>
-					<div class="like-message">TO HELP MAYA MENTOR YOUNGER GIRLS IN THE VILLAGE, LIKE THIS POST</div>
-					<div class="facebook-like"></div>
-					<div class="modal-divider"></div>
-					<p class="like-count-message">When <span id="likes-remaining" class="like-count"></span> likes are reached, all the girls will be mentored, and Chapter Five will be revealed.  Stay tuned!</p>
-					<div id="percentage-bar" class="percentage-bar">
-						<div id="percentage" class="percentage"></div>
-					</div>
-					<div class="likes-min">0 LIKES</div>
-					<div class="likes-max"><span class="like-count"></span> LIKES TO GO!</div>
-					<div class="clear"></div>
-				</div></div>
-				<div id="modal-banner-1" class="modal-banner layer-level-100 x0"></div>
 			</div>
 			<!-- END CHAPTER 4 -->
 			<!-- BEGIN CHAPTER 5 -->
@@ -508,21 +468,6 @@
 				<div id="flag-2" class="flag layer-level-97"></div>
 				<div id="bush-3" class="bush-large layer-level-102 x0"></div>
 				<!--div id="grass-4" class="grass-small layer-level-98 x0"></div-->
-				<div id="end-modal-1" class="modal-end layer-level-100"><div class="modal-banner" id="modal-banner-1"></div>
-					<div class="modal-content">
-					<p>Medical professionals are needed to help Maya understand her body's needs and show her husband how to care for her.</p>
-					<div class="like-message">TO HELP ENSURE GOOD PRENATAL CARE FOR MAYA, LIKE THIS POST</div>
-					<div class="facebook-like"></div>
-					<div class="modal-divider"></div>
-					<p class="like-count-message">When <span id="likes-remaining" class="like-count"></span> likes are reached, Maya will have her baby, and Chapter Six will be revealed. Stay tuned!</p>
-					<div id="percentage-bar" class="percentage-bar">
-						<div id="percentage" class="percentage"></div>
-					</div>
-					<div class="likes-min">0 LIKES</div>
-					<div class="likes-max"><span class="like-count"></span> LIKES TO GO!</div>
-					<div class="clear"></div>
-				</div></div>
-				<div id="modal-banner-1" class="modal-banner layer-level-100 x0"></div>
 			</div>
 			<!-- END CHAPTER 5 -->
 			<!-- BEGIN CHAPTER 6 -->
@@ -601,20 +546,6 @@
 				<div id="bush-4" class="bush-large layer-level-99 x0"></div>
 				<div id="grass-5" class="grass-small layer-level-98 x0"></div>
 				<div id="shop-3" class="shop-3 layer-level-98 "></div>
-				<div id="end-modal-1" class="modal-end layer-level-100"><div class="modal-banner" id="modal-banner-1"></div>
-					<div class="modal-content">
-					<p>As Maya's skill and business grow, she will earn respect and earn a chance to take a leadership position in her community.</p>
-					<div class="like-message">TO HELP MAYA BORROW MONEY FROM THE VSLA, LIKE THIS POST.</div>
-					<div class="facebook-like"></div>
-					<div class="modal-divider"></div>
-					<p class="like-count-message">When <span id="likes-remaining" class="like-count"></span> likes are reached, Maya will receive a loan, and our story's ending will be revealed. Stay tuned!</p>
-					<div id="percentage-bar" class="percentage-bar">
-						<div id="percentage" class="percentage"></div>
-					</div>
-					<div class="likes-min">0 LIKES</div>
-					<div class="likes-max"><span class="like-count"></span> LIKES TO GO!</div>
-					<div class="clear"></div>
-				</div></div>
 			</div>
 			<!-- END CHAPTER 6 -->
 		</div>

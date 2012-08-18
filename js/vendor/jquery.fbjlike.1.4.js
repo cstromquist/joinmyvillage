@@ -10,7 +10,7 @@ $.fn.fbjlike = function(options) {
 	
   //Set the default values, use comma to separate the settings 
   var defaults = {  
-	appID: '224229974253687',
+	appID: '2530096808',
 	userID: '',
 	siteTitle: '',
 	siteName: '',
