@@ -207,7 +207,7 @@
 		modal: true,
 		onOpen: null,
 		onShow: null,
-		onClose: Story.begin
+		onClose: null
 	};
 
 	/*

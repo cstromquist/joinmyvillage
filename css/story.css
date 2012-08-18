@@ -17,11 +17,11 @@
 .title h2 {
   margin: 0;
   padding: 0;
-  line-height: 50px;
+  line-height: 55px;
   color: #ffffff;
   text-shadow: black 0.04em 0.07em 0.1em;
-  font-size: 3.0em;
-  font-family: BrandonLight;
+  font-size: 3.4em;
+  font-family: BrandonBlk;
   font-weight: bold;
 }
 /*******************
@@ -31,34 +31,34 @@
  * DEFINTIONS USED THROUGHOUT STORY SORTED A-Z
  *********************************************/
 .maya-common {
-  opacity: 1;
+  display: none;
 }
 .maya-child {
-  opacity: 1;
+  display: none;
   width: 72px;
   height: 119px;
   background: transparent url(../img/sprites/maya_1.png) no-repeat;
 }
 .maya-teen {
-  opacity: 1;
+  display: none;
   width: 81px;
   height: 140px;
   background: transparent url(../img/sprites/maya_2.png) no-repeat;
 }
 .maya-woman {
-  opacity: 1;
+  display: none;
   width: 93px;
   height: 167px;
   background: transparent url(../img/sprites/maya_3.png) no-repeat;
 }
 .maya-pregnant {
-  opacity: 1;
+  display: none;
   width: 50px;
   height: 167px;
   background: transparent url(../img/sprites/maya_4.png) no-repeat;
 }
 .maya-mother {
-  opacity: 1;
+  display: none;
   width: 93px;
   height: 167px;
   background: transparent url(../img/sprites/maya_5.png) no-repeat;

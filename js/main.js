@@ -28,14 +28,21 @@ var Story = {
 	chapter_widths: {1:5409, 2:5402, 3:5503, 4:4930, 5:5005, 6:5000},
 	current_chapter: null,
 	init: function() {
+		// prevent scrolling on load
+		this.preventScrolling();
 		var modal = $('#modal-entry');
 		modal.fadeIn('slow');
-		modal.modal();
+		modal.modal({onClose: function (dialog) {
+			dialog.data.animate({left:'-=2000px'}, 2000, function () {
+				dialog.overlay.slideUp(1200, function () {
+					Story.enableScrolling();
+					$.modal.close(); // must call this!
+					Story.begin();
+				});
+			});
+		}});
 	},
 	begin: function() {
-		// This function gets called only when the user clicks on the button in the entry modal. This is defined in jquery.simplemodal-1.4.2.js on line 210
-		$('#modal-container').animate({left:'+=-2000px'}, 3000);
-		$('#modal-overlay').animate({opacity:0},2000);
 		Story.bindFixedElements();
 		Story.width = Config.chapter_1_width;
 		Story.bindFacebookLike();
@@ -102,6 +109,8 @@ var Story = {
 	},
 	openChapter: function( chapter ) {
 		this.current_chapter = chapter;
+		$.cookie('current_chapter', chapter, { expires: 7 });
+		console.log('cookie: ' + $.cookie('current_chapter'));
 		// if the chapter has already been opened, we can stop here.
 		if(this.chapter_open_status[chapter]) {
 			return;
@@ -155,7 +164,7 @@ var Story = {
 		$('#loading-container').delay(1000).fadeOut(800);
 		$('#container').delay(1000).fadeIn(1600);
 	},
-	preventScroll: function() {
+	preventScrolling: function() {
 		// lock scroll position, but retain settings for later
 		var scrollPosition = [
 			self.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft,
@@ -167,7 +176,7 @@ var Story = {
 		html.css('overflow', 'hidden');
 		window.scrollTo(scrollPosition[0], scrollPosition[1]);
 	},
-	enableScroll: function() {
+	enableScrolling: function() {
 		// un-lock scroll position
 		var html = $('html');
 		var scrollPosition = html.data('scroll-position');
@@ -372,7 +381,7 @@ var Maya = {
 	},
 	enter: function( lifeStage ) {
 		this.lifeTransition(lifeStage);
-		$('#maya').fadeIn(400);
+		$('#maya').fadeIn(1400);
 		this.animate();
 	},
 	exit: function() {
@@ -403,8 +412,8 @@ var Animations = {
 	},
 	animatePlane: function() {
 		$('#plane-1').
-			animate({bottom:'524px'}, 1400, 'linear').
-			animate({bottom:'464px'}, 1400, 'linear', this.animatePlane)
+			animate({bottom:'574px'}, 1400, 'linear').
+			animate({bottom:'514px'}, 1400, 'linear', this.animatePlane)
 	}
 }
 
@@ -436,11 +445,11 @@ var ChapterOne = {
 	    		Animations.animateCrops(1);
 	    	}
 	    	if (Maya.xPosition() > 2800 && Maya.xPosition() < 3300) {
-	    		$('#girl-1').animate({bottom: '60px'}, 3500);
+	    		$('#girl-1').animate({bottom: '110px'}, 3500);
 	    	}
 	    	if (Maya.xPosition() > 3800 && Maya.xPosition() < 4000) {
-	    		$('#boy-1').animate({bottom: '60px'}, 4500);
-				$('#boy-2').animate({bottom: '70px'}, 4000);
+	    		$('#boy-1').animate({bottom: '110px'}, 4500);
+				$('#boy-2').animate({bottom: '120px'}, 4000);
 	    	}
     	});
 	},
@@ -594,5 +603,5 @@ var ChapterSix = {
 };
 
 jQuery(function( $ ) {
-	Story.begin();
+	Story.init();
 });
