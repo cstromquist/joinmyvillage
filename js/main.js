@@ -421,7 +421,6 @@ var Likes = {
 		  	siteTitle:'Join My Village - Story of Maya',
 		  	onlike:function(response){
 		  		Likes.updateCounts();
-		  		LikesModal.showThanks();
 		  	},
 		  	onunlike:function(response){
 		  		Likes.updateCounts();
@@ -441,6 +440,7 @@ var Likes = {
 			Likes.remaining = Likes.limit - Likes.count;
 			Likes.displayCounts();
 			Likes.displayPercentageBar();
+			LikesModal.showThanks();
 		});
 	},
 	displayCounts: function() {
