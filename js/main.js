@@ -19,7 +19,7 @@
 var Config = {
 	uuid: function(a,b){for(b=a='';a++<36;b+=a*51&52?(a^15?8^Math.random()*(a^20?16:4):4).toString(16):'-');return b},
 	root_url: document.domain,
-	subdirectory: '',
+	subdirectory: '/storyofmaya',
 	sub_url: '/?chapter=',
 	getUrl: function() {
 		return this.root_url + this.subdirectory + this.sub_url;
@@ -468,7 +468,7 @@ var LikesModal = {
 			intro: 'Female teachers are reluctant to come to rural villages...they need a safe place to live.',
 			like_message: 'TO HELP TEACHERS AND SUPPLIES GET TO MAYA\'S VILLAGE, LIKE THIS POST',
 			next_chapter_message: 'Maya\'s school will open, and Chapter Three will be revealed. Stay tuned!',
-			position: 4197
+			position: 5297
 		},
 		// Chapter 3
 		{
