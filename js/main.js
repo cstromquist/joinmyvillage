@@ -33,57 +33,30 @@ var Story = {
 	current_chapter: null,
 	next_chapter: null,
 	init: function() {
-		/****************
-		 * 1. If user doesn't have a cookie set, then they're a new user, so open the story for them.
-		 * 2. If a user does have a cookie set, check:
-		 * 		a. Check if the URL has a chapter in it.
-		 * 		b. If not, then load their current_chapter cookie
-		 * 		c. If so, then we need to do the following:
-		 * 			c1. Check if the requested chapter has reached the like limit
-		 * 			c2. If not, then load the last chapter
-		 * 			c3. Then load the requested chapter
-		 ****************/
-		if(!$.cookie('current_chapter')) {
-			this.current_chapter = 1;
-			this.openStory();
-		} else {
-			if(this.getChapter() != 'null') {
-				var chapter = Number(this.getChapter());
-				// check to see if Like limit was reached for this chapter.
-				//Likes.init(chapter);
-				//if(Likes.isLimitReached()) {
-					this.current_chapter = chapter;
-				//} else {
-					// trying to access next chapter which isn't available yet, so just load their last visited chapter
-				//	this.current_chapter = Number($.cookie('current_chapter'));
-				//}
-			} else {
-				this.current_chapter = Number($.cookie('current_chapter'));
-				if(this.current_chapter > Story.chapters)
-					this.current_chapter = 1;
-			}
-			this.next_chapter = this.current_chapter + 1;
-			this.begin();
-		}
+		this.current_chapter = this.getChapter();
+		this.next_chapter = this.current_chapter + 1;
+		this.openStory();
 	},
 	openStory: function() {
-		// user will only experience this once upon entering the site
-		Scroll.preventScrolling();
-		var modal = $('#modal-entry');
-		modal.fadeIn('slow');
-		modal.modal({onClose: function (dialog) {
-			dialog.data.animate({left:'-=2000px'}, 2000, function () {
-				dialog.overlay.slideUp(1200, function () {
-					Scroll.enableScrolling();
-					$.modal.close(); // must call this!
-					Story.begin();
+		if(!$.cookie('current_chapter')) {
+			Scroll.preventScrolling();
+			var modal = $('#modal-entry');
+			modal.fadeIn('slow');
+			modal.modal({onClose: function (dialog) {
+				dialog.data.animate({left:'-=2000px'}, 2000, function () {
+					dialog.overlay.slideUp(1200, function () {
+						Scroll.enableScrolling();
+						$.modal.close(); // must call this!
+						Story.begin();
+					});
 				});
-			});
-		}});
+			}});
+		} else {
+			Story.begin();
+		}
 	},
 	begin: function() {
 		Story.bindFixedElements();
-		Flags.setup();
 		this.setWidth();
 		$.cookie('current_chapter', this.current_chapter, { expires: 7 });
 		this.openChapter();
@@ -97,15 +70,23 @@ var Story = {
 	bindFixedElements: function() {
 		var lastScroll = 0;
 		$(window).bind('scroll', function() {
-			Boxes.init();
 			$('#header .social-media').css('top', 35-$(window).scrollTop() + 'px');
 			$('#header .jmv-logo').css('top', 20-$(window).scrollTop() + 'px');
 		});
 	},
 	getChapter: function() {
-	    return decodeURI(
-	        (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
-	    );
+		var param = decodeURI((RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]);
+		var chapter = null;
+		if(param != 'null') {
+			chapter = Number(param);
+		} else if(chapter = $.cookie('current_chapter')) {
+			chapter = Number(chapter);
+		} else {
+			chapter = 1;
+		}
+		if(chapter > Story.chapters)
+			chapter = 1;
+		return chapter;
 	},
 	getChapterWidth: function ( chapter ) {
 		var width = Number($('#chapter-' + chapter).width());
@@ -138,9 +119,7 @@ var Story = {
 		LikesModal.init(this.current_chapter);
 		Likes.init(this.current_chapter);
 		this.setWidth(this.current_chapter);
-		$('html, body').stop().animate({
-            scrollLeft: Story.chapterStartPoint(Story.current_chapter)
-        }, 3000);
+		this.scrollToChapter();
 		// open all chapters before this one
 		for(var i=1; i<=this.current_chapter; i++) {
 			Story[i].init();
@@ -159,6 +138,15 @@ var Story = {
 		$('#footer').css('width', this.width + 'px');
 		$('#container').css('width', this.width + 'px');
 		$('#story').css('width', this.width + 'px');
+	},
+	scrollToChapter: function() {
+		$('html, body').stop().animate({
+            scrollLeft: Story.chapterStartPoint(Story.current_chapter)
+        }, 3000, function() {
+        	// only after scroll is complete do we set up boxes and flags
+        	Boxes.init();
+        	Flags.setup();
+        });
 	},
 	preload: function() {	
 		$('#loading-container').show();
@@ -614,7 +602,7 @@ var Flags = {
 		// Chapter 6
 		[
 			'For every $1 invested in a woman, <a href="http://joinmyvillage.com/blog-post/the-power-of-being-a-vsla-member" target="_blank">she will put 80% towards her family’s health</a>, education and well-being.',
-			'Join My Village has helped to create <a href="http://joinmyvillage.com/project/vsla" target="_blank">over 50 women-owned VSLAs</a> in Malawi, lending out over $60,000 to start small businesses, the equivalent of $___ in U.S. dollars.'
+			'Join My Village has helped to create <a href="http://joinmyvillage.com/project/vsla" target="_blank">over 50 women-owned VSLAs</a> in Malawi, lending out over $60,000 to start small businesses, the equivalent of $1 in U.S. dollars.'
 		]
 	],
 	setup: function() {
@@ -650,19 +638,22 @@ var Flags = {
  *****************************/
 var Boxes = {
 	init: function() {
-		// if the chapter is closed, then the user has already gone through this chapter, so we don't need to do this again and show the boxes.
-		if(!Story.chapter_close_status[Story.current_chapter]) {
-			// show boxes from the current chapter.
-			this.showBoxes(Story.current_chapter);
-			// we want to show the boxes of all previous chapters as well
-			this.showPreviousChapterBoxes(Story.current_chapter);
-		}
+		this.bindScroll();
+	},
+	bindScroll: function() {
+		$(window).bind('scroll', function() {
+			// if the chapter is closed, then the user has already gone through this chapter, so we don't need to do this again and show the boxes.
+			if(!Story.chapter_close_status[Story.current_chapter]) {
+				// show boxes from the current chapter.
+				Boxes.showBoxes(Story.current_chapter);
+				// we want to show the boxes of all previous chapters as well
+				Boxes.showPreviousChapterBoxes(Story.current_chapter);
+			}
+		});
 	},
 	slideIn: function( box ) {
 		var p = box.css('bottom');
 		box.css({bottom: '+700px'});
-		if(box.css('opacity') != 0)
-			return;
 		box.animate({bottom: p, opacity: 1}, 3000);
 	},
 	xPosition: function ( box ) {
@@ -673,12 +664,13 @@ var Boxes = {
 	},
 	showBoxes: function( chapter ) {
 		var box = null;
-		for(var i=1; i<Story.chapters; i++) {
+		var boxes = $('#chapter-' + chapter + ' .box').length;
+		for(var i=1; i<=boxes; i++) {
 			box = $('#chapter-' + chapter + ' #box-' + i);
 			if(box.length != 0) {
-				var op = box.css('opacity');
-				if (Maya.xPosition() > this.xPosition( box ) - 400 && op == 0) {
+				if (Maya.xPosition() > this.xPosition( box ) - 400 && !box.attr('enabled')) {
 					Boxes.slideIn(box);
+					box.attr('enabled', true);
 				}
 			}
 		}
