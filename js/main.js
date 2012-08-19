@@ -19,6 +19,7 @@
 var Config = {
 	uuid: function(a,b){for(b=a='';a++<36;b+=a*51&52?(a^15?8^Math.random()*(a^20?16:4):4).toString(16):'-');return b},
 	root_url: document.domain,
+	subdirectory: '',
 	sub_url: '/?chapter='
 };
 
@@ -44,15 +45,15 @@ var Story = {
 			this.openStory();
 		} else {
 			if(this.getChapter() != 'null') {
-				var chapter = this.getChapter();
+				var chapter = Number(this.getChapter());
 				// check to see if Like limit was reached for this chapter.
-				Likes.init(chapter);
-				if(Likes.isLimitReached()) {
+				//Likes.init(chapter);
+				//if(Likes.isLimitReached()) {
 					this.current_chapter = chapter;
-				} else {
+				//} else {
 					// trying to access next chapter which isn't available yet, so just load their last visited chapter
-					this.current_chapter = Number($.cookie('current_chapter'));
-				}
+				//	this.current_chapter = Number($.cookie('current_chapter'));
+				//}
 			} else {
 				this.current_chapter = Number($.cookie('current_chapter'));
 				if(this.current_chapter > Story.chapters)
@@ -83,7 +84,7 @@ var Story = {
 		console.log(this.current_chapter);
 		$.cookie('current_chapter', this.current_chapter, { expires: 7 });
 		this.openChapter(this.current_chapter);
-		window.location.hash('#chapter-' + this.current_chapter);
+		//window.location.hash('#chapter-' + this.current_chapter);
 	},
 	end: function() {
 		var modal = $('#modal-end');
@@ -113,7 +114,7 @@ var Story = {
 	openNextChapter: function () {
 		var next_chapter = this.current_chapter + 1;
 		$.cookie('current_chapter', next_chapter);
-		window.location.href = 'http://' + Config.root_url + Config.sub_url + next_chapter;
+		window.location.href = 'http://' + Config.root_url + Config.subdirectory + Config.sub_url + next_chapter;
 	},
 	openChapter: function( chapter ) {
 		// if the chapter has already been opened, we can stop here.
@@ -358,7 +359,7 @@ var Likes = {
 	remaining: null,
 	limit: null,
 	chapter: null,
-	chapter_like_limits: {1:1, 2:1, 3:1, 4:1, 5:1, 6:1},
+	chapter_like_limits: {1:10, 2:10, 3:10, 4:10, 5:10, 6:10},
 	init: function( chapter ) {
 		this.chapter = chapter;
 		this.limit = this.chapter_like_limits[this.chapter];
@@ -563,11 +564,12 @@ var Flags = {
 		$('#chapter-' + chapter + ' #flag-' + index).click(function() {
 			var chapter = $(this).parent().attr('id').substr(8,9);
 			var flag_num = this.id.substr(5,6);
-			var x = $(this).position().left;
-			$('#jmv-modal').css('left', x - 200);
+			//var x = $(this).position().left;
+			//$('#jmv-modal').css('left', x - 200);
 			$('#jmv-modal .modal-content p').html(Flags.content[chapter-1][flag_num-1]);
 			$('#jmv-modal .modal-content img').attr('src', 'img/jmv_banners/c' + chapter + '_f' + flag_num + '.jpg');
-			$('#jmv-modal').fadeIn('slow');
+			//$('#jmv-modal').fadeIn('slow');
+			$('#jmv-modal').modal();
 			
 			$(window).bind('scroll', function() {
 				if (Maya.xPosition() > x || Maya.xPosition() < x - 500) {
