@@ -30,6 +30,11 @@
 /*********************************************
  * DEFINTIONS USED THROUGHOUT STORY SORTED A-Z
  *********************************************/
+#maya {
+  left: 400px;
+  z-index: 101;
+  position: fixed;
+}
 .maya-common {
   display: none;
 }
@@ -255,6 +260,24 @@
   width: 84px;
   height: 173px;
 }
+.keyboard {
+  background: transparent url(../img/keyboard.png) no-repeat;
+  width: 176px;
+  height: 54px;
+  bottom: 155px;
+  left: -58px;
+  position: relative;
+  opacity: 0;
+}
+.learn-more {
+  background: transparent url(../img/learn_more.png) no-repeat;
+  width: 132px;
+  height: 45px;
+  bottom: -15px;
+  left: -152px;
+  position: relative;
+  opacity: 1;
+}
 .man-1 {
   background: transparent url(../img/c_man_3.png) no-repeat;
   width: 69px;
@@ -454,13 +477,11 @@
 /*****************
  * BEGIN CHAPTER 1
  *****************/
+#chapter-1 {
+  width: 5677px;
+}
 #chapter-1 #title-chapter-1 {
   left: 100px;
-}
-#chapter-1 #maya {
-  left: 400px;
-  z-index: 101;
-  position: fixed;
 }
 #chapter-1 #box-1 {
   left: 272px;
@@ -619,6 +640,7 @@
  *****************/
 #chapter-2 {
   display: none;
+  width: 5713px;
 }
 #chapter-2 #cloud-1 {
   left: 6372px;
@@ -741,7 +763,7 @@
   left: 10295px;
 }
 #chapter-2 #grass-5 {
-  left: 10430px;
+  left: 10730px;
 }
 #chapter-2 #bubble-1 {
   left: 10253px;
@@ -775,7 +797,7 @@
   width: 85%;
 }
 #chapter-2 #parachute-3 img {
-  width: 40%;
+  width: 50%;
 }
 /*****************
  * END CHAPTER 2
@@ -785,6 +807,7 @@
  *****************/
 #chapter-3 {
   display: none;
+  width: 5591px;
 }
 #chapter-3 #cloud-1 {
   left: 12265px;
@@ -942,148 +965,149 @@
  *****************/
 #chapter-4 {
   display: none;
+  width: 4759px;
 }
 #chapter-4 #cloud-1 {
-  left: 17780px;
+  left: 17868px;
   top: 209px;
 }
 #chapter-4 #cloud-2 {
-  left: 18848px;
+  left: 18936px;
   top: 203px;
 }
 #chapter-4 #cloud-3 {
-  left: 19526px;
+  left: 19614px;
   top: 257px;
 }
 #chapter-4 #cloud-4 {
-  left: 20348px;
+  left: 20436px;
   top: 203px;
 }
 #chapter-4 #title-chapter-4 {
-  left: 16993px;
+  left: 17081px;
 }
 #chapter-4 #box-1 {
-  left: 17203px;
+  left: 17291px;
   bottom: 318px;
 }
 #chapter-4 #box-2 {
-  left: 18167px;
+  left: 18255px;
   bottom: 538px;
 }
 #chapter-4 #box-3 {
-  left: 19207px;
+  left: 19295px;
   bottom: 381px;
 }
 #chapter-4 #box-4 {
-  left: 19896px;
+  left: 19984px;
   bottom: 405px;
 }
 #chapter-4 #flag-1 {
-  left: 16915px;
+  left: 17003px;
 }
 #chapter-4 #bush-1 {
-  left: 17193px;
+  left: 17281px;
 }
 #chapter-4 #grass-2 {
-  left: 17204px;
+  left: 17292px;
 }
 #chapter-4 #sign-1 {
-  left: 17572px;
+  left: 17660px;
 }
 #chapter-4 #school-1 {
-  left: 17956px;
+  left: 18044px;
 }
 #chapter-4 #school-2 {
-  left: 17796px;
+  left: 17884px;
 }
 #chapter-4 #door-1 {
-  left: 17920px;
+  left: 18008px;
 }
 #chapter-4 #school-girl-1 {
-  left: 18190px;
+  left: 18278px;
 }
 #chapter-4 #school-girl-2 {
-  left: 18328px;
+  left: 18416px;
 }
 #chapter-4 #school-girl-3 {
-  left: 18463px;
+  left: 18551px;
 }
 #chapter-4 #school-girl-4 {
-  left: 18599px;
+  left: 18687px;
 }
 #chapter-4 #teacher-1 {
-  left: 18830px;
+  left: 18918px;
 }
 #chapter-4 #grass-3 {
-  left: 18393px;
+  left: 18481px;
 }
 #chapter-4 #bush-2 {
-  left: 19314px;
+  left: 19402px;
 }
 #chapter-4 #sign-2 {
-  left: 19458px;
+  left: 19546px;
 }
 #chapter-4 #grass-4 {
-  left: 19442px;
+  left: 19530px;
 }
 #chapter-4 #tree-1 {
-  left: 19654px;
+  left: 19742px;
   bottom: 154px;
 }
 #chapter-4 #girl-1 {
-  left: 19800px;
+  left: 19888px;
   bottom: 170px;
 }
 #chapter-4 #girl-2 {
-  left: 19836px;
+  left: 19924px;
   bottom: 170px;
 }
 #chapter-4 #girl-3 {
-  left: 19876px;
+  left: 19964px;
   bottom: 170px;
 }
 #chapter-4 #girl-4 {
-  left: 20062px;
+  left: 20150px;
   bottom: 144px;
 }
 #chapter-4 #flag-2 {
-  left: 20204px;
+  left: 20292px;
   bottom: 120px;
 }
 #chapter-4 #bush-3 {
-  left: 20252px;
+  left: 20340px;
 }
 #chapter-4 #field-1 {
-  left: 20408px;
+  left: 20496px;
 }
 #chapter-4 #crop-1 {
-  left: 20578px;
+  left: 20666px;
   bottom: 120px;
 }
 #chapter-4 #crop-2 {
-  left: 20749px;
+  left: 20837px;
   bottom: 170px;
 }
 #chapter-4 #crop-3 {
-  left: 20837px;
+  left: 20925px;
 }
 #chapter-4 #crop-4 {
-  left: 20957px;
+  left: 21045px;
   bottom: 155px;
 }
 #chapter-4 #crop-5 {
-  left: 21116px;
+  left: 21204px;
   bottom: 148px;
 }
 #chapter-4 #girl-5 {
-  left: 20872px;
+  left: 20960px;
   bottom: 188px;
 }
 #chapter-4 #grass-5 {
-  left: 21220px;
+  left: 21308px;
 }
 #chapter-4 #house-1 {
-  left: 21318px;
+  left: 21406px;
 }
 #chapter-4 #modal-banner-1 {
   background: transparent url(../img/milestone_4.png) no-repeat;
@@ -1096,143 +1120,144 @@
  *****************/
 #chapter-5 {
   display: none;
+  width: 5005px;
 }
 #chapter-5 #cloud-1 {
-  left: 22692px;
+  left: 22609px;
   top: 237px;
 }
 #chapter-5 #cloud-2 {
-  left: 23765px;
+  left: 23682px;
   top: 173px;
 }
 #chapter-5 #cloud-3 {
-  left: 24442px;
+  left: 24359px;
   top: 209px;
 }
 #chapter-5 #cloud-4 {
-  left: 25054px;
+  left: 24971px;
   top: 153px;
 }
 #chapter-5 #cloud-5 {
-  left: 26415px;
+  left: 26332px;
   top: 303px;
 }
 #chapter-5 #title-chapter-5 {
-  left: 21923px;
+  left: 21840px;
 }
 #chapter-5 #box-1 {
-  left: 22145px;
+  left: 22062px;
   bottom: 295px;
 }
 #chapter-5 #box-2 {
-  left: 23083px;
+  left: 23000px;
   bottom: 392px;
 }
 #chapter-5 #box-3 {
-  left: 24194px;
+  left: 24111px;
   bottom: 398px;
 }
 #chapter-5 #box-4 {
-  left: 25255px;
+  left: 25172px;
   bottom: 444px;
 }
 #chapter-5 #girl-1 {
-  left: 22011px;
+  left: 21928px;
   bottom: 174px;
 }
 #chapter-5 #bush-1 {
-  left: 22141px;
+  left: 22058px;
 }
 #chapter-5 #grass-1 {
-  left: 22197px;
+  left: 22114px;
 }
 #chapter-5 #girl-2 {
-  left: 22425px;
+  left: 22342px;
 }
 #chapter-5 #house-1 {
-  left: 22527px;
+  left: 22444px;
   bottom: 170px;
 }
 #chapter-5 #tree-1 {
-  left: 22747px;
+  left: 22664px;
   bottom: 158px;
 }
 #chapter-5 #man-1 {
-  left: 22883px;
+  left: 22800px;
 }
 #chapter-5 #man-2 {
-  left: 22987px;
+  left: 22904px;
 }
 #chapter-5 #man-3 {
-  left: 23087px;
+  left: 23004px;
 }
 #chapter-5 #field-1 {
-  left: 23087px;
+  left: 23004px;
 }
 #chapter-5 #crop-1 {
-  left: 23257px;
+  left: 23174px;
   bottom: 120px;
 }
 #chapter-5 #crop-2 {
-  left: 23428px;
+  left: 23345px;
   bottom: 170px;
 }
 #chapter-5 #crop-3 {
-  left: 23516px;
+  left: 23433px;
 }
 #chapter-5 #house-2 {
-  left: 23599px;
+  left: 23516px;
 }
 #chapter-5 #door-1 {
-  left: 23721px;
+  left: 23638px;
 }
 #chapter-5 #flag-1 {
-  left: 24161px;
+  left: 24078px;
 }
 #chapter-5 #bush-2 {
-  left: 24245px;
+  left: 24162px;
 }
 #chapter-5 #grass-2 {
-  left: 24359px;
+  left: 24276px;
 }
 #chapter-5 #tree-2 {
-  left: 24421px;
+  left: 24338px;
 }
 #chapter-5 #clinic-1 {
-  left: 24757px;
+  left: 24674px;
 }
 #chapter-5 #woman-1 {
-  left: 24647px;
+  left: 24564px;
 }
 #chapter-5 #woman-2 {
-  left: 24723px;
+  left: 24640px;
 }
 #chapter-5 #woman-3 {
-  left: 24805px;
+  left: 24722px;
 }
 #chapter-5 #nurse-1 {
-  left: 24953px;
+  left: 24870px;
 }
 #chapter-5 #grass-3 {
-  left: 25343px;
+  left: 25260px;
 }
 #chapter-5 #rip-1 {
-  left: 25299px;
+  left: 25216px;
 }
 #chapter-5 #rip-2 {
-  left: 25415px;
+  left: 25332px;
   bottom: 134px;
 }
 #chapter-5 #rip-3 {
-  left: 25509px;
+  left: 25426px;
   bottom: 150px;
 }
 #chapter-5 #flag-2 {
-  left: 25743px;
+  left: 25660px;
   bottom: 164px;
 }
 #chapter-5 #bush-3 {
-  left: 26119px;
+  left: 26036px;
 }
 /*
 #chapter-5 #grass-4 {
@@ -1250,157 +1275,158 @@
  *****************/
 #chapter-6 {
   display: none;
+  width: 5000px;
 }
 #chapter-6 #cloud-1 {
-  left: 27643px;
+  left: 27622px;
   top: 287px;
 }
 #chapter-6 #cloud-2 {
-  left: 28691px;
+  left: 28670px;
   top: 203px;
 }
 #chapter-6 #cloud-3 {
-  left: 29389px;
+  left: 29368px;
   top: 291px;
 }
 #chapter-6 #cloud-4 {
-  left: 29791px;
+  left: 29770px;
   top: 203px;
 }
 #chapter-6 #cloud-5 {
-  left: 31477px;
+  left: 31456px;
   top: 299px;
 }
 #chapter-6 #title-chapter-6 {
-  left: 26861px;
+  left: 26840px;
 }
 #chapter-6 #box-1 {
-  left: 26959px;
+  left: 26938px;
   bottom: 355px;
 }
 #chapter-6 #box-2 {
-  left: 28073px;
+  left: 28052px;
   bottom: 515px;
 }
 #chapter-6 #box-3 {
-  left: 28889px;
+  left: 28868px;
   bottom: 438px;
 }
 #chapter-6 #box-4 {
-  left: 29643px;
+  left: 29622px;
   bottom: 376px;
 }
 #chapter-6 #box-5 {
-  left: 30316px;
+  left: 30295px;
   bottom: 440px;
 }
 #chapter-6 #grass-1 {
-  left: 26461px;
+  left: 26440px;
 }
 #chapter-6 #tree-1 {
-  left: 26830px;
+  left: 26809px;
   bottom: 165px;
 }
 #chapter-6 #bush-1 {
-  left: 27079px;
+  left: 27058px;
 }
 #chapter-6 #field-1 {
-  left: 27255px;
+  left: 27234px;
 }
 #chapter-6 #crop-1 {
-  left: 27425px;
+  left: 27404px;
   bottom: 120px;
 }
 #chapter-6 #girl-1 {
-  left: 27487px;
+  left: 27466px;
   bottom: 171px;
 }
 #chapter-6 #crop-2 {
-  left: 27596px;
+  left: 27575px;
   bottom: 170px;
 }
 #chapter-6 #crop-3 {
-  left: 27684px;
+  left: 27663px;
 }
 #chapter-6 #girl-2 {
-  left: 27727px;
+  left: 27706px;
   bottom: 176px;
 }
 #chapter-6 #crop-4 {
-  left: 27804px;
+  left: 27783px;
   bottom: 155px;
 }
 #chapter-6 #crop-5 {
-  left: 27963px;
+  left: 27942px;
   bottom: 148px;
 }
 #chapter-6 #sign-1 {
-  left: 27887px;
+  left: 27866px;
 }
 #chapter-6 #shop-maya {
-  left: 28107px;
+  left: 28086px;
 }
 #chapter-6 #grass-2 {
-  left: 28179px;
+  left: 28158px;
 }
 #chapter-6 #shop-1 {
-  left: 28708px;
+  left: 28687px;
   bottom: 130px;
 }
 #chapter-6 #bush-2 {
-  left: 28990px;
+  left: 28969px;
 }
 #chapter-6 #grass-3 {
-  left: 29115px;
+  left: 29094px;
 }
 #chapter-6 #shop-2 {
-  left: 29246px;
+  left: 29225px;
   bottom: 130px;
 }
 #chapter-6 #tree-2 {
-  left: 29487px;
+  left: 29466px;
 }
 #chapter-6 #woman-1 {
-  left: 29740px;
+  left: 29719px;
 }
 #chapter-6 #woman-2 {
-  left: 29856px;
+  left: 29835px;
 }
 #chapter-6 #bush-3 {
-  left: 29980px;
+  left: 29959px;
 }
 #chapter-6 #flag-1 {
-  left: 30089px;
+  left: 30068px;
 }
 #chapter-6 #bridge-1 {
-  left: 30298px;
+  left: 30277px;
 }
 #chapter-6 #bridge-bg-1 {
-  left: 30177px;
+  left: 30156px;
 }
 #chapter-6 #bridge-bg-2 {
-  left: 30320px;
+  left: 30299px;
 }
 #chapter-6 #water-front-1 {
-  left: 30249px;
+  left: 30228px;
 }
 #chapter-6 #water-back-1 {
-  left: 30215px;
+  left: 30194px;
 }
 #chapter-6 #grass-4 {
-  left: 30776px;
+  left: 30755px;
 }
 #chapter-6 #flag-2 {
-  left: 30813px;
+  left: 30792px;
 }
 #chapter-6 #bush-4 {
-  left: 31004px;
+  left: 30983px;
 }
 #chapter-6 #grass-5 {
-  left: 31089px;
+  left: 31068px;
 }
 #chapter-6 #shop-3 {
-  left: 31445px;
+  left: 31424px;
   bottom: 166px;
 }
 #chapter-6 #modal-banner-1 {

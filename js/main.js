@@ -20,15 +20,18 @@ var Config = {
 	uuid: function(a,b){for(b=a='';a++<36;b+=a*51&52?(a^15?8^Math.random()*(a^20?16:4):4).toString(16):'-');return b},
 	root_url: document.domain,
 	subdirectory: '',
-	sub_url: '/?chapter='
+	sub_url: '/?chapter=',
+	getUrl: function() {
+		return this.root_url + this.subdirectory + this.sub_url;
+	}
 };
 
 var Story = {
 	chapters: 6,
 	chapter_open_status: {1:false, 2:false, 3:false, 4:false, 5:false, 6:false},
 	chapter_close_status: {1:false, 2:false, 3:false, 4:false, 5:false, 6:false},
-	chapter_widths: {1:5677, 2:5713, 3:5591, 4:5199, 5:5005, 6:5000},
 	current_chapter: null,
+	next_chapter: null,
 	init: function() {
 		/****************
 		 * 1. If user doesn't have a cookie set, then they're a new user, so open the story for them.
@@ -59,6 +62,7 @@ var Story = {
 				if(this.current_chapter > Story.chapters)
 					this.current_chapter = 1;
 			}
+			this.next_chapter = this.current_chapter + 1;
 			this.begin();
 		}
 	},
@@ -81,9 +85,8 @@ var Story = {
 		Story.bindFixedElements();
 		Flags.setup();
 		this.setWidth();
-		console.log(this.current_chapter);
 		$.cookie('current_chapter', this.current_chapter, { expires: 7 });
-		this.openChapter(this.current_chapter);
+		this.openChapter();
 		//window.location.hash('#chapter-' + this.current_chapter);
 	},
 	end: function() {
@@ -104,34 +107,44 @@ var Story = {
 	        (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
 	    );
 	},
+	getChapterWidth: function ( chapter ) {
+		var width = Number($('#chapter-' + chapter).width());
+		return width;
+	},
 	chapterStartPoint: function( chapter ) {
 		var total = 0;
 		for(var i=1; i<chapter; i++) {
-			total += this.chapter_widths[i];
+			total += this.getChapterWidth(i);
 		}
 		return total;
 	},
 	openNextChapter: function () {
+		this.current_chapter = this.current_chapter + 1;
+		$.cookie('current_chapter', this.current_chapter);
+		this.openChapter();
+	},
+	redirectToNextChapter: function() {
 		var next_chapter = this.current_chapter + 1;
-		$.cookie('current_chapter', next_chapter);
 		window.location.href = 'http://' + Config.root_url + Config.subdirectory + Config.sub_url + next_chapter;
 	},
-	openChapter: function( chapter ) {
+	openChapter: function() {
 		// if the chapter has already been opened, we can stop here.
-		if(this.chapter_open_status[chapter]) {
+		if(this.chapter_open_status[this.current_chapter]) {
 			return;
 		} else {
 			// if not, just set the open status to true.
-			this.chapter_open_status[chapter] = true
+			this.chapter_open_status[this.current_chapter] = true
 		}
-		LikesModal.init(chapter);
-		Likes.init(chapter);
-		Likes.updateCounts();
-		this.setWidth(chapter);
+		LikesModal.init(this.current_chapter);
+		Likes.init(this.current_chapter);
+		this.setWidth(this.current_chapter);
+		$('html, body').stop().animate({
+            scrollLeft: Story.chapterStartPoint(Story.current_chapter)
+        }, 3000);
 		// open all chapters before this one
-		for(var i=1; i<=chapter; i++) {
+		for(var i=1; i<=this.current_chapter; i++) {
 			Story[i].init();
-			$('#chapter-' + i).delay(300).fadeIn(200);
+			$('#chapter-' + i).delay(300).fadeIn(1000);
 		}
 	},
 	closeChapter: function(chapter) {
@@ -140,12 +153,12 @@ var Story = {
 	setWidth: function( chapter ) {
 		var width = 0;
 		for(var i=1; i<=chapter; i++) {
-			width += Story.chapter_widths[i];
+			width += this.getChapterWidth(i);
 		}
 		this.width = width;
 		$('#footer').css('width', this.width + 'px');
 		$('#container').css('width', this.width + 'px');
-		$('#content').css('width', this.width + 'px');
+		$('#story').css('width', this.width + 'px');
 	},
 	preload: function() {	
 		$('#loading-container').show();
@@ -167,6 +180,9 @@ var Story = {
 		init: function() {
 			this.animate();
 			this.bindScrollPoints();
+			$('#flag-1').click(function(){
+				$('#learn-more').fadeOut();
+			});
 		},
 		animate: function() {
 			Maya.enter('child');
@@ -178,9 +194,27 @@ var Story = {
 		    animate({left:'+=-600px', opacity:0.0}, 27000).
 		    animate({left:'+=600px'},0).
 		    animate({opacity:0.8},3000);
+		    
+		    this.blinkKeyboard();
+		    this.blinkLearnMore();
+		},
+		blinkKeyboard: function() {
+			if($('#keyboard').css('display') != 'none') {
+				$('#keyboard').
+					animate({opacity: 0}, 1000).
+					animate({opacity: 1}, 1000, Story[1].blinkKeyboard);
+			}
+		},
+		blinkLearnMore: function() {
+			$('#learn-more').
+				animate({opacity: 0}, 1000).
+				animate({opacity: 1}, 1000, Story[1].blinkLearnMore);
 		},
 		bindScrollPoints: function() {
 			$(window).bind('scroll', function() {
+				if (Maya.xPosition() > 400) {
+					$('#keyboard').fadeOut('slow');
+				}
 		    	if (Maya.xPosition() > 2000 && Maya.xPosition() < 3000) {
 		    		Animations.animateCrops(1);
 		    	}
@@ -209,10 +243,18 @@ var Story = {
 			this.animateParachutes();
 		},
 		animateParachutes: function() {
-			// float parachutes
-			$('#chapter-2 #parachute-1').
-				animate({top:'200px'}, 2500, 'linear').
-				animate({top:'120px'}, 2500, 'linear', this.animateParachutes);
+			if(Story.current_chapter == 2) {
+				// float parachutes
+				$('#chapter-2 #parachute-1').
+					animate({top:'200px'}, 2500, 'linear').
+					animate({top:'120px'}, 2500, 'linear', Story[2].animateParachutes);
+				$('#chapter-2 #parachute-2').
+					animate({left:'-=100px'}, 3500, 'linear').
+					animate({left:'+=100px'}, 3500, 'linear');
+				$('#chapter-2 #parachute-3').
+					animate({top:'+=50px'}, 4500, 'linear').
+					animate({top:'-=50px'}, 4500, 'linear');
+			}
 		},
 		bindScrollPoints: function() {
 			$(window).bind('scroll', function() {
@@ -235,7 +277,15 @@ var Story = {
 			this.bindScrollPoints();
 		},
 		animate: function() {
-			//$('#chapter-3 #parachute-1').jqFloat({width: 50, height: 20, speed: 2000});
+			this.animateParachutes();
+		},
+		animateParachutes: function() {
+			if(Story.current_chapter == 3) {
+				// float parachutes
+				$('#chapter-3 #parachute-1').
+					animate({top:'+=200px'}, 5500, 'linear').
+					animate({top:'-=200px'}, 5500, 'linear', Story[3].animateParachutes);
+			}
 		},
 		bindScrollPoints: function() {
 			$(window).bind('scroll', function() {
@@ -359,17 +409,19 @@ var Likes = {
 	remaining: null,
 	limit: null,
 	chapter: null,
-	chapter_like_limits: {1:10, 2:10, 3:10, 4:10, 5:10, 6:10},
+	chapter_like_limits: {1:1, 2:1, 3:1, 4:1, 5:10, 6:10},
 	init: function( chapter ) {
 		this.chapter = chapter;
 		this.limit = this.chapter_like_limits[this.chapter];
 		this.bindFacebookLike();
+		this.updateCounts();
 	},
 	bindFacebookLike: function() {
 		$('.facebook-like').fbjlike({
 		  	siteTitle:'Join My Village - Story of Maya',
 		  	onlike:function(response){
 		  		Likes.updateCounts();
+		  		LikesModal.showThanks();
 		  	},
 		  	onunlike:function(response){
 		  		Likes.updateCounts();
@@ -378,15 +430,17 @@ var Likes = {
 		});
 	},
 	updateCounts: function() {
-		var query = 'http://graph.facebook.com/fql?q=SELECT url, normalized_url, share_count, like_count, comment_count, total_count, commentsbox_count, comments_fbid, click_count FROM link_stat WHERE url="' + Config.root_url + Config.sub_url + this.chapter + '"';
+		var url = Config.root_url
+		if(Story.current_chapter > 1) {
+			url += Config.subdirectory + Config.sub_url + Story.current_chapter;
+		}
+		var query = 'http://graph.facebook.com/fql?q=SELECT url, normalized_url, share_count, like_count, comment_count, total_count, commentsbox_count, comments_fbid, click_count FROM link_stat WHERE url="' + url + '"';
+		//console.log(query);
 		$.getJSON(query, function(data) {
 			Likes.count = data.data[0].like_count;
 			Likes.remaining = Likes.limit - Likes.count;
 			Likes.displayCounts();
 			Likes.displayPercentageBar();
-			if(Likes.isLimitReached()) {
-				Story.openNextChapter();
-			}
 		});
 	},
 	displayCounts: function() {
@@ -398,7 +452,7 @@ var Likes = {
 		$('#likes-modal #percentage-bar #percentage').animate({width: percentage + '%'}, 4000);
 	},
 	isLimitReached: function() {
-		if(this.limit <= this.count) {
+		if(this.count >= this.limit) {
 			return true;
 		} else {
 			return false;
@@ -419,7 +473,7 @@ var LikesModal = {
 			intro: 'Going to school is important...it is the only way Maya will ever be able to help herself, and her family.',
 			like_message: 'TO HELP MAYA GO TO SCHOOL, LIKE THIS POST',
 			next_chapter_message: 'Maya will be off to school, and Chapter Two will be revealed. Stay Tuned!',
-			position: 2606
+			position: 4732
 		},
 		// Chapter 2
 		{
@@ -469,6 +523,16 @@ var LikesModal = {
 		$('#likes-modal .modal-banner').css('background-image', 'url(img/milestone_' + this.chapter + '.png)');
 		this.modal.css('left', Story.chapterStartPoint(this.chapter)+this.content[this.chapter-1].position);
 		this.modal.animate({opacity: 1}, 2000);
+	},
+	showThanks: function() {
+		var next_chapter = Story.next_chapter;
+		console.log(next_chapter); 	
+		$('#likes-modal #info').fadeOut();
+		if(Likes.isLimitReached()) {
+			$('#likes-modal #thanks').html('Thanks for Liking and helping Maya with her story! <a href="/?chapter=' + next_chapter + '">Click here to go to the next Chapter!</a>');
+		} else {
+			$('#likes-modal #thanks').html('Thanks for Liking and helping Maya with her story! Once the limit is reached, the next chapter will be opened. Please check our Facebook page to see when the next chapter is opened!');
+		}
 	},
 	hide: function() {
 		this.modal.animate({opacity: 0}, 2000);
@@ -609,10 +673,11 @@ var Boxes = {
 	},
 	showBoxes: function( chapter ) {
 		var box = null;
-		for(var i=1; i<6; i++) {
+		for(var i=1; i<Story.chapters; i++) {
 			box = $('#chapter-' + chapter + ' #box-' + i);
 			if(box.length != 0) {
-				if (Maya.xPosition() > this.xPosition( box ) - 400 && box.css('opacity') == 0) {
+				var op = box.css('opacity');
+				if (Maya.xPosition() > this.xPosition( box ) - 400 && op == 0) {
 					Boxes.slideIn(box);
 				}
 			}
@@ -700,7 +765,7 @@ var Maya = {
 		this.animate();
 	},
 	exit: function() {
-		$('#maya').fadeOut(1400);
+		$('#maya').animate({left: '+500px'}, 2000);
 	},
 	xPosition: function() {
 		return $('#maya').position().left;
@@ -721,7 +786,7 @@ var Animations = {
 		$('#chapter-' + chapter + ' #crop-5 img').delay(400).animate({width:50,height:76}, 1000);
 	},
 	animateWaterChapterTwo: function() {
-		var start = (Story.chapter_widths[2] + 4140) - 40;
+		var start = (Story.getChapterWidth(2) + 4140) - 40;
 		var end = start - 30;
 		$('#chapter-2 #water-front-1').
 	      animate({opacity:0.9, left: start + 'px'},800,'linear').
@@ -733,7 +798,7 @@ var Animations = {
 	animatePlane: function() {
 		$('#plane-1').
 			animate({bottom:'574px'}, 1400, 'linear').
-			animate({bottom:'514px'}, 1400, 'linear', this.animatePlane)
+			animate({bottom:'514px'}, 1400, 'linear', Animations.animatePlane)
 	}
 }
 

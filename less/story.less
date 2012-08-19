@@ -1,12 +1,12 @@
 /*****************************************************
  * GLOBAL CLASSES USED THROUGHOUT STORY ON ALL CHAPTERS
  *****************************************************/
-@chapter_1_width: 5677;
-@chapter_2_width: 5713;
-@chapter_3_width: 5503;
-@chapter_4_width: 4930;
-@chapter_5_width: 5005;
-@chapter_6_width: 4938;
+@chapter_1_width: 5677px;
+@chapter_2_width: 5713px;
+@chapter_3_width: 5591px;
+@chapter_4_width: 4759px;
+@chapter_5_width: 5005px;
+@chapter_6_width: 5000px;
 
 @chapter_1_start: 0;
 @chapter_2_start: @chapter_1_width;
@@ -50,6 +50,12 @@
 /*********************************************
  * DEFINTIONS USED THROUGHOUT STORY SORTED A-Z
  *********************************************/
+#maya {
+  left: 400px + @chapter_1_start;
+  z-index: 101;
+  position: fixed;
+}
+
 .maya-common {
   display: none;
 }
@@ -317,6 +323,26 @@
   height: 173px;
 }
 
+.keyboard {
+  background: transparent url(../img/keyboard.png) no-repeat;
+  width: 176px;
+  height: 54px;
+  bottom: 155px;
+  left: -58px;
+  position: relative;
+  opacity: 0;
+}
+
+.learn-more {
+  background: transparent url(../img/learn_more.png) no-repeat;
+  width: 132px;
+  height: 45px;
+  bottom: -15px;
+  left: -152px;
+  position: relative;
+  opacity: 1;
+}
+
 .man-1 {
   background: transparent url(../img/c_man_3.png) no-repeat;
   width: 69px;
@@ -549,19 +575,14 @@
 /**************************************
  * END DEFINTIONS USED THROUGHOUT STORY
  **************************************/
-
 /*****************
  * BEGIN CHAPTER 1
  *****************/
 #chapter-1 {
+  width: @chapter_1_width;
 }
 #chapter-1 #title-chapter-1 {
   left: 100px + @chapter_1_start;
-}
-#chapter-1 #maya {
-  left: 400px + @chapter_1_start;
-  z-index: 101;
-  position: fixed;
 }
 #chapter-1 #box-1 {
   left: 272px + @chapter_1_start;
@@ -721,6 +742,7 @@
  *****************/
 #chapter-2 {
   display: none;
+  width: @chapter_2_width;
 }
 #chapter-2 #cloud-1 {
   left: 695px + @chapter_2_start;
@@ -843,7 +865,7 @@
   left: 4618px + @chapter_2_start;
 }
 #chapter-2 #grass-5 {
-  left: 4753px + @chapter_2_start;
+  left: 5053px + @chapter_2_start;
 }
 #chapter-2 #bubble-1 {
   left: 4576px + @chapter_2_start;
@@ -877,7 +899,7 @@
   width: 85%;
 }
 #chapter-2 #parachute-3 img {
-  width: 40%;
+  width: 50%;
 }
 /*****************
  * END CHAPTER 2
@@ -888,6 +910,7 @@
  *****************/
 #chapter-3 {
   display: none;
+  width: @chapter_3_width;
 }
 #chapter-3 #cloud-1 {
   left: 875px + @chapter_3_start;
@@ -1046,6 +1069,7 @@
  *****************/
 #chapter-4 {
   display: none;
+  width: @chapter_4_width;
 }
 #chapter-4 #cloud-1 {
   left: 887px + @chapter_4_start;
@@ -1202,6 +1226,7 @@
  *****************/
 #chapter-5 {
   display: none;
+  width: @chapter_5_width;
 }
 #chapter-5 #cloud-1 {
   left: 869px + @chapter_5_start;
@@ -1358,6 +1383,7 @@
  *****************/
 #chapter-6 {
   display: none;
+  width: @chapter_6_width;
 }
 #chapter-6 #cloud-1 {
   left: 882px + @chapter_6_start;

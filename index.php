@@ -95,12 +95,12 @@
 			</div>
 		</div>
 		<!-- BEGIN MAIN AREA -->
-		<div id="content">
+		<div id="story">
 			<div id="jmv-modal" class="modal">
 				<div class="modal-icon"></div>
 				<div class="modal-content">
 					<h2>JOIN MY VILLAGE CONNECTION</h2>
-					<img />
+					<img src="img/loading.gif" />
 					<p></p>
 				</div>
 			</div>
@@ -111,22 +111,26 @@
 					<div class="like-message"></div>
 					<div class="facebook-like"><div class="fb-like" data-send="false" data-layout="button_count" data-width="50" data-show-faces="false"></div></div>
 					<div class="modal-divider"></div>
-					<p class="like-count-total">When <span class="like-count"></span> likes are reached, <span class="next-chapter-message"></span></p>
-					<div id="percentage-bar" class="percentage-bar">
-						<div id="percentage" class="percentage"></div>
+					<div id="info">
+						<p class="like-count-total">When <span class="like-count"></span> likes are reached, <span class="next-chapter-message"></span></p>
+						<div id="percentage-bar" class="percentage-bar">
+							<div id="percentage" class="percentage"></div>
+						</div>
+						<div class="likes-min">0 LIKES</div>
+						<div class="likes-remaining"><span class="like-count"></span> LIKES TO GO!</div>
 					</div>
-					<div class="likes-min">0 LIKES</div>
-					<div class="likes-remaining"><span class="like-count"></span> LIKES TO GO!</div>
+					<div id="thanks"></div>
 					<div class="clear"></div>
 				</div>
+			</div>
+			<div id="maya" class="x0">
+				<div id="stars" class="stars"></div>
+				<div id="keyboard" class="keyboard"></div>
 			</div>
 			<!-- BEGIN CHAPTER 1 -->
 			<div id="chapter-1" class="chapter">
 				<div id="title-chapter-1" class="title"><h1>CHAPTER 1</h1>
 				<h2>A CHANCE<br />AT SCHOOL</h2></div>
-				<div id="maya" class="x0">
-					<div id="stars" class="stars"></div>
-				</div>
 				<div id="box-1" class="box">
 					<div class="box-content">
 						<p>Maya is a girl who lives with her family in an impoverished village.</p>
@@ -178,7 +182,9 @@
 				<div id="crop-3" class="crop layer-level-99 x0"><img src="img/crop.png" /></div>
 				<div id="crop-4" class="crop layer-level-99"><img src="img/crop.png" /></div>
 				<div id="crop-5" class="crop layer-level-99"><img src="img/crop.png" /></div>
-				<div id="flag-1" class="flag layer-level-97 x0"></div>
+				<div id="flag-1" class="flag layer-level-97 x0">
+					<div id="learn-more" class="learn-more"></div>
+				</div>
 				<div id="grass-3" class="grass-small layer-level-100 x0"></div>
 				<div id="girl-1" class="girl-bucket layer-level-100"></div>
 				<div id="girl-2" class="girl-with-goat layer-level-100"></div>
