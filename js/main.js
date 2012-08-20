@@ -27,9 +27,9 @@ var Config = {
 };
 
 var Story = {
-	chapters: 6,
-	chapter_open_status: {1:false, 2:false, 3:false, 4:false, 5:false, 6:false},
-	chapter_close_status: {1:false, 2:false, 3:false, 4:false, 5:false, 6:false},
+	chapters: 7,
+	chapter_open_status: {1:false, 2:false, 3:false, 4:false, 5:false, 6:false, 7:false},
+	chapter_close_status: {1:false, 2:false, 3:false, 4:false, 5:false, 6:false, 7:false},
 	current_chapter: null,
 	next_chapter: null,
 	init: function() {
@@ -116,13 +116,14 @@ var Story = {
 			// if not, just set the open status to true.
 			this.chapter_open_status[this.current_chapter] = true
 		}
-		LikesModal.init(this.current_chapter);
-		Likes.init(this.current_chapter);
+		if(this.current_chapter != this.chapters)
+			LikesModal.init(this.current_chapter);
 		this.setWidth(this.current_chapter);
 		// open all chapters before this one
 		for(var i=1; i<=Story.current_chapter; i++) {
 			$('#chapter-' + i).delay(300).fadeIn(1000);
 		}
+		//scroll to chapter, then open it
 		this.scrollToChapter();
 	},
 	closeChapter: function(chapter) {
@@ -142,6 +143,7 @@ var Story = {
 		$('html, body').stop().animate({
             scrollLeft: Story.chapterStartPoint(Story.current_chapter)
         }, 3000, function() {
+        	// open chapter after scrolling user!
         	Story[Story.current_chapter].open();
         	Boxes.init();
 			Flags.setup();
@@ -391,6 +393,25 @@ var Story = {
 			//Maya.exit();
 		}
 	},
+	// Chapter 7
+	7: {
+		open: function() {
+			console.log('chapter 7');
+			Maya.enter('woman', false);
+			//this.bindScrollPoints();
+		},
+		animate: function() {
+			
+		},
+		bindScrollPoints: function() {
+			$(window).bind('scroll', function() {
+
+	    	});
+		},
+		close: function() {
+			//Maya.exit();
+		}
+	},
 	
 	/*********************
 	 * END CHAPTER OBJECTS
@@ -509,6 +530,7 @@ var LikesModal = {
 		},
 	],
 	init: function( chapter ) {
+		Likes.init(this.current_chapter);
 		this.modal = $('#likes-modal');
 		this.chapter = chapter;
 		this.show();

@@ -54,35 +54,6 @@
 		<div class="modal-footer"></div>
 	</div>
 	<!-- ENTRY MODAL -->
-	<!-- END MODAL -->
-	<div id="modal-end" class="modal modal-info">
-		<div class="entry-header">
-			<div class="jmv-logo"><p>JOIN MY VILLAGE</p></div>
-			<div class="social-media">
-				<div id="facebook" class="share"><div class="fb-like" data-send="false" data-layout="button_count" data-width="50" data-show-faces="false"></div></div>
-				<div id="twitter" class="share"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Check out Join My Village!">Tweet</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div>
-			</div>
-		</div>
-		<div id="family"><img src="img/family.png" /></div>
-		<div id="thank-you">
-			<h1>THANK YOU!</h1>
-			<p>Thanks to Join My Village, and YOU, Maya gets her VSLA loan! Her familyís standard of living improves each year! Every day, Join My Village makes a difference in the lives of thousands of girls and women in Malawi and India. Through education, Maya and girls like her are able to develop the skills they need to succeed. To prosper. To be healthy.</p>
-			<p>Creating new generations of educated girls, who will send their girls to school too.</p>
-			<p>And so on...</p>
-		</div>
-		<div id="contribute">
-			<h3>HELP MORE GIRLS LIKE MAYA</h3>
-			<p>Every time you share or like a page on joinmyvillage.com, money is donated to CARE by General Mills and Merck to support women and girls in Malawi and India.</p>
-			<h2>CONTRIBUTE TO JOIN MY VILLAGE</h2>
-			<p>Your contribution will be matched by General Mills and Merck dollar for dollar*...so we can provide twice as much support to women and girls in Malawi and India.</p>
-			<a href="#" class="button">CONTRIBUTE NOW</a>
-		</div>
-		<div class="modal-footer">
-			<div class="modal-footer-copy">* General Mills will donate up to $1.5 million by December 31, 2012 to CARE.</div>
-		</div>
-	</div>
-	<!-- END MODALS -->
 	
 	<!-- BEGIN CONTAINER -->
 	<div id="container">
@@ -556,6 +527,94 @@
 				<div id="bush-4" class="bush-large layer-level-99 x0"></div>
 				<div id="grass-5" class="grass-small layer-level-98 x0"></div>
 				<div id="shop-3" class="shop-3 layer-level-98 "></div>
+			</div>
+			<!-- END CHAPTER 6 -->
+			<!-- BEGIN CHAPTER 7 -->
+			<div id="chapter-7" class="chapter">
+				<div id="title-chapter-7" class="title"><h1>ENDPOINT</h1>
+				<h2>COMING<br />FULL CIRCLE</h2></div>
+				<!-- BEGIN BOXES -->
+				<div id="box-1" class="box">
+					<div class="box-content">
+						<p>Thanks to Join My Village, and YOU, Maya gets her VSLA loan! Her family's standard of living improves each year!</p>
+					</div>
+					<div class="box-footer"></div>
+				</div>
+				<div id="box-2" class="box">
+					<div class="box-content">
+						<p>Every day, Join My Village makes a difference in the lives of thousands of girls and womaen in Malawi and India.</p>
+					</div>
+					<div class="box-footer"></div>
+				</div>
+				<div id="box-3" class="box">
+					<div class="box-content">
+						<p>Through education, Maya and girls like her are able to develop the skills they need to succeed. To prosper. To be healthy.</p>
+					</div>
+					<div class="box-footer"></div>
+				</div>
+				<div id="box-4" class="box">
+					<div class="box-content">
+						<p>Creating new generations of educated girls, who will send their girls to school. And so on...</p>
+					</div>
+					<div class="box-footer"></div>
+				</div>
+				<!-- END BOXES -->
+				<div id="cloud-1" class="cloud-small layer-level-96 x0"></div>
+				<div id="cloud-2" class="cloud-large layer-level-96"></div>
+				<div id="cloud-3" class="cloud-small layer-level-96"></div>
+				<div id="cloud-4" class="cloud-small layer-level-96"></div>
+				<div id="cloud-5" class="cloud-small layer-level-96"></div>
+				<div id="tree-1" class="tree-small layer-level-96 x0"></div>
+				<div id="tree-2" class="tree-large layer-level-99 x0"></div>
+				<div id="tree-3" class="tree-small layer-level-96 x0"></div>
+				<div id="tree-4" class="tree-large layer-level-99 x0"></div>
+				<div id="tree-5" class="tree-small layer-level-96 x0"></div>
+				<div id="tree-6" class="tree-large layer-level-99 x0"></div>
+				<div id="bush-1" class="bush-large layer-level-99 x0"></div>
+				<div id="bush-2" class="bush-small layer-level-99 x0"></div>
+				<div id="bush-3" class="bush-large layer-level-99 x0"></div>
+				<div id="bush-4" class="bush-large layer-level-99 x0"></div>
+				<div id="bush-5" class="bush-large layer-level-99 x0"></div>
+				<div id="grass-1" class="grass-small layer-level-98 x0"></div>
+				<div id="grass-2" class="grass-small layer-level-98 x0"></div>
+				<div id="grass-3" class="grass-small layer-level-98 x0"></div>
+				<div id="grass-4" class="grass-small layer-level-98 x0"></div>
+				<div id="grass-5" class="grass-small layer-level-98 x0"></div>
+				<div id="grass-6" class="grass-small layer-level-99 x0"></div>
+				<div id="girl-1" class="girl-5 layer-level-98"></div>
+				<div id="girl-2" class="girl-6 layer-level-98"></div>
+				<div id="girl-3" class="girl-2 layer-level-98"></div>
+				<div id="girl-4" class="girl-8 layer-level-98"></div>
+				<div id="girl-5" class="girl-9 layer-level-98"></div>
+				<div id="woman-1" class="woman-1 layer-level-98 x0"></div>
+				<div id="woman-2" class="woman-2 layer-level-98 x0"></div>
+				<div id="sign-1" class="layer-level-99">
+					<img src="img/sign_secondarySchool.png" />
+				</div>
+				<div id="house-1" class="house-small layer-level-99"></div>
+				<div id="books-1" class="books-2 layer-level-99"></div>
+				
+				<div id="daughter" class="daughter layer-level-99 x0"></div>
+				<div id="maya-end" class="maya-end layer-level-99 x0"></div>
+				
+				<div id="modal-end" class="modal-start-end">
+					<div class="banner"></div>
+					<div class="modal-content">
+						<div class="content-left">
+							<h1>HELP MORE<br />GIRLS LIKE MAYA</h1>
+							<p>Every time you share or like a page on <a href="www.joinmyvillage.com" target="_blank">joinmyvillage.com</a>, money is donated to CARE by General Mills and Merck to support women and girls in Malawi and India</p>
+							<div class="footer">
+								<div class="modal-footer-copy">* General Mills will donate up to $1.5 million by December 31, 2012 to CARE.</div>
+							</div>
+						</div>
+						<div class="content-right">
+							<h1>CONTRIBUTE TO<br />JOIN MY VILLAGE</h1>
+							<p>Your contribution will be matched by General Mills and Merck dollar for dollar*...so we can provide twice as much support to women and girls in Malawi and India.</p>
+							<a href="#" class="button">CONTRIBUTE NOW</a>
+						</div>
+						<div class="clear"></div>
+					</div>
+				</div>
 			</div>
 			<!-- END CHAPTER 6 -->
 		</div>

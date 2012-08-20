@@ -7,6 +7,7 @@
 @chapter_4_width: 4759px;
 @chapter_5_width: 5005px;
 @chapter_6_width: 5000px;
+@chapter_7_width: 4500px;
 
 @chapter_1_start: 0;
 @chapter_2_start: @chapter_1_width;
@@ -14,6 +15,7 @@
 @chapter_4_start: @chapter_3_width + @chapter_2_width + @chapter_1_width;
 @chapter_5_start: @chapter_4_width + @chapter_3_width + @chapter_2_width + @chapter_1_width;
 @chapter_6_start: @chapter_6_width + @chapter_4_width + @chapter_3_width + @chapter_2_width + @chapter_1_width;
+@chapter_7_start: @chapter_6_width + @chapter_6_width + @chapter_4_width + @chapter_3_width + @chapter_2_width + @chapter_1_width;
 
 @bottom_margin: 100;
 
@@ -96,6 +98,12 @@
   background: transparent url(../img/sprites/maya_5.png) no-repeat;
 }
 
+.maya-end {
+  width: 54px;
+  height: 105px;
+  background: transparent url(../img/maya_end.png) no-repeat;
+}
+
 .books-1 {
   background: transparent url(../img/books_1.png) no-repeat;
   width: 319px;
@@ -103,7 +111,7 @@
 }
 
 .books-2 {
-  background: transparent url(../img/books_1.png) no-repeat;
+  background: transparent url(../img/books_2.png) no-repeat;
   width: 62px;
   height: 51px;
 }
@@ -227,6 +235,12 @@
 .crop img {
   width: 27px;
   height: 42px;
+}
+
+.daughter {
+  background: transparent url(../img/c_daughter.png) no-repeat;
+  width: 54px;
+  height: 105px;
 }
 
 .father {
@@ -598,6 +612,18 @@
   background: transparent url(../img/animations/moneytree.gif) no-repeat;
   width: 319px;
   height: 451px;
+}
+
+.woman-1 {
+  background: transparent url(../img/c_woman_1.png) no-repeat;
+  width: 89px;
+  height: 166px;
+}
+
+.woman-2 {
+  background: transparent url(../img/c_woman_2.png) no-repeat;
+  width: 65px;
+  height: 166px;
 }
 
 .woman-money-1 {
@@ -1624,3 +1650,142 @@
 /*****************
  * END CHAPTER 6
  *****************/
+/*****************
+ * BEGIN CHAPTER 7
+ *****************/
+#chapter-7 {
+  display: none;
+  width: @chapter_7_width;
+}
+#chapter-7 #title-chapter-7 {
+  left: 100px + @chapter_7_start;
+}
+#chapter-7 #cloud-1 {
+  left: 738px + @chapter_7_start;
+  top: 347px;
+}
+#chapter-7 #cloud-2 {
+  left: 1431px + @chapter_7_start;
+  top: 290px;
+}
+#chapter-7 #cloud-3 {
+  left: 2295px + @chapter_7_start;
+  top: 344px;
+}
+#chapter-7 #cloud-4 {
+  left: 2712px + @chapter_7_start;
+  top: 221px;
+}
+#chapter-7 #cloud-5 {
+  left: 4329px + @chapter_7_start;
+  top: 278px;
+}
+#chapter-7 #box-1 {
+  left: 190px + @chapter_7_start;
+  bottom: @bottom_margin + 228px;
+}
+#chapter-7 #box-2 {
+  left: 1032px + @chapter_7_start;
+  bottom: @bottom_margin + 284px;
+}
+#chapter-7 #box-3 {
+  left: 1840px + @chapter_7_start;
+  bottom: @bottom_margin + 332px;
+}
+#chapter-7 #box-4 {
+  left: 2830px + @chapter_7_start;
+  bottom: @bottom_margin + 415px;
+}
+#chapter-7 #tree-1 {
+  left: 68px + @chapter_7_start;
+  bottom: @bottom_margin + 20px;
+}
+#chapter-7 #tree-2 {
+  left: 708px + @chapter_7_start;
+}
+#chapter-7 #tree-3 {
+  left: 1518px + @chapter_7_start;
+  bottom: @bottom_margin + 36px
+}
+#chapter-7 #tree-4 {
+  left: 2396px + @chapter_7_start;
+}
+#chapter-7 #tree-5 {
+  left: 2752px + @chapter_7_start;
+  bottom: @bottom_margin + 60px;
+}
+#chapter-7 #tree-6 {
+  left: 4294px + @chapter_7_start;
+}
+#chapter-7 #grass-1 {
+  left: -200px + @chapter_7_start;
+  display: none;
+}
+#chapter-7 #grass-2 {
+  left: 488px + @chapter_7_start;
+}
+#chapter-7 #grass-3 {
+  left: 1422px + @chapter_7_start;
+}
+#chapter-7 #grass-4 {
+  left: 2384px + @chapter_7_start;
+}
+#chapter-7 #grass-5 {
+  left: 4152px + @chapter_7_start;
+}
+#chapter-7 #grass-6 {
+  left: 3364px + @chapter_7_start;
+}
+#chapter-7 #girl-1 {
+  left: 990px + @chapter_7_start;
+  bottom: @bottom_margin + 60px;
+}
+#chapter-7 #girl-2 {
+  left: 1076px + @chapter_7_start;
+  bottom: @bottom_margin + 60px;
+}
+#chapter-7 #girl-3 {
+  left: 1727px + @chapter_7_start;
+  bottom: @bottom_margin + 63px;
+}
+#chapter-7 #girl-4 {
+  left: 1761px + @chapter_7_start;
+  bottom: @bottom_margin + 63px;
+}
+#chapter-7 #girl-5 {
+  left: 1800px + @chapter_7_start;
+  bottom: @bottom_margin + 63px;
+}
+#chapter-7 #woman-1 {
+  left: 1212px + @chapter_7_start;
+}
+#chapter-7 #woman-2 {
+  left: 1314px + @chapter_7_start;
+}
+#chapter-7 #sign-1 {
+  left: 1862px + @chapter_7_start;
+  bottom: @bottom_margin + 62px;
+}
+#chapter-7 #sign-1 img {
+  width: 70%;
+}
+#chapter-7 #house-1 {
+  left: 1946px + @chapter_7_start;
+  bottom: @bottom_margin + 46px;
+}
+#chapter-7 #books-1 {
+  left: 1946px + @chapter_7_start;
+  bottom: @bottom_margin + 46px;
+}
+#chapter-7 #daughter {
+  left: 3076px + @chapter_7_start;
+}
+#chapter-7 #modal-end {
+  left: 3500px + @chapter_7_start;
+  bottom: @bottom_margin + 196px;
+  position: absolute;
+}
+#chapter-7 #maya-end {
+  left: 3826px + @chapter_7_start;
+  bottom: @bottom_margin + 45px;
+}

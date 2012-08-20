@@ -69,13 +69,18 @@
   height: 167px;
   background: transparent url(../img/sprites/maya_5.png) no-repeat;
 }
+.maya-end {
+  width: 54px;
+  height: 105px;
+  background: transparent url(../img/maya_end.png) no-repeat;
+}
 .books-1 {
   background: transparent url(../img/books_1.png) no-repeat;
   width: 319px;
   height: 80px;
 }
 .books-2 {
-  background: transparent url(../img/books_1.png) no-repeat;
+  background: transparent url(../img/books_2.png) no-repeat;
   width: 62px;
   height: 51px;
 }
@@ -180,6 +185,11 @@
 .crop img {
   width: 27px;
   height: 42px;
+}
+.daughter {
+  background: transparent url(../img/c_daughter.png) no-repeat;
+  width: 54px;
+  height: 105px;
 }
 .father {
   background: transparent url(../img/animations/C_Father.gif) no-repeat;
@@ -492,6 +502,16 @@
   background: transparent url(../img/animations/moneytree.gif) no-repeat;
   width: 319px;
   height: 451px;
+}
+.woman-1 {
+  background: transparent url(../img/c_woman_1.png) no-repeat;
+  width: 89px;
+  height: 166px;
+}
+.woman-2 {
+  background: transparent url(../img/c_woman_2.png) no-repeat;
+  width: 65px;
+  height: 166px;
 }
 .woman-money-1 {
   background: transparent url(../img/c_womanWithMoney_1.png) no-repeat;
@@ -1503,3 +1523,142 @@
 /*****************
  * END CHAPTER 6
  *****************/
+/*****************
+ * BEGIN CHAPTER 7
+ *****************/
+#chapter-7 {
+  display: none;
+  width: 4500px;
+}
+#chapter-7 #title-chapter-7 {
+  left: 31840px;
+}
+#chapter-7 #cloud-1 {
+  left: 32478px;
+  top: 347px;
+}
+#chapter-7 #cloud-2 {
+  left: 33171px;
+  top: 290px;
+}
+#chapter-7 #cloud-3 {
+  left: 34035px;
+  top: 344px;
+}
+#chapter-7 #cloud-4 {
+  left: 34452px;
+  top: 221px;
+}
+#chapter-7 #cloud-5 {
+  left: 36069px;
+  top: 278px;
+}
+#chapter-7 #box-1 {
+  left: 31930px;
+  bottom: 328px;
+}
+#chapter-7 #box-2 {
+  left: 32772px;
+  bottom: 384px;
+}
+#chapter-7 #box-3 {
+  left: 33580px;
+  bottom: 432px;
+}
+#chapter-7 #box-4 {
+  left: 34570px;
+  bottom: 515px;
+}
+#chapter-7 #tree-1 {
+  left: 31808px;
+  bottom: 120px;
+}
+#chapter-7 #tree-2 {
+  left: 32448px;
+}
+#chapter-7 #tree-3 {
+  left: 33258px;
+  bottom: 136px;
+}
+#chapter-7 #tree-4 {
+  left: 34136px;
+}
+#chapter-7 #tree-5 {
+  left: 34492px;
+  bottom: 160px;
+}
+#chapter-7 #tree-6 {
+  left: 36034px;
+}
+#chapter-7 #grass-1 {
+  left: 31540px;
+  display: none;
+}
+#chapter-7 #grass-2 {
+  left: 32228px;
+}
+#chapter-7 #grass-3 {
+  left: 33162px;
+}
+#chapter-7 #grass-4 {
+  left: 34124px;
+}
+#chapter-7 #grass-5 {
+  left: 35892px;
+}
+#chapter-7 #grass-6 {
+  left: 35104px;
+}
+#chapter-7 #girl-1 {
+  left: 32730px;
+  bottom: 160px;
+}
+#chapter-7 #girl-2 {
+  left: 32816px;
+  bottom: 160px;
+}
+#chapter-7 #girl-3 {
+  left: 33467px;
+  bottom: 163px;
+}
+#chapter-7 #girl-4 {
+  left: 33501px;
+  bottom: 163px;
+}
+#chapter-7 #girl-5 {
+  left: 33540px;
+  bottom: 163px;
+}
+#chapter-7 #woman-1 {
+  left: 32952px;
+}
+#chapter-7 #woman-2 {
+  left: 33054px;
+}
+#chapter-7 #sign-1 {
+  left: 33602px;
+  bottom: 162px;
+}
+#chapter-7 #sign-1 img {
+  width: 70%;
+}
+#chapter-7 #house-1 {
+  left: 33686px;
+  bottom: 146px;
+}
+#chapter-7 #books-1 {
+  left: 33686px;
+  bottom: 146px;
+}
+#chapter-7 #daughter {
+  left: 34816px;
+}
+#chapter-7 #modal-end {
+  left: 35240px;
+  bottom: 296px;
+  position: absolute;
+}
+#chapter-7 #maya-end {
+  left: 35566px;
+  bottom: 145px;
+}
