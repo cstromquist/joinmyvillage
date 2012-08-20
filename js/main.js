@@ -37,8 +37,8 @@ var Story = {
 		this.next_chapter = this.current_chapter + 1;
 		this.openStory();
 	},
-	openStory: function() {
-		if(!$.cookie('current_chapter')) {
+	openStory: function(showModal) {
+		if(!$.cookie('current_chapter') || showModal == true) {
 			Scroll.preventScrolling();
 			var modal = $('#modal-entry');
 			modal.fadeIn('slow');

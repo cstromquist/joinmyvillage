@@ -166,11 +166,11 @@
   float: left;
   width: 259px;
   padding-right: 20px;
+  border-right: 1px solid #e6e6e6;
 }
 .modal-start-end .content-right {
   float: left;
   width: 275px;
-  border-left: 1px solid #e6e6e6;
   padding-left: 20px;
 }
 .modal-start-end h1 {
@@ -181,7 +181,7 @@
 }
 .modal-start-end p {
   color: #8e7961;
-  padding-bottom: 20px;
+  padding: 0 0 20px 0;
   font-size: 1.1em;
   line-height: 1.3em;
 }
@@ -201,6 +201,7 @@ a.button {
   box-shadow: 0 3px 2px 0 rgba(0, 0, 0, 0.25);
   z-index: 2;
   position: absolute;
+  font-family: BrandonBlk;
 }
 .modal-start-end .modal-footer-copy {
   color: #8e7961;
@@ -212,23 +213,19 @@ a.button {
 /***************
  * ENTRY MODAL
  **************/
-#modal-entry #maya-welcome {
-  width: 206px;
-  height: 400px;
-  float: left;
-  margin-left: 60px;
-  background: transparent url(../img/maya_welcome.png) repeat-x top left;
-}
-#modal-entry #welcome-content {
-  float: left;
-  left: 338px;
-  width: 400px;
-  margin-left: 40px;
+#modal-entry .banner {
+  background-image: url(../img/start.png);
+  width: 852px;
+  height: 179px;
+  left: -81px;
 }
 #modal-entry a.button {
-  width: 220px;
+  width: 100px;
   background: #ed6f31 url(../img/btn_bg_arrow.png) no-repeat bottom right;
-  background-position: 234px -4px;
+  background-position: 114px -6px;
+}
+#modal-entry {
+  width: 671px;
 }
 /****************
  * END MODAL
@@ -241,7 +238,7 @@ a.button {
 #modal-end a.button {
   width: 130px;
   background: #ed6f31 url(../img/btn_bg_arrow.png) no-repeat bottom right;
-  background-position: 143px -4px;
+  background-position: 143px -6px;
 }
 /***************
  * LIKES MODAL

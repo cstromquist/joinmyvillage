@@ -105,6 +105,7 @@
   display: block;
   padding: 20px;
   color: #8e7961;
+  line-height: 1.2em;
 }
 .box-footer {
   background: transparent url(../img/box_bottom.png) no-repeat;
@@ -908,7 +909,7 @@
   left: 11490px;
 }
 #chapter-3 #box-1 {
-  left: 11861px;
+  left: 11661px;
   bottom: 293px;
 }
 #chapter-3 #box-2 {
@@ -1066,7 +1067,7 @@
   left: 17081px;
 }
 #chapter-4 #box-1 {
-  left: 17291px;
+  left: 17258px;
   bottom: 318px;
 }
 #chapter-4 #box-2 {
@@ -1229,7 +1230,7 @@
   left: 21840px;
 }
 #chapter-5 #box-1 {
-  left: 22062px;
+  left: 22012px;
   bottom: 295px;
 }
 #chapter-5 #box-2 {
@@ -1385,7 +1386,7 @@
   left: 26840px;
 }
 #chapter-6 #box-1 {
-  left: 26938px;
+  left: 27015px;
   bottom: 355px;
 }
 #chapter-6 #box-2 {

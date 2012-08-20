@@ -32,26 +32,21 @@
 
 	<!-- BEGIN MODALS -->
 	<!-- ENTRY MODAL -->
-	<div id="modal-entry" class="modal modal-info">
-		<div class="entry-header">
-			<div class="jmv-logo">JOIN MY VILLAGE</div>
-			<div class="social-media">
-				<div id="facebook" class="share"><div class="fb-like" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div></div>
-				<div id="twitter" class="share"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Check out Join My Village!">Tweet</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div>
+	<div id="modal-entry" class="modal modal-start-end">
+		<div class="banner"></div>
+		<div class="modal-content">
+			<div class="content-left">
+				<p>A new school year is underway in the U.S. and Canada. If you're reading this, you&mdash;or your children&mdash;are probably in school this fall.</p>
+				<p>But 60 million girls in developing nations worldwide are not in school. Denied education and access to resources, they are doomed to an endless cycle of poverty, with no chance to shape their own future.</p>
+				<p>Maya respresents one of these girls. She might live in Malawi, or perhaps India. She wants the chance to go to school.</p>
 			</div>
+			<div class="content-right">
+				<h1>YOU CAN HELP</h1>
+					<p>By watching and liking May's story, you'll unlock donations to Join My Village, an initiative of General Mills, Merck and CARE International that supports projects in India and Malawi to educate and empower girls like Maya&mdash;turning the tide not just for them, but for our planet.</p>
+					<a href="#" class="button">TAKE A LOOK</a>
+			</div>
+			<div class="clear"></div>
 		</div>
-		<div id="maya-welcome"></div>
-		<div id="welcome-content">
-		<h1>HELLO!</h1>
-		<p>A new school year is underway in the U.S. and Canada. If you're reading this, you&mdash;or your children&mdash;are probably in school this fall.</p>
-		<p>But 60 million girls in developing nations worldwide are not in school. Denied education and access to resources, they are doomed to an endless cycle of poverty, with no chance to shape their own future.</p>
-		<p>Maya respresents one of these girls. She might live in Malawi, or perhaps India. She wants the chance to go to school.</p>
-		<h2>YOU CAN HELP</h2>
-		<p>By watching and liking May's story, you'll unlock donations to Join My Village, an initiative of General Mills, Merck and CARE International that supports projects in India and Malawi to educate and empower girls like Maya&mdash;turning the tide not just for them, but for our planet.</p>
-		<a href="#" class="button">TO FIND OUT HOW, TAKE A LOOK</a>
-		</div>
-		<div class="modal-footer"></div>
 	</div>
 	<!-- ENTRY MODAL -->
 	
