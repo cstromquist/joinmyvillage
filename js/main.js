@@ -201,7 +201,7 @@ var Story = {
 		bindScrollPoints: function() {
 			$(window).bind('scroll', function() {
 				if (Maya.xPosition() > 400) {
-					$('#keyboard').fadeOut('slow');
+					$('#keyboard').hide();
 				}
 		    	if (Maya.xPosition() > 2000 && Maya.xPosition() < 3000) {
 		    		Animations.animateCrops(1);
