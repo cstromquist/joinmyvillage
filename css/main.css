@@ -44,12 +44,13 @@ body {
   margin-left: 10px;
 }
 .jmv-logo {
-  background: transparent url(../img/logo.png) no-repeat top left;
+  background: transparent url(../img/logo_jmv.png) no-repeat top left;
   position: absolute;
   top: 20px;
   left: 20px;
-  padding: 10px 0 0 50px;
-  height: 49px;
+  width: 279px;
+  height: 46px;
+  text-indent: -500px;
 }
 #header {
   background-color: #fff;

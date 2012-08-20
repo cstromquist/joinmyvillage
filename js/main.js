@@ -119,12 +119,11 @@ var Story = {
 		LikesModal.init(this.current_chapter);
 		Likes.init(this.current_chapter);
 		this.setWidth(this.current_chapter);
-		this.scrollToChapter();
 		// open all chapters before this one
-		for(var i=1; i<=this.current_chapter; i++) {
-			Story[i].init();
+		for(var i=1; i<=Story.current_chapter; i++) {
 			$('#chapter-' + i).delay(300).fadeIn(1000);
 		}
+		this.scrollToChapter();
 	},
 	closeChapter: function(chapter) {
 		this.chapter_close_status[chapter] = true;
@@ -143,9 +142,9 @@ var Story = {
 		$('html, body').stop().animate({
             scrollLeft: Story.chapterStartPoint(Story.current_chapter)
         }, 3000, function() {
-        	// only after scroll is complete do we set up boxes and flags
+        	Story[Story.current_chapter].open();
         	Boxes.init();
-        	Flags.setup();
+			Flags.setup();
         });
 	},
 	preload: function() {	
@@ -165,15 +164,16 @@ var Story = {
 	 **********************************/
 	// Chapter 1
 	1: {
-		init: function() {
+		open: function() {
 			this.animate();
 			this.bindScrollPoints();
+			Maya.enter('child');
+			Boxes.show(1,1); //slide in the first box
 			$('#flag-1').click(function(){
-				$('#learn-more').fadeOut();
+				$('#learn-more').hide();
 			});
 		},
 		animate: function() {
-			Maya.enter('child');
 			//Story.animateObject('#tree-1', 2400, 800);
 			//Story.animateObject('#hill-1', 2800, 800);
 			
@@ -218,13 +218,13 @@ var Story = {
 		    	}
 	    	});
 		},
-		end: function() {
+		close: function() {
 			//Maya.exit();
 		}
 	},
 	// Chapter 2
 	2: {
-		init: function() {
+		open: function() {
 			Maya.enter('child');
 			this.bindScrollPoints();
 			Animations.animateWaterChapterTwo();
@@ -252,7 +252,7 @@ var Story = {
 		    	}
 		  });
 		},
-		end: function() {
+		close: function() {
 			//Maya.exit();
 		}
 	},
@@ -260,7 +260,8 @@ var Story = {
 	3: {
 		plane_flown: false,
 		money_tree_shown: false,
-		init: function() {
+		open: function() {
+			Maya.enter('child');
 			this.animate();
 			this.bindScrollPoints();
 		},
@@ -302,13 +303,14 @@ var Story = {
 		    	}
 	    	});
 		},
-		end: function() {
+		close: function() {
 			//Maya.exit();
 		}
 	},
 	// Chapter 4
 	4: {
-		init: function() {
+		open: function() {
+			Maya.enter('teen');
 			this.animate();
 			this.bindScrollPoints();
 		},
@@ -325,19 +327,26 @@ var Story = {
 		    	}
 	    	});
 		},
-		end: function() {
+		close: function() {
 			//Maya.exit();
 		}
 	},
 	// Chapter 5
 	5: {
 		man_chosen: false,
-		init: function() {
+		open: function() {
+			Maya.enter('woman');
 			this.animate();
 			this.bindScrollPoints();
 		},
 		animate: function() {
+			var stars = $('#girl-1 #stars');
+			stars.css({bottom: '50px'});
+			stars.animate({opacity:1}, 2000).animate({opacity:0}, 2000);
 			
+			var stars = $('#girl-2 #stars');
+			stars.css({bottom: '50px'});
+			stars.animate({opacity:1}, 2000).animate({opacity:0}, 2000);
 		},
 		bindScrollPoints: function() {
 			$(window).bind('scroll', function() {
@@ -355,14 +364,14 @@ var Story = {
 		    	}
 	    	});
 		},
-		end: function() {
+		close: function() {
 			//Maya.exit();
 		}
 	},
 	// Chapter 6
 	6: {
-		init: function() {
-			//Animations.animateWater();
+		open: function() {
+			Maya.enter('mother', true);
 			this.bindScrollPoints();
 		},
 		animate: function() {
@@ -378,7 +387,7 @@ var Story = {
 		    	}
 	    	});
 		},
-		end: function() {
+		close: function() {
 			//Maya.exit();
 		}
 	},
@@ -428,7 +437,7 @@ var Likes = {
 			Likes.remaining = Likes.limit - Likes.count;
 			Likes.displayCounts();
 			Likes.displayPercentageBar();
-			LikesModal.showThanks();
+			//LikesModal.showThanks();
 		});
 	},
 	displayCounts: function() {
@@ -514,7 +523,6 @@ var LikesModal = {
 	},
 	showThanks: function() {
 		var next_chapter = Story.next_chapter;
-		console.log(next_chapter); 	
 		$('#likes-modal #info').fadeOut();
 		if(Likes.isLimitReached()) {
 			$('#likes-modal #thanks').html('Thanks for Liking and helping Maya with her story! <a href="/?chapter=' + next_chapter + '">Click here to go to the next Chapter!</a>');
@@ -651,10 +659,14 @@ var Boxes = {
 			}
 		});
 	},
-	slideIn: function( box ) {
+	show: function( chapter, box_num ) {
+		var box = $('#chapter-' + chapter + ' #box-' + box_num);
+		if(box.attr('enabled'))
+			return;
 		var p = box.css('bottom');
 		box.css({bottom: '+700px'});
 		box.animate({bottom: p, opacity: 1}, 3000);
+		box.attr('enabled', true);
 	},
 	xPosition: function ( box ) {
 		return box.position().left;
@@ -663,15 +675,11 @@ var Boxes = {
 		return box.position().top;
 	},
 	showBoxes: function( chapter ) {
-		var box = null;
 		var boxes = $('#chapter-' + chapter + ' .box').length;
 		for(var i=1; i<=boxes; i++) {
-			box = $('#chapter-' + chapter + ' #box-' + i);
-			if(box.length != 0) {
-				if (Maya.xPosition() > this.xPosition( box ) - 400 && !box.attr('enabled')) {
-					Boxes.slideIn(box);
-					box.attr('enabled', true);
-				}
+			var box = $('#chapter-' + chapter + ' #box-' + i);
+			if (Maya.xPosition() > this.xPosition( box ) - 400) {
+				Boxes.show(chapter, i);
 			}
 		}
 	},
@@ -689,10 +697,10 @@ var Boxes = {
  ******************************/
 var Maya = {
 	bg_points: null,
-	current_life_stage: 'child', // Maya starts life as a child :)
-	lifeTransition: function( life_stage ) {
+	current_life_stage: 'child', // Maya starts life as a child
+	lifeTransition: function( lifestage ) {
 		var maya = $('#maya');
-		switch(life_stage) {
+		switch(lifestage) {
 			case 'child':
 				maya.addClass('maya-child');
 				this.bg_points = ['-5px', '-72px', '-144px', '-216px','-286px'];
@@ -720,12 +728,12 @@ var Maya = {
 				
 			break;
 		}
-		if(this.current_life_stage != life_stage) // ensure we only celebrate once.
+		if(this.current_life_stage != lifestage) // ensure we only celebrate once.
 			this.celebrate();
-		this.current_life_stage = life_stage;
+		this.current_life_stage = lifestage;
 	},
 	celebrate: function() { // Boom.  Show some sparkly stars to celebrate a life transition.
-		var stars = $('#stars');
+		var stars = $('#maya #stars');
 		stars.css({bottom: '50px'});
 		stars.animate({opacity:1}, 2000).animate({opacity:0}, 2000);
 	},
@@ -751,10 +759,13 @@ var Maya = {
 		   	}
 		})
 	},
-	enter: function( lifeStage ) {
-		this.lifeTransition(lifeStage);
-		$('#maya').fadeIn(1400);
-		this.animate();
+	enter: function( lifestage, celebrate ) {
+		if(!celebrate)
+			this.current_life_stage = lifestage; // don't celebrate when entering a chapter, unless specified
+		this.lifeTransition(lifestage);
+		$('#maya').fadeIn(1400, function() {
+			Maya.animate();
+		});
 	},
 	exit: function() {
 		$('#maya').animate({left: '+500px'}, 2000);

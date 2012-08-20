@@ -34,7 +34,7 @@
 	<!-- ENTRY MODAL -->
 	<div id="modal-entry" class="modal modal-info">
 		<div class="entry-header">
-			<div class="jmv-logo"><p>JOIN MY VILLAGE</p></div>
+			<div class="jmv-logo">JOIN MY VILLAGE</div>
 			<div class="social-media">
 				<div id="facebook" class="share"><div class="fb-like" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div></div>
 				<div id="twitter" class="share"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Check out Join My Village!">Tweet</a>
@@ -187,7 +187,7 @@
 				</div>
 				<div id="grass-3" class="grass-small layer-level-100 x0"></div>
 				<div id="girl-1" class="girl-bucket layer-level-100"></div>
-				<div id="girl-2" class="girl-with-goat layer-level-100"></div>
+				<div id="girl-2" class="girl-with-goat-1 layer-level-100"></div>
 				<div id="tree-4" class="tree-small layer-level-99"></div>
 				<div id="bush-2" class="bush-large layer-level-101 x0"></div>
 				<div id="grass-4" class="grass-large layer-level-100 x0"></div>
@@ -391,19 +391,20 @@
 				<div id="sign-2" class="sign-village layer-level-99 x0"></div>
 				<div id="grass-4" class="grass-small layer-level-97 x0"></div>
 				<div id="tree-1" class="tree-small layer-level-96"></div>
-				<div id="girl-1" class="girl-1 layer-level-98"></div>
-				<div id="girl-2" class="girl-2 layer-level-98"></div>
-				<div id="girl-3" class="girl-3 layer-level-98"></div>
-				<div id="girl-4" class="girl-4 layer-level-98"></div>
+				<div id="girl-1" class="girl-2 layer-level-98"></div>
+				<div id="girl-2" class="girl-3 layer-level-98"></div>
+				<div id="girl-3" class="girl-4 layer-level-98"></div>
+				<div id="girl-4" class="girl-1 layer-level-98"></div>
 				<div id="flag-2" class="flag layer-level-96"></div>
 				<div id="bush-3" class="bush-large layer-level-98 x0"></div>
+				<div id="girl-6" class="girl-9 layer-level-99"></div>
 				<div id="field-1" class="field layer-level-98 x0"></div>
 				<div id="crop-1" class="crop layer-level-99"><img src="img/crop.png" /></div>
 				<div id="crop-2" class="crop layer-level-99"><img src="img/crop.png" /></div>
 				<div id="crop-3" class="crop layer-level-99 x0"><img src="img/crop.png" /></div>
 				<div id="crop-4" class="crop layer-level-99"><img src="img/crop.png" /></div>
 				<div id="crop-5" class="crop layer-level-99"><img src="img/crop.png" /></div>
-				<div id="girl-5" class="girl-5 layer-level-99"></div>
+				<div id="girl-5" class="girl-with-goat-2 layer-level-99"></div>
 				<div id="grass-5" class="grass-large layer-level-99 x0"></div>
 				<div id="house-1" class="house layer-level-100 x0"></div>
 			</div>
@@ -443,10 +444,14 @@
 				<div id="cloud-3" class="cloud-small layer-level-96"></div>
 				<div id="cloud-4" class="cloud-large layer-level-96"></div>
 				<div id="cloud-5" class="cloud-small layer-level-96"></div>
-				<div id="girl-1" class=" layer-level-98"></div>
+				<div id="girl-1" class="girl-4 layer-level-99">
+					<div id="stars" class="stars"></div>
+				</div>
 				<div id="bush-1" class="bush-large layer-level-99 x0"></div>
 				<div id="grass-1" class="grass-small layer-level-97 x0"></div>
-				<div id="girl-2" class=" layer-level-97 x0"></div>
+				<div id="girl-2" class="girl-with-goat-2 layer-level-97 x0">
+					<div id="stars" class="stars"></div>
+				</div>
 				<div id="house-1" class="house-small layer-level-97 x0"></div>
 				<div id="tree-1" class="tree-small layer-level-96"></div>
 				<div id="man-1" class="man-1 layer-level-98 x0"></div>
@@ -468,9 +473,9 @@
 				<div id="woman-3" class="woman-pregnant-3 layer-level-99 x0"></div>
 				<div id="nurse-1" class="nurse layer-level-99 x0"></div>
 				<div id="grass-3" class="grass-medium layer-level-98 x0"></div>
-				<div id="rip-1" class="rip-1 layer-level-99 x0"></div>
-				<div id="rip-2" class="rip-2 layer-level-97"></div>
-				<div id="rip-3" class="rip-3 layer-level-97"></div>
+				<div id="rip-1" class="tombstone-l layer-level-99 x0"></div>
+				<div id="rip-2" class="tombstone-s layer-level-97"></div>
+				<div id="rip-3" class="tombstone-m layer-level-98"></div>
 				<div id="flag-2" class="flag layer-level-97"></div>
 				<div id="bush-3" class="bush-large layer-level-102 x0"></div>
 				<!--div id="grass-4" class="grass-small layer-level-98 x0"></div-->
@@ -529,9 +534,8 @@
 				<div id="crop-4" class="crop layer-level-98 "><img src="img/crop.png" /></div>
 				<div id="crop-5" class="crop layer-level-98 "><img src="img/crop.png" /></div>
 				<div id="sign-1" class="sign-market layer-level-98 x0"></div>
-				<div id="shop-maya" class="shop-maya layer-level-102 x0">
-					<div class="shop-maya-sign layer-level-101"></div>
-				</div>
+				<div id="shop-maya" class="shop-maya layer-level-102 x0"></div>
+				<div id="shop-maya-sign" class="shop-maya-sign layer-level-101 x0"></div>
 				<div id="grass-2" class="grass-small layer-level-98 x0"></div>
 				<div id="shop-1" class="shop-1 layer-level-98 "></div>
 				<div id="bush-2" class="bush-small layer-level-97 x0"></div>
