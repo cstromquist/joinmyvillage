@@ -731,7 +731,7 @@ var Maya = {
 		var bg_pos = null;
 		switch(lifestage) {
 			case 'child':
-				bp_pos = -5;
+				var bp_pos = -5;
 				this.bg_points = ['-5px', '-72px', '-144px', '-216px','-286px'];
 			break;
 			case 'teen':
@@ -765,11 +765,11 @@ var Maya = {
 	celebrate: function(bg_pos, lifestage) { // Boom.  Show some sparkly stars to celebrate a life transition.
 		var stars = $('#maya #stars');
 		// first fade out the old Maya, then fade in the new Maya with the stars
-		$('#maya').fadeOut(1000, function() {
+		$('#maya').fadeOut(300, function() {
 			Maya.setBg(bg_pos, lifestage)
-			$(this).fadeIn(1000);
+			$(this).fadeIn(300);
 			stars.css({bottom: '50px'});
-			stars.animate({opacity:1}, 2000).animate({opacity:0}, 2000);
+			stars.animate({opacity:1}, 1000).animate({opacity:0}, 1000);
 			Maya.pause_animation = false;
 		})
 	},
