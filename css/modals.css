@@ -49,6 +49,16 @@
   top: -18px;
   left: -18px;
 }
+.modal-close {
+  background-image: url(../img/btn_close.gif);
+  width: 21px;
+  height: 20px;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  z-index: 1010;
+  cursor: pointer;
+}
 #modal-overlay {
   background-color: black;
 }
@@ -138,7 +148,7 @@
  * JMV MODALS
  *************/
 #jmv-modal {
-  z-index: 10000;
+  z-index: 1000;
 }
 /*****************
  * MODAL ENTRY/END

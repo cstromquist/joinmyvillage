@@ -651,7 +651,12 @@ var Flags = {
 			$('#jmv-modal .modal-content p').html(Flags.content[chapter-1][flag_num-1]);
 			$('#jmv-modal .modal-content img').attr('src', 'img/jmv_banners/c' + chapter + '_f' + flag_num + '.jpg');
 			//$('#jmv-modal').fadeIn('slow');
-			$('#jmv-modal').modal();
+			$('#jmv-modal').modal({
+				position: ["20%","35%"],
+				closeHTML: '<a class="modal-close"></a>',
+				closeClass: 'modal-close'
+				
+			});
 			
 			$(window).bind('scroll', function() {
 				if (Maya.xPosition() > x || Maya.xPosition() < x - 500) {
@@ -719,66 +724,81 @@ var Boxes = {
  ******************************/
 var Maya = {
 	bg_points: null,
+	pause_animation: false,
 	current_life_stage: 'child', // Maya starts life as a child
 	lifeTransition: function( lifestage ) {
 		var maya = $('#maya');
+		var bg_pos = null;
 		switch(lifestage) {
 			case 'child':
-				maya.addClass('maya-child');
+				bp_pos = -5;
 				this.bg_points = ['-5px', '-72px', '-144px', '-216px','-286px'];
 			break;
 			case 'teen':
-				maya.css('background-position', '8px');
-				maya.removeClass('maya-child').addClass('maya-teen');
+				bg_pos = 8;
 				this.bg_points = ['0px', '-81px', '-162px', '-243px', '-323px'];
 			break;
 			case 'woman':
-				maya.css('background-position', '-8px');
-				maya.removeClass('maya-teen').addClass('maya-woman');
+				bg_pos = -8;
 				this.bg_points = ['-8px', '-93px', '-185px', '-279px', '-372px'];
 			break;
 			case 'pregnant':
-				maya.css('background-position', '-5px');
-				maya.removeClass('maya-woman').addClass('maya-pregnant');
+				bg_pos = -5;
 				this.bg_points = ['-5px', '-56px', '-109px'];
 			break;
 			case 'mother':
-				maya.removeClass('maya-pregnant').addClass('maya-mother');
+				bg_pos = -8;
 				this.bg_points = ['-8px', '-89px', '-180px', '-273px', '-372px'];
 			break;
 			default:
 				
 			break;
 		}
-		if(this.current_life_stage != lifestage) // ensure we only celebrate once.
-			this.celebrate();
+		if(this.current_life_stage != lifestage) {
+			this.pause_animation = true;
+			this.celebrate(bg_pos, lifestage);
+		} else {
+			this.setBg(bg_pos, lifestage);
+		}
 		this.current_life_stage = lifestage;
 	},
-	celebrate: function() { // Boom.  Show some sparkly stars to celebrate a life transition.
+	celebrate: function(bg_pos, lifestage) { // Boom.  Show some sparkly stars to celebrate a life transition.
 		var stars = $('#maya #stars');
-		stars.css({bottom: '50px'});
-		stars.animate({opacity:1}, 2000).animate({opacity:0}, 2000);
+		// first fade out the old Maya, then fade in the new Maya with the stars
+		$('#maya').fadeOut(1000, function() {
+			Maya.setBg(bg_pos, lifestage)
+			$(this).fadeIn(1000);
+			stars.css({bottom: '50px'});
+			stars.animate({opacity:1}, 2000).animate({opacity:0}, 2000);
+			Maya.pause_animation = false;
+		})
+	},
+	setBg: function(bg_pos, lifestage) {
+		$('#maya').css('background-position', bg_pos + 'px');
+		$('#maya').removeClass('maya-' + this.current_life_stage).addClass('maya-' + lifestage);
 	},
 	animate: function() {
 		$(window).bind('scroll', function() {
-			var yPos = $('#footer').position().top;
-			$('#maya').css('bottom', 100-$(window).scrollTop() + 'px');
-			var xPos = $(window).scrollLeft();
-			// set up Maya to animate every 100 pixels
-			var increment = 100;
-			var x10Pos = Math.floor(xPos/increment)*increment;
-			if (x10Pos/increment % 4 == 0 && Maya.bg_points.length >= 4) {
-		    	$('#maya').css('background-position', Maya.bg_points[4]);
-		   	}
-		   	if (((x10Pos/increment) + 1) % 4 == 0) {
-		    	$('#maya').css('background-position', Maya.bg_points[3]);
-		   	}
-		   	if ((x10Pos/increment + 2) % 4 == 0) {
-		    	$('#maya').css('background-position', Maya.bg_points[2]);
-		   	}
-		   	if ((x10Pos/increment + 3) % 4 == 0) {
-		    	$('#maya').css('background-position', Maya.bg_points[1]);
-		   	}
+			if(Maya.pause_animation == false) {
+				var yPos = $('#footer').position().top;
+				$('#maya').css('bottom', 100-$(window).scrollTop() + 'px');
+				var xPos = $(window).scrollLeft();
+				// set up Maya to animate every 100 pixels
+				var increment = 100;
+				var x10Pos = Math.floor(xPos/increment)*increment;
+				if (x10Pos/increment % 4 == 0 && Maya.bg_points.length >= 4) {
+			    	$('#maya').css('background-position', Maya.bg_points[4]);
+			   	}
+			   	if (((x10Pos/increment) + 1) % 4 == 0) {
+			    	$('#maya').css('background-position', Maya.bg_points[3]);
+			   	}
+			   	if ((x10Pos/increment + 2) % 4 == 0) {
+			    	$('#maya').css('background-position', Maya.bg_points[2]);
+			   	}
+			   	if ((x10Pos/increment + 3) % 4 == 0) {
+			    	$('#maya').css('background-position', Maya.bg_points[1]);
+			   	}
+			}
 		})
 	},
 	enter: function( lifestage, celebrate ) {
