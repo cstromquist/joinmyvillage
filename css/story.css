@@ -317,9 +317,14 @@
   width: 200px;
   height: 223px;
 }
-.husband {
+.husband-animation {
   background: transparent url(../img/animations/c_husband.gif) no-repeat;
   width: 84px;
+  height: 174px;
+}
+.husband {
+  background: transparent url(../img/c_husband.png) no-repeat;
+  width: 93px;
   height: 173px;
 }
 .keyboard {
@@ -1618,6 +1623,21 @@
 #chapter-7 #grass-6 {
   left: 35104px;
 }
+#chapter-7 #bush-1 {
+  left: 32180px;
+}
+#chapter-7 #bush-2 {
+  left: 33076px;
+}
+#chapter-7 #bush-3 {
+  left: 33968px;
+}
+#chapter-7 #bush-4 {
+  left: 35100px;
+}
+#chapter-7 #bush-5 {
+  left: 35840px;
+}
 #chapter-7 #girl-1 {
   left: 32730px;
   bottom: 160px;
@@ -1655,9 +1675,15 @@
   left: 33686px;
   bottom: 146px;
 }
+#chapter-7 #house-2 {
+  left: 34888px;
+}
 #chapter-7 #books-1 {
   left: 33686px;
   bottom: 146px;
+}
+#chapter-7 #husband {
+  left: 34716px;
 }
 #chapter-7 #daughter {
   left: 34816px;

@@ -362,7 +362,7 @@ var Story = {
 		    	}
 		    	if (Maya.xPosition() > Story.chapterStartPoint(5) + 1300 && Story[5].man_chosen != true) {
 		    		var chosen_man = $('#chapter-5 #man-3');
-		    		chosen_man.removeClass('man-3').addClass('husband').animate({left: '+=650px'}, 4000)
+		    		chosen_man.removeClass('man-3').addClass('husband-animation').animate({left: '+=650px'}, 4000)
 		    		Story[5].man_chosen = true;
 		    		
 		    	}

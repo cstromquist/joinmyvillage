@@ -593,13 +593,15 @@
 				<div id="girl-4" class="girl-8 layer-level-98"></div>
 				<div id="girl-5" class="girl-9 layer-level-98"></div>
 				<div id="woman-1" class="woman-1 layer-level-98 x0"></div>
-				<div id="woman-2" class="woman-2 layer-level-98 x0"></div>
+				<div id="woman-2" class="woman-2 layer-level-99 x0"></div>
 				<div id="sign-1" class="layer-level-99">
 					<img src="img/sign_secondarySchool.png" />
 				</div>
 				<div id="house-1" class="house-small layer-level-99"></div>
+				<div id="house-2" class="house layer-level-99 x0"></div>
 				<div id="books-1" class="books-2 layer-level-99"></div>
 				
+				<div id="husband" class="husband layer-level-99 x0"></div>
 				<div id="daughter" class="daughter layer-level-99 x0"></div>
 				<div id="maya-end" class="maya-end layer-level-99 x0"></div>
 				
