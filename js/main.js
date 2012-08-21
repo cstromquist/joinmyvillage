@@ -22,7 +22,7 @@ var Config = {
 	subdirectory: '',
 	sub_url: '/?chapter=',
 	getUrl: function() {
-		return this.root_url + this.subdirectory + this.sub_url;
+		return this.root_url + this.subdirectory;
 	}
 };
 
@@ -401,7 +401,6 @@ var Story = {
 	// Chapter 7
 	7: {
 		open: function() {
-			console.log('chapter 7');
 			Maya.enter('woman', false);
 			//this.bindScrollPoints();
 		},
@@ -454,12 +453,12 @@ var Likes = {
 		});
 	},
 	updateCounts: function(callback) {
-		var url = Config.root_url
+		var url = Config.getUrl();
 		if(Story.current_chapter > 1) {
-			url += Config.subdirectory + Config.sub_url + Story.current_chapter;
+			url += Config.sub_url + Story.current_chapter;
 		}
 		var query = 'http://graph.facebook.com/fql?q=SELECT url, normalized_url, share_count, like_count, comment_count, total_count, commentsbox_count, comments_fbid, click_count FROM link_stat WHERE url="' + url + '"';
-		//console.log(query);
+		console.log(query);
 		$.getJSON(query, function(data) {
 			Likes.count = data.data[0].like_count;
 			Likes.remaining = Likes.limit - Likes.count;
@@ -842,7 +841,6 @@ var Animations = {
 	},
 	animateWater: function() {
 		var start = Animations.water_position;
-		console.log(start);
 		var end = start - 30;
 		$('#chapter-' + Animations.chapter + ' #water-front-1').
 	      animate({opacity:0.9, left: start + 'px'},800,'linear').
