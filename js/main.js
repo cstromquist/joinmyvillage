@@ -47,9 +47,9 @@ var Story = {
 					dialog.overlay.slideUp(1200, function () {
 						Scroll.enableScrolling();
 						$.modal.close(); // must call this!
-						Story.begin();
 					});
 				});
+				Story.begin();
 			}});
 		} else {
 			Story.begin();
