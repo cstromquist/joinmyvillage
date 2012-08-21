@@ -42,7 +42,9 @@ var Story = {
 			Scroll.preventScrolling();
 			var modal = $('#modal-entry');
 			modal.fadeIn('slow');
-			modal.modal({onClose: function (dialog) {
+			modal.modal({
+				position: ["20%","30%"],
+				onClose: function (dialog) {
 				dialog.data.animate({left:'-=2000px'}, 2000, function () {
 					dialog.overlay.slideUp(1200, function () {
 						Scroll.enableScrolling();
