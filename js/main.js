@@ -245,8 +245,8 @@ var Story = {
 					animate({top:'200px'}, 2500, 'linear').
 					animate({top:'120px'}, 2500, 'linear', Story[2].animateParachutes);
 				$('#chapter-2 #parachute-2').
-					animate({left:'-=100px'}, 3500, 'linear').
-					animate({left:'+=100px'}, 3500, 'linear');
+					animate({left:'-=50px'}, 3500, 'linear').
+					animate({left:'+=50px'}, 3500, 'linear');
 				$('#chapter-2 #parachute-3').
 					animate({top:'+=50px'}, 4500, 'linear').
 					animate({top:'-=50px'}, 4500, 'linear');
@@ -404,16 +404,24 @@ var Story = {
 	},
 	// Chapter 7
 	7: {
+		end: false,
 		open: function() {
 			Maya.enter('woman', false);
-			//this.bindScrollPoints();
+			this.bindScrollPoints();
 		},
 		animate: function() {
 			
 		},
 		bindScrollPoints: function() {
 			$(window).bind('scroll', function() {
-
+				if(Maya.xPosition() >= Story.chapterStartPoint(7) + 2980 && Story[7].end == false) {
+					Maya.pause_animation = true;
+					$('#maya').css('background-position', 0);
+					$('#maya').removeClass('maya-woman').addClass('maya-animation').animate({left: '+=350px'}, 2000, function() {
+						$(this).fadeOut();
+					})
+		    		Story[7].end = true;
+				}
 	    	});
 		},
 		close: function() {
@@ -445,6 +453,7 @@ var Likes = {
 	},
 	bindFacebookLike: function() {
 		$('.facebook-like').fbjlike({
+			buttonWidth: 100,
 		  	siteTitle:'Join My Village - Story of Maya',
 		  	onlike:function(response){
 		  		Likes.updateCounts();
@@ -471,8 +480,19 @@ var Likes = {
 		});
 	},
 	displayCounts: function() {
-		$('#likes-modal .likes-remaining span').text(Likes.remaining);
+		$('#likes-modal .likes-count span.count').text(Likes.count);
+		$('#likes-modal .likes-remaining span.like-count').text(Likes.remaining);
 		$('#likes-modal .like-count-total span.like-count').text(Likes.limit);
+		if(Likes.count != 1) {
+			$('#likes-modal .likes-count span.plural').text('S');
+		} else {
+			$('#likes-modal .likes-count span.plural').text('');
+		}
+		if(Likes.remaining != 1) {
+			$('#likes-modal .likes-remaining span.plural').text('S');
+		} else {
+			$('#likes-modal .likes-remaining span.plural').text('');
+		}
 	},	
 	displayPercentageBar: function() {
 		var percentage = (Likes.count / Likes.limit) * 100;
@@ -633,7 +653,7 @@ var Flags = {
 		],
 		// Chapter 4
 		[
-			'In India, with help from Join My Village, secondary school girls have started a <a href="http://joinmyvillage.com/blog-post/a-bond-thicker-than-blood" target="_blank">leadership program called Kishori Samoohs</a> to make a positive difference in their communities.',
+			'In India, with help from Join My Village, secondary school girls have started a <a href="http://joinmyvillage.com/blog-post/a-bond-thicker-than-blood" target="_blank">leadership program called Kishori Samooh</a> to make a positive difference in their communities.',
 			'In Malawi, Join My Village has provided <a href="http://www.joinmyvillage.com/blog-post/making-the-impossible-possible" target="_blank">mentoring to over 250 girls</a> in secondary schools to encourage them to continue their education.'
 		],
 		// Chapter 5
@@ -644,7 +664,7 @@ var Flags = {
 		// Chapter 6
 		[
 			'For every $1 invested in a woman, <a href="http://joinmyvillage.com/blog-post/the-power-of-being-a-vsla-member" target="_blank">she will put 80% towards her family’s health</a>, education and well-being.',
-			'Join My Village has helped to create <a href="http://joinmyvillage.com/project/vsla" target="_blank">over 50 women-owned VSLAs</a> in Malawi, lending out over $60,000 to start small businesses, the equivalent of $1 in U.S. dollars.'
+			'Join My Village has helped to create <a href="http://joinmyvillage.com/project/vsla" target="_blank">over 50 women-owned VSLAs</a> in Malawi, lending out over $60,000 to start small businesses.'
 		]
 	],
 	setup: function() {
@@ -658,7 +678,6 @@ var Flags = {
 		$('#chapter-' + chapter + ' #flag-' + index).click(function() {
 			var chapter = $(this).parent().attr('id').substr(8,9);
 			var flag_num = this.id.substr(5,6);
-
 			Flags.x = $(this).position().left;
 			//$('#jmv-modal').css('left', x - 200);
 			$('#jmv-modal .modal-content p').html(Flags.content[chapter-1][flag_num-1]);

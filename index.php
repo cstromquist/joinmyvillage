@@ -73,14 +73,15 @@
 					<p id="intro"></p>
 					<div class="like-message"></div>
 					<div class="facebook-like"></div>
+					<div class="clear"></div>
 					<div class="modal-divider"></div>
 					<div id="info">
 						<p class="like-count-total">When <span class="like-count"></span> likes are reached, <span class="next-chapter-message"></span></p>
 						<div id="percentage-bar" class="percentage-bar">
 							<div id="percentage" class="percentage"></div>
 						</div>
-						<div class="likes-min">0 LIKES</div>
-						<div class="likes-remaining"><span class="like-count"></span> LIKES TO GO!</div>
+						<div class="likes-count"><span class="count">0</span> LIKE<span class="plural"></span></div>
+						<div class="likes-remaining"><span class="like-count"></span> LIKE<span class="plural"></span> TO GO!</div>
 					</div>
 					<div id="thanks">
 						<div id="congrats">
@@ -90,7 +91,8 @@
 						</div>
 						<div id="message">
 							<h3>THANK YOU!</h3>
-							<p><a href="http://www.facebook.com/joinmyvillage" target="_blank">Follow us</a> on Facebook to find out when the next chapter has been released. Visit <a href="http://www.joinmyvillage.com" target="_blank">joinmyvillage.com</a> to see more stories from India and Malawi.</p>
+							<p><a href="http://www.facebook.com/joinmyvillage" target="_blank">Follow us</a> on Facebook to find out when the next chapter has been released.</p>
+							<p>Visit <a href="http://www.joinmyvillage.com" target="_blank">joinmyvillage.com</a> to see more stories from India and Malawi.</p>
 						</div>
 					</div>
 					<div class="clear"></div>
@@ -274,7 +276,7 @@
 				</div>
 				<div id="box-5" class="box">
 					<div class="box-content">
-						<p>Buy Maya knows that secondary school costs money&mdash;money her family doesn't have.</p>
+						<p>But Maya knows that secondary school costs money&mdash;money her family doesn't have.</p>
 					</div>
 					<div class="box-footer"></div>
 				</div>
@@ -597,12 +599,12 @@
 				</div>
 				<div id="house-1" class="house-small layer-level-99"></div>
 				<div id="house-2" class="house layer-level-99 x0"></div>
+				<div id="house-2-mask" class="house-mask layer-level-102 x0"></div>
 				<div id="books-1" class="books-2 layer-level-99"></div>
 				
 				<div id="husband" class="husband layer-level-99 x0"></div>
 				<div id="daughter" class="daughter layer-level-99 x0"></div>
 				<div id="maya-end" class="maya-end layer-level-99 x0"></div>
-				
 				<div id="modal-end" class="modal-start-end">
 					<div class="banner"></div>
 					<div class="modal-content">
@@ -615,8 +617,8 @@
 						</div>
 						<div class="content-right">
 							<h1>CONTRIBUTE TO<br />JOIN MY VILLAGE</h1>
-							<p>Your contribution will be matched by General Mills and Merck dollar for dollar*...so we can provide twice as much support to women and girls in Malawi and India.</p>
-							<a href="#" class="button">CONTRIBUTE NOW</a>
+							<p>Your contribution will be matched by General Mills and Merck/MSD dollar for dollar*...so we can provide twice as much support to women and girls in Malawi and India.</p>
+							<a href="https://my.care.org/site/Donation2?df_id=10640&10640.donation=form1&utm_source=MayaStory&utm_medium=MayaStory&utm_campaign=MayaStory" class="button">CONTRIBUTE NOW</a>
 						</div>
 						<div class="clear"></div>
 					</div>

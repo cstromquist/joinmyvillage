@@ -36,6 +36,11 @@
   z-index: 101;
   position: fixed;
 }
+.maya-animation {
+  width: 93px;
+  height: 166px;
+  background: transparent url(../img/animations/maya_3.gif) no-repeat;
+}
 .maya-common {
   display: none;
 }
@@ -1091,7 +1096,7 @@
 }
 #chapter-4 #box-2 {
   left: 18255px;
-  bottom: 538px;
+  bottom: 470px;
 }
 #chapter-4 #box-3 {
   left: 19295px;
@@ -1413,7 +1418,7 @@
 }
 #chapter-6 #box-2 {
   left: 28052px;
-  bottom: 515px;
+  bottom: 455px;
 }
 #chapter-6 #box-3 {
   left: 28868px;
@@ -1425,7 +1430,7 @@
 }
 #chapter-6 #box-5 {
   left: 30295px;
-  bottom: 440px;
+  bottom: 420px;
 }
 #chapter-6 #grass-1 {
   left: 26440px;
@@ -1686,6 +1691,9 @@
 }
 #chapter-7 #house-2 {
   left: 34888px;
+}
+#chapter-7 #house-2-mask {
+  left: 35010px;
 }
 #chapter-7 #books-1 {
   left: 33686px;
