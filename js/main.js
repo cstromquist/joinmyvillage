@@ -458,7 +458,7 @@ var Likes = {
 			url += Config.sub_url + Story.current_chapter;
 		}
 		var query = 'http://graph.facebook.com/fql?q=SELECT url, normalized_url, share_count, like_count, comment_count, total_count, commentsbox_count, comments_fbid, click_count FROM link_stat WHERE url="' + url + '"';
-		console.log(query);
+		//console.log(query);
 		$.getJSON(query, function(data) {
 			Likes.count = data.data[0].like_count;
 			Likes.remaining = Likes.limit - Likes.count;
