@@ -33,13 +33,13 @@
 		<div class="banner"></div>
 		<div class="modal-content">
 			<div class="content-left">
-				<p>A new school year is underway in the U.S. and Canada. If you're reading this, you&mdash;or your children&mdash;are probably in school this fall.</p>
+				<p>A new school year is underway for many countries around the world. It is a time filled with excitement, nervousness and hope.</p>
 				<p>But 60 million girls in developing nations worldwide are not in school. Denied education and access to resources, they are doomed to an endless cycle of poverty, with no chance to shape their own future.</p>
 				<p>Maya respresents one of these girls. She might live in Malawi, or perhaps India. She wants the chance to go to school.</p>
 			</div>
 			<div class="content-right">
 				<h1>YOU CAN HELP</h1>
-					<p>By watching and liking May's story, you'll unlock donations to Join My Village, an initiative of General Mills, Merck and CARE International that supports projects in India and Malawi to educate and empower girls like Maya&mdash;turning the tide not just for them, but for our planet.</p>
+					<p>By watching and liking Maya's story, you'll unlock donations to Join My Village, an initiative of General Mills, Merck/MSD and CARE International that supports projects in India and Malawi to educate and empower girls like Maya&mdash;turning the tide not just for them, but for our planet.</p>
 					<a href="#" class="button">TAKE A LOOK</a>
 			</div>
 			<div class="clear"></div>
@@ -52,7 +52,7 @@
 		<div id="header">
 			<div class="jmv-logo"><p>JOIN MY VILLAGE</p></div>
 			<div class="social-media">
-				<div id="facebook" class="share"><div class="fb-like" data-send="false" data-layout="button_count" data-width="50" data-show-faces="false"></div></div>
+				<div id="facebook" class="share"><div class="fb-like-header"></div></div>
 				<div id="twitter" class="share"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Check out Join My Village!">Tweet</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div>
 			</div>
@@ -90,7 +90,7 @@
 						</div>
 						<div id="message">
 							<h3>THANK YOU!</h3>
-							<p><a href="http://www.facebook.com/joinmyvillage">Follow us</a> on Facebook to find out when the next chapter has been released. Visit <a href="http://www.joinmyvillage.com" target="_blank">joinmyvillage.com</a> to see more stories from India and Malawi.</p>
+							<p><a href="http://www.facebook.com/joinmyvillage" target="_blank">Follow us</a> on Facebook to find out when the next chapter has been released. Visit <a href="http://www.joinmyvillage.com" target="_blank">joinmyvillage.com</a> to see more stories from India and Malawi.</p>
 						</div>
 					</div>
 					<div class="clear"></div>

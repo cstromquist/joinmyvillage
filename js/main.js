@@ -40,6 +40,8 @@ var Story = {
 	openStory: function(showModal) {
 		if(!$.cookie('current_chapter') || showModal == true) {
 			Scroll.preventScrolling();
+			$('.fb-like-header').fbjlike({buttonWidth: 100});
+			// 
 			var modal = $('#modal-entry');
 			modal.fadeIn('slow');
 			modal.modal({
@@ -193,14 +195,14 @@ var Story = {
 		blinkKeyboard: function() {
 			if($('#keyboard').css('display') != 'none') {
 				$('#keyboard').
-					animate({opacity: 0}, 1000).
-					animate({opacity: 1}, 1000, Story[1].blinkKeyboard);
+					animate({opacity: 1}, 1500).
+					animate({opacity: 0}, 1500, Story[1].blinkKeyboard);
 			}
 		},
 		blinkLearnMore: function() {
 			$('#learn-more').
-				animate({opacity: 0}, 1000).
-				animate({opacity: 1}, 1000, Story[1].blinkLearnMore);
+				animate({opacity: 1}, 1500).
+				animate({opacity: 0}, 1500, Story[1].blinkLearnMore);
 		},
 		bindScrollPoints: function() {
 			$(window).bind('scroll', function() {
@@ -605,6 +607,7 @@ var Scroll = {
  * the flag modal functionality
  *******************************/
 var Flags = {
+	x: 0,
 	/*********************************************
 	 * The content array is set up based on number 
 	 * of chapters and flags in each chapter.  We 
@@ -616,7 +619,7 @@ var Flags = {
 		[ 
 			'Meet <a href="http://www.joinmyvillage.com" target="_blank">Join My Village</a>, a unique online intiative working through CARE to lift women and girls out of poverty in India and Malawi through education and community initiatives...to empower women and girls to strengthen themselves, their families, their communities&mdash;and the world.',
 			'Education is a birthright for all children. But only 1 out of 3 girls graduates from primary school in developing countries, leaving them stuck in a <a href="http://joinmyvillage.com/what-is-jmv" target="_blank">cycle of poverty.</a>',
-			'<a href="http://joinmyvillage.com/how-it-works" target="_blank">Our support model is a little different</a>. It involves action on your part. Each post you like and every click on our website releases $1 from General Mills and Merck to fund the important work of empowering girls through CARE.'
+			'<a href="http://joinmyvillage.com/how-it-works" target="_blank">Our support model is a little different</a>. It involves action on your part. Each Facebook post you like and every click on our website releases $1 from General Mills and Merck to fund the important work of empowering girls through CARE.'
 		],
 		// Chapter 2
 		[
@@ -626,11 +629,11 @@ var Flags = {
 		// Chapter 3
 		[
 			'In India, Join My Village supports <a href="http://joinmyvillage.com/project/kgbv-school-support" target="_blank">KGBV schools—upper primary schools for girls</a> that help them prepare for secondary school while gaining important social skills including working in groups, problem solving, critical thinking, persistence in the face of difficulty and respect for others and themselves.',
-			'Join My Village has provided over 800 <a href="http://joinmyvillage.com/project/scholarships">secondary boarding school scholarships</a> in Malawi to help more girls get higher education.'
+			'Join My Village has provided over 800 <a href="http://joinmyvillage.com/project/scholarships" target="_blank">secondary boarding school scholarships</a> in Malawi to help more girls get higher education.'
 		],
 		// Chapter 4
 		[
-			'In India, with help from Join My Village, secondary school girls have started a <a href="http://joinmyvillage.com/blog-post/a-bond-thicker-than-blood">leadership program called Kishori Samoohs</a> to make a positive difference in their communities.',
+			'In India, with help from Join My Village, secondary school girls have started a <a href="http://joinmyvillage.com/blog-post/a-bond-thicker-than-blood" target="_blank">leadership program called Kishori Samoohs</a> to make a positive difference in their communities.',
 			'In Malawi, Join My Village has provided <a href="http://www.joinmyvillage.com/blog-post/making-the-impossible-possible" target="_blank">mentoring to over 250 girls</a> in secondary schools to encourage them to continue their education.'
 		],
 		// Chapter 5
@@ -655,7 +658,8 @@ var Flags = {
 		$('#chapter-' + chapter + ' #flag-' + index).click(function() {
 			var chapter = $(this).parent().attr('id').substr(8,9);
 			var flag_num = this.id.substr(5,6);
-			//var x = $(this).position().left;
+
+			Flags.x = $(this).position().left;
 			//$('#jmv-modal').css('left', x - 200);
 			$('#jmv-modal .modal-content p').html(Flags.content[chapter-1][flag_num-1]);
 			$('#jmv-modal .modal-content img').attr('src', 'img/jmv_banners/c' + chapter + '_f' + flag_num + '.jpg');
@@ -666,10 +670,13 @@ var Flags = {
 				closeClass: 'modal-close'
 				
 			});
-			
+
 			$(window).bind('scroll', function() {
-				if (Maya.xPosition() > x || Maya.xPosition() < x - 500) {
-					$('#jmv-modal').fadeOut(1400);
+				if (Maya.xPosition() > Flags.x) {
+					$('#modal-overlay').fadeOut(500);
+					$('#modal-container').fadeOut(500, function() {
+						$.modal.close();
+					});
 				}
 			});
 		});
@@ -700,8 +707,8 @@ var Boxes = {
 		if(box.attr('enabled'))
 			return;
 		var p = box.css('bottom');
-		box.css({bottom: '+700px'});
-		box.animate({bottom: p, opacity: 1}, 3000);
+		box.css({bottom: '+=100px'});
+		box.animate({bottom: p, opacity: 1}, 1000);
 		box.attr('enabled', true);
 	},
 	xPosition: function ( box ) {
@@ -714,7 +721,7 @@ var Boxes = {
 		var boxes = $('#chapter-' + chapter + ' .box').length;
 		for(var i=1; i<=boxes; i++) {
 			var box = $('#chapter-' + chapter + ' #box-' + i);
-			if (Maya.xPosition() > this.xPosition( box ) - 400) {
+			if (Maya.xPosition() > this.xPosition( box ) - 450) {
 				Boxes.show(chapter, i);
 			}
 		}

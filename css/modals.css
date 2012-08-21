@@ -23,18 +23,22 @@
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
 }
+.modal-content img {
+  margin-bottom: 15px;
+}
 .modal .modal-content {
   padding: 59px 70px 20px 20px;
 }
 .modal-content h2 {
   position: absolute;
-  top: 23px;
+  top: 26px;
   left: 80px;
   font-family: BrandonBlk;
   font-size: 1.3em;
 }
 .modal-content p {
   font-size: 1em;
+  color: #8E7961;
 }
 .modal-icon {
   background: transparent url(../img/modal_logo_circle.png) no-repeat;
