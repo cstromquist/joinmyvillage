@@ -1,5 +1,6 @@
 <?php
 	$chapter = isset($_GET['chapter']) ? $_GET['chapter'] : 1;
+	$url = $chapter == 1 ? '' : '?chapter=' . $chapter;
 ?>
 <!DOCTYPE html>
 <html xmlns:fb="http://ogp.me/ns/fb#">
@@ -13,7 +14,7 @@
 	<meta property="og:title" content="Join My Village :: Maya's Story" />
 	<meta property="og:site_name" content="join my village, empower women, getting women out of poverty" />
 	<meta property="og:description" content="Meet Join My Village, a unique online initiative working through CARE to lift women and girls out of poverty in India and Malawi through education and community initiatives...to empower women and girls to strengthen themselves, their families, their communities-and the world." />
-	<meta property="og:url" content="http://<?php echo $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] ?>?chapter=<?php echo $chapter ?>" />
+	<meta property="og:url" content="http://<?php echo $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] ?><?php echo $url; ?>" />
 	<meta property="og:type" content="website" />
 	<meta property="og:image" content="/img/facebook.jpeg" />
 
