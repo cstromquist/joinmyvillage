@@ -198,7 +198,7 @@
 		zIndex: 1000,
 		close: true,
 		closeHTML: '',
-		closeClass: '',
+		closeClass: 'button',
 		escClose: true,
 		overlayClose: true,
 		fixed: true,
