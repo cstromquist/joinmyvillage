@@ -427,7 +427,7 @@ var Likes = {
 	remaining: null,
 	limit: null,
 	chapter: null,
-	chapter_like_limits: {1:1, 2:10, 3:10, 4:10, 5:10, 6:10},
+	chapter_like_limits: {1:300, 2:300, 3:300, 4:300, 5:300, 6:300},
 	init: function() {
 		this.chapter = Story.current_chapter;
 		this.limit = this.chapter_like_limits[this.chapter];
@@ -443,7 +443,7 @@ var Likes = {
 		  		LikesModal.showThanks();
 		  	},
 		  	onunlike:function(response){
-		  		Likes.updateCounts();
+		  		//Likes.updateCounts();
 		  	},
 		  	lang:'en_US'
 		});
@@ -454,7 +454,7 @@ var Likes = {
 			url += Config.subdirectory + Config.sub_url + Story.current_chapter;
 		}
 		var query = 'http://graph.facebook.com/fql?q=SELECT url, normalized_url, share_count, like_count, comment_count, total_count, commentsbox_count, comments_fbid, click_count FROM link_stat WHERE url="' + url + '"';
-		console.log(query);
+		//console.log(query);
 		$.getJSON(query, function(data) {
 			Likes.count = data.data[0].like_count;
 			Likes.remaining = Likes.limit - Likes.count;
