@@ -298,6 +298,11 @@
   width: 325px;
   height: 360px;
 }
+.house-mask {
+  background: transparent url(../img/b_house_mask.png) no-repeat;
+  width: 180px;
+  height: 181px;
+}
 /*
  * FIXME
  */
@@ -1292,6 +1297,9 @@
 }
 #chapter-5 #house-2 {
   left: 23516px;
+}
+#chapter-5 #house-2-mask {
+  left: 23638px;
 }
 #chapter-5 #door-1 {
   left: 23638px;

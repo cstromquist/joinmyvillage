@@ -75,7 +75,7 @@
 				<div class="modal-content">
 					<p id="intro"></p>
 					<div class="like-message"></div>
-					<div class="facebook-like"><div class="fb-like" data-send="false" data-layout="button_count" data-width="50" data-show-faces="false"></div></div>
+					<div class="facebook-like"></div>
 					<div class="modal-divider"></div>
 					<div id="info">
 						<p class="like-count-total">When <span class="like-count"></span> likes are reached, <span class="next-chapter-message"></span></p>
@@ -85,7 +85,17 @@
 						<div class="likes-min">0 LIKES</div>
 						<div class="likes-remaining"><span class="like-count"></span> LIKES TO GO!</div>
 					</div>
-					<div id="thanks"></div>
+					<div id="thanks">
+						<div id="congrats">
+							<h3>CONGRATULATIONS</h3>
+							<p>You've unlocked the next chapter!</p>
+							<a class="button" href="#" id="continue">CONTINUE MAYA'S STORY</a>
+						</div>
+						<div id="message">
+							<h3>THANK YOU!</h3>
+							<p><a href="http://www.facebook.com/joinmyvillage">Follow us</a> on Facebook to find out when the next chapter has been released. Visit <a href="http://www.joinmyvillage.com" target="_blank">joinmyvillage.com</a> to see more stories from India and Malawi.</p>
+						</div>
+					</div>
 					<div class="clear"></div>
 				</div>
 			</div>
@@ -428,6 +438,7 @@
 				<div id="crop-2" class="crop layer-level-99"><img src="img/crop.png" /></div>
 				<div id="crop-3" class="crop layer-level-99 x0"><img src="img/crop.png" /></div>
 				<div id="house-2" class="house layer-level-98 x0"></div>
+				<div id="house-2-mask" class="house-mask layer-level-102 x0"></div>
 				<div id="door-1" class="house-door layer-level-102 x0"></div>
 				<div id="flag-1" class="flag layer-level-98 x0"></div>
 				<div id="bush-2" class="bush-small layer-level-98 x0"></div>

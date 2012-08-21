@@ -22,10 +22,6 @@
 	.common-modal;
 }
 
-.modal a {
-	color:#ed6f31;
-}
-
 .modal-content {
 	background: #fff;
 	.rounded_corners;
@@ -45,7 +41,6 @@
 
 .modal-content p {
 	font-size: 1em;
-	padding-top: 20px;
 } 
 
 .modal-icon {
@@ -82,7 +77,7 @@
 
 .modal-end .modal-content {
   width: 278px;
-  padding: 25px 17px 17px 17px;
+  padding: 37px 17px 17px 17px;
 }
 
 .modal-end .modal-banner {
@@ -95,7 +90,7 @@
 }
 
 .modal-end .modal-content p {
-  padding-top: 10px;
+  padding-bottom: 10px;
   color: #8e7961;  
 }
 
@@ -214,9 +209,8 @@ a.button {
   text-align: center;
   .rounded_corners;
   .drop_shadow;
-  z-index: 2;
-  position: absolute;
   font-family: BrandonBlk;
+  background: #ed6f31 url(../img/btn_bg_arrow.png) no-repeat bottom right;
 }
 .modal-start-end .modal-footer-copy {
   color: #8e7961;
@@ -236,7 +230,8 @@ a.button {
 }
 #modal-entry a.button {
   width: 100px;
-  background: #ed6f31 url(../img/btn_bg_arrow.png) no-repeat bottom right;
+  z-index: 2;
+  position: absolute;
   background-position: 114px -6px;
 }
 #modal-entry {
@@ -262,4 +257,35 @@ a.button {
 #likes-modal {
   opacity: 0;
   z-index: 104;
+}
+
+/******************
+ * THANKS MESSAGE
+ * ON LIKES MODAL
+ *****************/
+#thanks {
+  text-align: center;
+}
+#thanks #congrats,
+#thanks #message {
+   display: none;
+}
+#thanks #message {
+  background: url(../img/maya_end.png) no-repeat top left;
+  text-align: left;
+}
+#thanks #message p,
+#thanks #message h3 {
+  margin-left: 70px;
+}
+#thanks h3 {
+  font-family: BrandonBlk;
+  font-size: 1.2em;
+  margin: 10px 0 10px 0;
+}
+#thanks a.button {
+  width: 200px;
+  font-size: .9em;
+  background-position: 214px -6px;
+  margin-left: 9%;
 }

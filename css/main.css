@@ -24,6 +24,12 @@ body {
   background-color: #76664F;
   font-family: BrandonLight;
 }
+a:link,
+a:hover,
+a:active,
+a:visited {
+  color: #ed6f31;
+}
 /**************************
  * BEGIN LAYOUT DEFINITIONS
  **************************/

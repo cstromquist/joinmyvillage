@@ -19,7 +19,7 @@
 var Config = {
 	uuid: function(a,b){for(b=a='';a++<36;b+=a*51&52?(a^15?8^Math.random()*(a^20?16:4):4).toString(16):'-');return b},
 	root_url: document.domain,
-	subdirectory: '/storyofmaya',
+	subdirectory: '',
 	sub_url: '/?chapter=',
 	getUrl: function() {
 		return this.root_url + this.subdirectory + this.sub_url;
@@ -360,7 +360,7 @@ var Story = {
 		    	}
 		    	if (Maya.xPosition() > Story.chapterStartPoint(5) + 1300 && Story[5].man_chosen != true) {
 		    		var chosen_man = $('#chapter-5 #man-3');
-		    		chosen_man.removeClass('man-3').addClass('husband').animate({left: '+=600px'}, 4000)
+		    		chosen_man.removeClass('man-3').addClass('husband').animate({left: '+=650px'}, 4000)
 		    		Story[5].man_chosen = true;
 		    		
 		    	}
@@ -427,18 +427,20 @@ var Likes = {
 	remaining: null,
 	limit: null,
 	chapter: null,
-	chapter_like_limits: {1:1, 2:1, 3:1, 4:1, 5:10, 6:10},
-	init: function( chapter ) {
-		this.chapter = chapter;
+	chapter_like_limits: {1:1, 2:10, 3:10, 4:10, 5:10, 6:10},
+	init: function() {
+		this.chapter = Story.current_chapter;
 		this.limit = this.chapter_like_limits[this.chapter];
 		this.bindFacebookLike();
 		this.updateCounts();
+		this.displayCounts();
 	},
 	bindFacebookLike: function() {
 		$('.facebook-like').fbjlike({
 		  	siteTitle:'Join My Village - Story of Maya',
 		  	onlike:function(response){
 		  		Likes.updateCounts();
+		  		LikesModal.showThanks();
 		  	},
 		  	onunlike:function(response){
 		  		Likes.updateCounts();
@@ -446,19 +448,18 @@ var Likes = {
 		  	lang:'en_US'
 		});
 	},
-	updateCounts: function() {
+	updateCounts: function(callback) {
 		var url = Config.root_url
 		if(Story.current_chapter > 1) {
 			url += Config.subdirectory + Config.sub_url + Story.current_chapter;
 		}
 		var query = 'http://graph.facebook.com/fql?q=SELECT url, normalized_url, share_count, like_count, comment_count, total_count, commentsbox_count, comments_fbid, click_count FROM link_stat WHERE url="' + url + '"';
-		//console.log(query);
+		console.log(query);
 		$.getJSON(query, function(data) {
 			Likes.count = data.data[0].like_count;
 			Likes.remaining = Likes.limit - Likes.count;
 			Likes.displayCounts();
 			Likes.displayPercentageBar();
-			//LikesModal.showThanks();
 		});
 	},
 	displayCounts: function() {
@@ -530,7 +531,7 @@ var LikesModal = {
 		},
 	],
 	init: function( chapter ) {
-		Likes.init(this.current_chapter);
+		Likes.init();
 		this.modal = $('#likes-modal');
 		this.chapter = chapter;
 		this.show();
@@ -545,12 +546,14 @@ var LikesModal = {
 	},
 	showThanks: function() {
 		var next_chapter = Story.next_chapter;
-		$('#likes-modal #info').fadeOut();
-		if(Likes.isLimitReached()) {
-			$('#likes-modal #thanks').html('Thanks for Liking and helping Maya with her story! <a href="/?chapter=' + next_chapter + '">Click here to go to the next Chapter!</a>');
-		} else {
-			$('#likes-modal #thanks').html('Thanks for Liking and helping Maya with her story! Once the limit is reached, the next chapter will be opened. Please check our Facebook page to see when the next chapter is opened!');
-		}
+		$('#likes-modal #info').fadeOut(1000, function() {
+			if(Likes.isLimitReached()) {
+				$('#likes-modal #thanks #congrats a#continue').attr('href', '/?chapter=' + Story.next_chapter);
+				$('#likes-modal #thanks #congrats').fadeIn(1000);
+			} else {
+				$('#likes-modal #thanks #message').fadeIn(1000);
+			}
+		});
 	},
 	hide: function() {
 		this.modal.animate({opacity: 0}, 2000);
