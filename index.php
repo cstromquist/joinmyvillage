@@ -608,7 +608,7 @@
 					<div class="modal-content">
 						<div class="content-left">
 							<h1>HELP MORE<br />GIRLS LIKE MAYA</h1>
-							<p>Every time you share or like a page on <a href="www.joinmyvillage.com" target="_blank">joinmyvillage.com</a>, money is donated to CARE by General Mills and Merck to support women and girls in Malawi and India</p>
+							<p>Every time you share or like a page on <a href="http://www.joinmyvillage.com" target="_blank">joinmyvillage.com</a>, money is donated to CARE by General Mills and Merck to support women and girls in Malawi and India</p>
 							<div class="footer">
 								<div class="modal-footer-copy">* General Mills will donate up to $1.5 million by December 31, 2012 to CARE.</div>
 							</div>

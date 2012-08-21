@@ -229,7 +229,9 @@ var Story = {
 		open: function() {
 			Maya.enter('child');
 			this.bindScrollPoints();
-			Animations.animateWaterChapterTwo();
+			Animations.water_position = $('#chapter-2 #water-front-1').position().left;
+			Animations.chapter = 2; 
+			Animations.animateWater();
 			this.animateParachutes();
 		},
 		animateParachutes: function() {
@@ -375,9 +377,12 @@ var Story = {
 		open: function() {
 			Maya.enter('mother', true);
 			this.bindScrollPoints();
+			this.animate();
 		},
 		animate: function() {
-			
+			Animations.water_position = $('#chapter-6 #water-front-1').position().left;
+			Animations.chapter = 6; 
+			Animations.animateWater();
 		},
 		bindScrollPoints: function() {
 			$(window).bind('scroll', function() {
@@ -826,6 +831,8 @@ var Maya = {
  * throughout story
  *******************/
 var Animations = {
+	water_position: null,
+	chapter: null,
 	animateCrops: function( chapter ) {
 		$('#chapter-' + chapter + ' #crop-1 img').animate({width:35,height:53}, 1000);
 		$('#chapter-' + chapter + ' #crop-2 img').delay(200).animate({width:40,height:61}, 1000);
@@ -833,15 +840,16 @@ var Animations = {
 		$('#chapter-' + chapter + ' #crop-4 img').delay(800).animate({width:45,height:69}, 1000);
 		$('#chapter-' + chapter + ' #crop-5 img').delay(400).animate({width:50,height:76}, 1000);
 	},
-	animateWaterChapterTwo: function() {
-		var start = (Story.getChapterWidth(2) + 4140) - 40;
+	animateWater: function() {
+		var start = Animations.water_position;
+		console.log(start);
 		var end = start - 30;
-		$('#chapter-2 #water-front-1').
+		$('#chapter-' + Animations.chapter + ' #water-front-1').
 	      animate({opacity:0.9, left: start + 'px'},800,'linear').
-	      animate({opacity:0.92, left: end + 'px'},800,'linear', Animations.animateWaterChapterTwo);
-	    $('#chapter-2 #water-back-1').
+	      animate({opacity:0.92, left: end + 'px'},800,'linear', Animations.animateWater);
+	    $('#chapter-' + Animations.chapter + ' #water-back-1').
 	      animate({opacity:0.9, left: end + 'px'},800,'linear').
-	      animate({opacity:0.92, left: start + 'px'},800,'linear', Animations.animateWaterChapterTwo);
+	      animate({opacity:0.92, left: start + 'px'},800,'linear');
 	},
 	animatePlane: function() {
 		$('#plane-1').
