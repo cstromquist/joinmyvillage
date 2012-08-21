@@ -150,6 +150,7 @@
 				<div id="bush-1" class="bush-large layer-level-98 x0"></div>
 				<div id="house-1" class="house layer-level-97 x0"></div>
 				<div id="goat-1" class="goat layer-level-97 x0"></div>
+				<div id="goat-2" class="goat-s layer-level-97 x0"></div>
 				<div id="grass-2" class="grass-large layer-level-96 x0"></div>
 				<div id="tree-3" class="tree-small layer-level-97"></div>
 				<div id="field-1" class="field layer-level-98 x0"></div>
