@@ -19,7 +19,7 @@
 var Config = {
 	uuid: function(a,b){for(b=a='';a++<36;b+=a*51&52?(a^15?8^Math.random()*(a^20?16:4):4).toString(16):'-');return b},
 	root_url: document.domain,
-	subdirectory: '/',
+	subdirectory: '/storyofmaya/',
 	sub_url: '?chapter=',
 	getUrl: function() {
 		return this.root_url + this.subdirectory;
@@ -81,10 +81,13 @@ var Story = {
 	getChapter: function() {
 		var param = decodeURI((RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]);
 		var chapter = null;
-		if(param != 'null') {
-			chapter = Number(param);
+		if(param != 'null' && !isNaN(Number(param))) {
+			chapter = param;
 		} else if(chapter = $.cookie('current_chapter')) {
-			chapter = Number(chapter);
+			if(isNaN(chapter))
+				chapter = 1;
+			else
+				chapter = Number(chapter);
 		} else {
 			chapter = 1;
 		}
