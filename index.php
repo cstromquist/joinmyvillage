@@ -12,7 +12,7 @@
 	<meta property="og:title" content="Help Educate a Girl" />
 	<meta property="og:site_name" content="join my village, empower women, getting women out of poverty" />
 	<meta property="og:description" content="When you and your friends click, it helps girls. Over 60 million girls are denied access to education. Follow our story and see how easy it is to make a difference." />
-	<meta property="og:url" content="http://<?php echo $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] ?>" />
+	<meta property="og:url" content="http://<?php echo $_SERVER['SERVER_NAME'] ?>/storyofmaya/<?php if($chapter != 1): ?>?chapter=<?php echo $chapter ?><?php endif ?>" />
 	<meta property="og:type" content="website" />
 	<meta property="og:image" content="http://<?php echo $_SERVER['SERVER_NAME'] ?>/storyofmaya/img/JMV_BTS_<?php echo $chapter ?>.gif" />
 
