@@ -1,7 +1,7 @@
 <?php
 
 $domain = $_SERVER['SERVER_NAME'] . "/";
-$subdir = "";
+$subdir = "storyofmaya/";
 $url = $domain . $subdir;
 
 $data = array(
@@ -106,7 +106,7 @@ function get_data($url)
      	 <table class="table table-hover">
           <thead>
             <tr>
-              <th>#</th>
+              <th>Chapter #</th>
               <th>Likes Count</th>
               <th>Facebook Likes Count</th>
               <th>Likes Remaining</th>
