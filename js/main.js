@@ -19,7 +19,7 @@
 var Config = {
 	uuid: function(a,b){for(b=a='';a++<36;b+=a*51&52?(a^15?8^Math.random()*(a^20?16:4):4).toString(16):'-');return b},
 	root_url: document.domain,
-	subdirectory: '/storyofmaya/',
+	subdirectory: '/',
 	sub_url: '?chapter=',
 	getUrl: function() {
 		return this.root_url + this.subdirectory;
@@ -450,18 +450,20 @@ var Likes = {
 	init: function() {
 		this.chapter = Story.current_chapter;
 		this.bindFacebookLike();
-		this.setLimit();
-		$.get('config.php?setting=use_fb', function(data) {
-			if(data == 1) {
-				Likes.getFbCounts();
-			} else {
-				Likes.getLocalCounts();
-			}
-		}, 'json');
+		this.setLimit(function() {
+				$.get('config.php?setting=use_fb', function(data) {
+				if(data == 1) {
+					Likes.getFbCounts();
+				} else {
+					Likes.getLocalCounts();
+				}
+			}, 'json');
+		});
 	},
-	setLimit: function() {
+	setLimit: function(callback) {
 		$.get('likes.php?chapter=' + this.chapter, function(data) {
 			Likes.limit = data.limit;
+			callback();
 		}, 'json');
 	},
 	getLocalCounts: function() {
@@ -488,7 +490,7 @@ var Likes = {
 	},
 	recordLike: function() {
 		$.post('likes.php',{chapter: this.chapter}, function(data) {
-			Likes.getCounts();
+			
 		});
 	},
 	getFbCounts: function(callback) {
@@ -522,6 +524,8 @@ var Likes = {
 	},	
 	displayPercentageBar: function() {
 		var percentage = (Likes.count / Likes.limit) * 100;
+			if(percentage > 100)
+				percentage = 100;
 		$('#likes-modal #percentage-bar #percentage').animate({width: percentage + '%'}, 4000);
 	},
 	isLimitReached: function() {

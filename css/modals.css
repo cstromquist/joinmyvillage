@@ -102,8 +102,8 @@
   border-bottom: 1px solid #ff0000;
   padding-bottom: 35px;
 }
-.modal-end p.intro {
-  margin: 10px 0 20px 0;
+.modal-end p#intro {
+  margin: 10px 0 10px 0;
 }
 .modal-end .like-message {
   font-size: 70%;
