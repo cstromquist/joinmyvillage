@@ -36,11 +36,12 @@ var Story = {
 		this.current_chapter = this.getChapter();
 		this.next_chapter = this.current_chapter + 1;
 		this.openStory();
+		if(this.current_chapter == 7)
+			$('.fb-like').fbjlike({buttonWidth: 100});
 	},
 	openStory: function(showModal) {
 		if(!$.cookie('current_chapter') || showModal == true) {
 			Scroll.preventScrolling();
-			$('.fb-like-header').fbjlike({buttonWidth: 100});
 			var modal = $('#modal-entry');
 			modal.fadeIn('slow');
 			modal.modal({
