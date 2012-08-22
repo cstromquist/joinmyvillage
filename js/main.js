@@ -128,7 +128,8 @@ var Story = {
 			$('#chapter-' + i).delay(300).fadeIn(1000);
 		}
 		//scroll to chapter, then open it
-		this.scrollToChapter();
+		//this.scrollToChapter();
+		Story[1].open();
 	},
 	closeChapter: function(chapter) {
 		this.chapter_close_status[chapter] = true;
@@ -177,6 +178,12 @@ var Story = {
 			Boxes.show(1,1); //slide in the first box
 			$('#flag-1').click(function(){
 				$('#learn-more').hide();
+			});
+			$('#test').click(function() {
+				console.log('clicked!')
+				$.post('likes.php',{chapter: Story.current_chapter}, function(data) {
+  					console.log(data);
+				});
 			});
 		},
 		animate: function() {
