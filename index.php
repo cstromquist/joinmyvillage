@@ -1,3 +1,4 @@
+<?php $chapter = $_GET['chapter'] ? $_GET['chapter'] : 1; ?>
 <!DOCTYPE html>
 <html xmlns:fb="http://ogp.me/ns/fb#">
 <head>
@@ -7,12 +8,13 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
-	<meta property="og:title" content="Join My Village :: Maya's Story" />
+	<meta property="fb:app_id" content="461563293883641" />
+	<meta property="og:title" content="Help Educate a Girl" />
 	<meta property="og:site_name" content="join my village, empower women, getting women out of poverty" />
-	<meta property="og:description" content="Meet Join My Village, a unique online initiative working through CARE to lift women and girls out of poverty in India and Malawi through education and community initiatives...to empower women and girls to strengthen themselves, their families, their communities-and the world." />
+	<meta property="og:description" content="When you and your friends click, it helps girls. Over 60 million girls are denied access to education. Follow our story and see how easy it is to make a difference." />
 	<meta property="og:url" content="http://<?php echo $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'] ?>" />
 	<meta property="og:type" content="website" />
-	<meta property="og:image" content="/img/facebook.jpeg" />
+	<meta property="og:image" content="http://<?php echo $_SERVER['SERVER_NAME'] ?>/storyofmaya/img/JMV_BTS_<?php echo $chapter ?>.gif" />
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
 	<link rel="stylesheet" href="css/reset.css">
