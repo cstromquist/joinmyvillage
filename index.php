@@ -4,10 +4,10 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Join My Village</title>
-    <meta name="description" content="">
+    <title>Help Educate a Girl</title>
+    <meta name="description" content="When you and your friends click, it helps girls. Over 60 million girls are denied access to education. Follow our story and see how easy it is to make a difference.">
     <meta name="viewport" content="width=device-width">
-
+	<link rel="canonical" href="http://<?php echo $_SERVER['SERVER_NAME'] ?>/storyofmaya/<?php if($chapter != 1): ?>?chapter=<?php echo $chapter ?><?php endif ?>"/>
 	<meta property="fb:app_id" content="461563293883641" />
 	<meta property="og:title" content="Help Educate a Girl" />
 	<meta property="og:site_name" content="join my village, empower women, getting women out of poverty" />
