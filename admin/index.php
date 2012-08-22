@@ -115,7 +115,11 @@ function get_data($url)
           </thead>
           <tbody>
           	<?php for($i=0; $i<6; $i++): ?>
-          	<?php $remaining = $a[$i]['limit'] < $a[$i]['count'] ? 0 : $a[$i]['limit'] - $a[$i]['count']; ?>
+          	<?php if($config['use_fb']): ?>
+          	<?php $remaining = $a[$i]['limit'] < $a[$i]['fb'] ? 0 : $a[$i]['limit'] - $a[$i]['fb']; ?>
+          	<?php else: ?>
+          	<?php $remaining = $a[$i]['limit'] < $a[$i]['count'] ? 0 : $a[$i]['limit'] - $a[$i]['count']; ?>	
+          	<?php endif; ?>
             <tr<?php if($remaining == 0): ?> class="alert-success"<?php endif; ?>>
               <td><?php echo ($i+1); ?></td>
               <td><?php echo $a[$i]['count']; ?></td>
