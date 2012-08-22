@@ -1,6 +1,8 @@
 <?php
 
-$url = $_SERVER['SERVER_NAME'] . "/";
+$domain = $_SERVER['SERVER_NAME'] . "/";
+$subdir = "";
+$url = $domain . $subdir;
 
 $data = array(
 			"count" => 0,
@@ -22,7 +24,7 @@ if($_POST) {
 	$message = "Like limits successfully saved.";
 }
 $a = array();
-for($i=0; $i<7; $i++) {
+for($i=0; $i<6; $i++) {
 	$dir = "../likes_data/chapter_".($i+1);
 	$data = unserialize(file_get_contents($dir));
 	$a[$i]['count'] = $data['count'];
@@ -84,7 +86,7 @@ function get_data($url)
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="manage_likes.php">Maya's Story Admin</a>
+          <a class="brand" href="index.php">Maya's Story Admin</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="active"><a href="#">Like Summary</a></li>
@@ -98,11 +100,7 @@ function get_data($url)
     	<?php if($message): ?>
     		<div class="alert alert-success"><?php echo $message; ?></div>
     	<?php endif; ?>
-		<?php if($chapter): ?>
-      	<h1>CHAPTER <?php echo $chapter ?></h1>
-      	<?php else: ?>
       	<h1>Likes Summary</h1>
-      	<?php endif; ?>
       	<p>Welcome. Here, you can update your settings for Maya's story.  At any time, you can set the limit count for any chapter.  The counts will update dynamically.</p>
       	<form method="post" action="<?php echo $PHP_SELF ?>">
      	 <table class="table table-hover">
