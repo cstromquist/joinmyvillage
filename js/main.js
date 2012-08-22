@@ -128,8 +128,7 @@ var Story = {
 			$('#chapter-' + i).delay(300).fadeIn(1000);
 		}
 		//scroll to chapter, then open it
-		//this.scrollToChapter();
-		Story[1].open();
+		this.scrollToChapter();
 	},
 	closeChapter: function(chapter) {
 		this.chapter_close_status[chapter] = true;
@@ -178,12 +177,6 @@ var Story = {
 			Boxes.show(1,1); //slide in the first box
 			$('#flag-1').click(function(){
 				$('#learn-more').hide();
-			});
-			$('#test').click(function() {
-				console.log('clicked!')
-				$.post('likes.php',{chapter: Story.current_chapter}, function(data) {
-  					console.log(data);
-				});
 			});
 		},
 		animate: function() {
@@ -424,7 +417,7 @@ var Story = {
 				if(Maya.xPosition() >= Story.chapterStartPoint(7) + 2980 && Story[7].end == false) {
 					Maya.pause_animation = true;
 					$('#maya').css('background-position', 0);
-					$('#maya').removeClass('maya-woman').addClass('maya-animation').animate({left: '+=350px'}, 2000, function() {
+					$('#maya').removeClass('maya-woman').addClass('maya-animation').animate({left: '+=350px'}, 4000, function() {
 						$(this).fadeOut();
 					})
 		    		Story[7].end = true;
@@ -450,20 +443,38 @@ var Likes = {
 	remaining: null,
 	limit: null,
 	chapter: null,
-	chapter_like_limits: {1:300, 2:300, 3:300, 4:300, 5:300, 6:300},
+	//chapter_like_limits: {1:300, 2:300, 3:300, 4:300, 5:300, 6:300},
 	init: function() {
 		this.chapter = Story.current_chapter;
-		this.limit = this.chapter_like_limits[this.chapter];
 		this.bindFacebookLike();
-		this.updateCounts();
-		this.displayCounts();
+		this.setLimit();
+		$.get('config.php?setting=use_fb', function(data) {
+			if(data == 1) {
+				Likes.getFbCounts();
+			} else {
+				Likes.getLocalCounts();
+			}
+		}, 'json');
+	},
+	setLimit: function() {
+		$.get('likes.php?chapter=' + this.chapter, function(data) {
+			Likes.limit = data.limit;
+		}, 'json');
+	},
+	getLocalCounts: function() {
+		$.get('likes.php?chapter=' + this.chapter, function(data) {
+			Likes.count = data.count;
+			Likes.remaining = data.limit < data.count ? 0 : (data.limit - data.count);
+			Likes.displayCounts();
+			Likes.displayPercentageBar();
+		}, 'json');
 	},
 	bindFacebookLike: function() {
 		$('.facebook-like').fbjlike({
 			buttonWidth: 100,
 		  	siteTitle:'Join My Village - Story of Maya',
 		  	onlike:function(response){
-		  		Likes.updateCounts();
+		  		Likes.recordLike();
 		  		LikesModal.showThanks();
 		  	},
 		  	onunlike:function(response){
@@ -472,7 +483,12 @@ var Likes = {
 		  	lang:'en_US'
 		});
 	},
-	updateCounts: function(callback) {
+	recordLike: function() {
+		$.post('likes.php',{chapter: this.chapter}, function(data) {
+			Likes.getCounts();
+		});
+	},
+	getFbCounts: function(callback) {
 		var url = Config.getUrl();
 		if(Story.current_chapter > 1) {
 			url += Config.sub_url + Story.current_chapter;
