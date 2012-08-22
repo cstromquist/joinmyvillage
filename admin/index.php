@@ -1,7 +1,7 @@
 <?php
 
 $domain = $_SERVER['SERVER_NAME'] . "/";
-$subdir = "storyofmaya/";
+$subdir = "";
 $url = $domain . $subdir;
 
 $data = array(
@@ -61,7 +61,7 @@ function get_data($url)
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Story of Maya Likes Admin</title>
+    <title>Story of Maya Admin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -100,7 +100,7 @@ function get_data($url)
     	<?php if($message): ?>
     		<div class="alert alert-success"><?php echo $message; ?></div>
     	<?php endif; ?>
-      	<h1>Likes Summary</h1>
+      	<h1>Likes Summary - <?php if($config['use_fb']): ?>using Facebook Data<?php else: ?>using Local Data<?php endif ?></h1>
       	<p>Welcome. Here, you can update your settings for Maya's story.  At any time, you can set the limit count for any chapter.  The counts will update dynamically.</p>
       	<form method="post" action="<?php echo $PHP_SELF ?>">
      	 <table class="table table-hover">

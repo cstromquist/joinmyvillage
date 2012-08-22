@@ -41,7 +41,6 @@ var Story = {
 		if(!$.cookie('current_chapter') || showModal == true) {
 			Scroll.preventScrolling();
 			$('.fb-like-header').fbjlike({buttonWidth: 100});
-			// 
 			var modal = $('#modal-entry');
 			modal.fadeIn('slow');
 			modal.modal({
