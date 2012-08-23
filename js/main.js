@@ -19,7 +19,7 @@
 var Config = {
 	uuid: function(a,b){for(b=a='';a++<36;b+=a*51&52?(a^15?8^Math.random()*(a^20?16:4):4).toString(16):'-');return b},
 	root_url: document.domain,
-	subdirectory: '/storyofmaya/',
+	subdirectory: '/',
 	sub_url: '?chapter=',
 	getUrl: function() {
 		return this.root_url + this.subdirectory;
@@ -37,7 +37,7 @@ var Story = {
 		this.next_chapter = this.current_chapter + 1;
 		this.openStory();
 		if(this.current_chapter == 7)
-			$('.fb-like').fbjlike({buttonWidth: 100});
+			$('.facebook-like').fbjlike({buttonWidth: 100});
 	},
 	openStory: function(showModal) {
 		if(!$.cookie('current_chapter') || showModal == true) {
@@ -485,7 +485,6 @@ var Likes = {
 				Likes.getCounts(Likes.chapter, function() {
 					if(Likes.isLimitReached())
 						Likes.limit_reached = true;
-					console.log(callback);
 					if(callback)
 						callback();
 				});

@@ -215,6 +215,7 @@ a.button {
   box-shadow: 0 3px 2px 0 rgba(0, 0, 0, 0.25);
   font-family: BrandonBlk;
   background: #ed6f31 url(../img/btn_bg_arrow.png) no-repeat bottom right;
+  cursor: pointer;
 }
 .modal-start-end .modal-footer-copy {
   color: #8e7961;
