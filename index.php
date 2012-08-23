@@ -87,7 +87,7 @@
 		<div id="header">
 			<div class="jmv-logo"><p>JOIN MY VILLAGE</p></div>
 			<div class="social-media">
-				<div id="facebook" class="share">// TODO</div>
+				<div id="facebook" class="share"><fb:like href="http://<?php echo $_SERVER['SERVER_NAME'] ?>/storyofmaya/" send="false" layout="button_count" width="100" show_faces="false"></fb:like></div>
 				<div id="twitter" class="share"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Check out Join My Village!">Tweet</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div>
 			</div>

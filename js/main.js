@@ -123,7 +123,16 @@ var Story = {
 		window.location.href = 'http://' + Config.root_url + Config.subdirectory + Config.sub_url + next_chapter;
 	},
 	openChapter: function() {
-		Likes.init();
+		Likes.init(function() {
+			// check to make sure this chapter can be opened.  If not, go to previous chapter until we find an open one.
+			if(!Likes.limit_reached) {
+				if(Story.current_chapter != 1) {
+					Story.current_chapter = Story.current_chapter-1;
+					Story.openChapter();
+					return;
+				}
+			}
+		});
 		if(!this.chapter_open_status[this.current_chapter]) {
 			this.chapter_open_status[this.current_chapter] = true
 		}
@@ -462,7 +471,7 @@ var Likes = {
 	fbApiInit: false,
 	use_remote: false,
 	limit_reached: false,
-	init: function() {
+	init: function(callback) {
 		this.like_processed = false;
 		this.chapter = Story.current_chapter;
 		this.bindFacebookLike();
@@ -476,6 +485,9 @@ var Likes = {
 				Likes.getCounts(Likes.chapter, function() {
 					if(Likes.isLimitReached())
 						Likes.limit_reached = true;
+					console.log(callback);
+					if(callback)
+						callback();
 				});
 			}, 'json');
 		});
@@ -504,12 +516,13 @@ var Likes = {
 		}
 	},
 	processLike: function() {
-		LikesModal.showThanks(function() {
-			Likes.getCounts(Likes.chapter, function() {
-				//if(Likes.isLimitReached())
-				//	Story.openNextChapter();
-			})
-		});
+		//console.log('processing like...');
+		Likes.getCounts(Likes.chapter, function() {
+			//console.log('getting counts...');
+			LikesModal.showThanks(function() {
+				//console.log('showing thanks...');
+			});
+		})
 	},
 	recordLike: function() {
 		$.post('likes.php',{chapter: this.chapter}, function(data) {
@@ -520,6 +533,8 @@ var Likes = {
 		if(this.use_remote == false) {
 			$.get('likes.php?chapter=' + chapter, function(data) {
 				Likes.setCounts(data.count, data.limit);
+				if(callback)
+					callback();
 			}, 'json')
 		} else {
 			var url = Story.getUrl(chapter);
@@ -650,7 +665,8 @@ var LikesModal = {
 			} else {
 				$('#likes-modal #thanks #message').fadeIn(1000);
 			}
-			callback();
+			if(callback)
+				callback();
 		});
 		$('#likes-modal #thanks').fadeIn(1000);
 	},
