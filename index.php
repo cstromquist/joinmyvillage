@@ -38,11 +38,9 @@
           });
           FB.Event.subscribe('edge.create',
 		    function(response) {
-		    	console.log('You liked ' + response);
 		    	Likes.processLike();
 		    });
 		  FB.Event.subscribe('edge.remove', function(response) {
-		    	console.log('You unliked ' + response);
 		    	Likes.processLike();
 			});
 		  FB.getLoginStatus(function(response){
