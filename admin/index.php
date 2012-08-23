@@ -87,11 +87,6 @@ function get_data($url)
             <span class="icon-bar"></span>
           </a>
           <a class="brand" href="index.php">Maya's Story Admin</a>
-          <div class="nav-collapse collapse">
-            <ul class="nav">
-              <li class="active"><a href="#">Like Summary</a></li>
-            </ul>
-          </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
