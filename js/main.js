@@ -114,6 +114,7 @@ var Story = {
 		return total;
 	},
 	openNextChapter: function () {
+		Story[this.current_chapter].status = false;
 		this.current_chapter = this.current_chapter + 1;
 		this.openChapter();
 	},
@@ -155,9 +156,10 @@ var Story = {
             scrollLeft: Story.chapterStartPoint(Story.current_chapter)
         }, 3000, function() {
         	// open chapter after scrolling user!
+        	Story[Story.current_chapter].status = true;
         	Story[Story.current_chapter].open();
         	Boxes.init();
-			Flags.setup();
+			Flags.init();
         });
 	},
 	preload: function() {	
@@ -177,6 +179,7 @@ var Story = {
 	 **********************************/
 	// Chapter 1
 	1: {
+		status: false,
 		open: function() {
 			this.animate();
 			this.bindScrollPoints();
@@ -237,6 +240,7 @@ var Story = {
 	},
 	// Chapter 2
 	2: {
+		status: false,
 		open: function() {
 			Maya.enter('child');
 			this.bindScrollPoints();
@@ -273,6 +277,7 @@ var Story = {
 	},
 	// Chapter 3
 	3: {
+		status: false,
 		plane_flown: false,
 		money_tree_shown: false,
 		open: function() {
@@ -324,6 +329,7 @@ var Story = {
 	},
 	// Chapter 4
 	4: {
+		status: false,
 		open: function() {
 			Maya.enter('teen');
 			this.animate();
@@ -348,6 +354,7 @@ var Story = {
 	},
 	// Chapter 5
 	5: {
+		status: false,
 		man_chosen: false,
 		open: function() {
 			Maya.enter('woman');
@@ -385,6 +392,7 @@ var Story = {
 	},
 	// Chapter 6
 	6: {
+		status: false,
 		open: function() {
 			Maya.enter('mother', true);
 			this.bindScrollPoints();
@@ -411,6 +419,7 @@ var Story = {
 	},
 	// Chapter 7
 	7: {
+		status: false,
 		end: false,
 		open: function() {
 			Maya.enter('woman', false);
@@ -735,7 +744,7 @@ var Flags = {
 			'Join My Village has helped to create <a href="http://joinmyvillage.com/project/vsla" target="_blank">over 50 women-owned VSLAs</a> in Malawi, lending out over $60,000 to start small businesses.'
 		]
 	],
-	setup: function() {
+	init: function() {
 		for(var i=1; i<=6; i++) {
 			for(var j=1; j<=this.content[i-1].length; j++) {
 				this.setupClick(i,j);
@@ -781,11 +790,11 @@ var Boxes = {
 	bindScroll: function() {
 		$(window).bind('scroll', function() {
 			// if the chapter is closed, then the user has already gone through this chapter, so we don't need to do this again and show the boxes.
-			if(!Story.chapter_close_status[Story.current_chapter]) {
+			if(!Story.chapter_close_status[Story.current_chapter] && Story[Story.current_chapter].status == true) {
 				// show boxes from the current chapter.
 				Boxes.showBoxes(Story.current_chapter);
 				// we want to show the boxes of all previous chapters as well
-				Boxes.showPreviousChapterBoxes(Story.current_chapter);
+				//Boxes.showPreviousChapterBoxes(Story.current_chapter - 1);
 			}
 		});
 	},
