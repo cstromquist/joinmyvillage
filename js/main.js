@@ -508,18 +508,6 @@ var Likes = {
 			// clean fb like
 	                $('.facebook-like').remove();
         	        $('.facebook-like-wrapper').html('<div class="facebook-like"><fb:like send="false" href="' + url + '" layout="button_count" width="50" show_faces="false"></fb:like></div>');
-
-/*
-			FB.Event.subscribe('edge.create',
-		    function(response) {
-		    	console.log('You liked ' + response);
-		    	Likes.processLike();
-		    });
-		  	FB.Event.subscribe('edge.remove', function(response) {
-		    	console.log('You unliked ' + response);
-		    	Likes.processLike();
-			});
-*/
 			FB.XFBML.parse(document.getElementById('facebook-like'));
 		}
 	},
@@ -672,8 +660,10 @@ var LikesModal = {
 		var next_chapter = Story.next_chapter;
 		$('#likes-modal #info').fadeOut(1000, function() {
 			if(Likes.isLimitReached()) {
+				$('#likes-modal #thanks #message').hide();
 				$('#likes-modal #thanks #congrats').fadeIn(1000);
 			} else {
+				$('#likes-modal #thanks #congrats').hide();
 				$('#likes-modal #thanks #message').fadeIn(1000);
 			}
 			if(callback)
