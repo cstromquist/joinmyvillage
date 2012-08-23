@@ -1,6 +1,8 @@
 <?php $chapter = $_GET['chapter'] ? $_GET['chapter'] : 1; ?>
 <!DOCTYPE html>
-<html xmlns:fb="http://ogp.me/ns/fb#">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:og="http://ogp.me/ns#"
+      xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -25,6 +27,37 @@
     <script src="js/vendor/modernizr-2.6.1.min.js"></script>
 </head>
 <body>
+	<div id="fb-root"></div>
+	<script>
+		window.fbAsyncInit = function() {
+          FB.init({
+            appId      : '461563293883641', // App ID
+            status     : true, // check login status
+            cookie     : true, // enable cookies to allow the server to access the session
+            xfbml      : true  // parse XFBML
+          });
+          FB.Event.subscribe('edge.create',
+		    function(response) {
+		    	console.log('You liked ' + response);
+		    	Likes.processLike();
+		    });
+		  FB.Event.subscribe('edge.remove', function(response) {
+		    	console.log('You unliked ' + response);
+		    	Likes.processLike();
+			});
+		  FB.getLoginStatus(function(response){
+	        	Likes.fbApiInit = true;
+	    	});
+        };
+        // Load the SDK Asynchronously
+        (function(d){
+           var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+           if (d.getElementById(id)) {return;}
+           js = d.createElement('script'); js.id = id; js.async = true;
+           js.src = "//connect.facebook.net/en_US/all.js";
+           ref.parentNode.insertBefore(js, ref);
+         }(document));
+	</script>
 	<!--[if lt IE 9]>
         <p class="chromeframe">You are using an outdated browser for this site. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
     <![endif]-->
@@ -54,7 +87,7 @@
 		<div id="header">
 			<div class="jmv-logo"><p>JOIN MY VILLAGE</p></div>
 			<div class="social-media">
-				<div id="facebook" class="share"><fb:like send="false" layout="button_count" width="50" show_faces="false"></fb:like></div>
+				<div id="facebook" class="share">// TODO</div>
 				<div id="twitter" class="share"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Check out Join My Village!">Tweet</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div>
 			</div>
@@ -74,7 +107,7 @@
 				<div class="modal-content">
 					<p id="intro"></p>
 					<div class="like-message"></div>
-					<div class="facebook-like"></div>
+					<div class="facebook-like-wrapper"><div class="facebook-like"><fb:like send="false" layout="button_count" width="50" show_faces="false"></fb:like></div></div>
 					<div class="clear"></div>
 					<div class="modal-divider"></div>
 					<div id="info">
@@ -89,7 +122,7 @@
 						<div id="congrats">
 							<h3>CONGRATULATIONS</h3>
 							<p>You've unlocked the next chapter!</p>
-							<a class="button" href="#" id="continue">CONTINUE MAYA'S STORY</a>
+							<a class="button" id="continue">CONTINUE MAYA'S STORY</a>
 						</div>
 						<div id="message">
 							<h3>THANK YOU!</h3>
@@ -639,7 +672,6 @@
 	<!-- END CONTAINER -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.7.2.min.js"><\/script>')</script>
-    <script type="text/javascript" src="js/vendor/jquery.fbjlike.1.4.js"></script>
     <script type="text/javascript" src="js/vendor/jquery.float.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
     <script src="js/vendor/jquery.cookie.js"></script>

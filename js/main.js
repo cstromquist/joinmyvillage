@@ -62,8 +62,7 @@ var Story = {
 	begin: function() {
 		Story.bindFixedElements();
 		this.setWidth();
-		$.cookie('current_chapter', this.current_chapter, { expires: 7 });
-		this.openChapter();
+		this.openChapter(this.current_chapter);
 		//window.location.hash('#chapter-' + this.current_chapter);
 	},
 	end: function() {
@@ -82,7 +81,7 @@ var Story = {
 		var param = decodeURI((RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]);
 		var chapter = null;
 		if(param != 'null' && !isNaN(Number(param))) {
-			chapter = param;
+			chapter = Number(param);
 		} else if(chapter = $.cookie('current_chapter')) {
 			if(isNaN(chapter))
 				chapter = 1;
@@ -99,6 +98,14 @@ var Story = {
 		var width = Number($('#chapter-' + chapter).width());
 		return width;
 	},
+	getUrl: function(chapter) {
+		chapter = chapter ? chapter : Story.current_chapter;
+		var url = Config.getUrl();
+		if(chapter > 1) {
+			url += Config.sub_url + Story.current_chapter;
+		}
+		return url;
+	},
 	chapterStartPoint: function( chapter ) {
 		var total = 0;
 		for(var i=1; i<chapter; i++) {
@@ -108,7 +115,6 @@ var Story = {
 	},
 	openNextChapter: function () {
 		this.current_chapter = this.current_chapter + 1;
-		$.cookie('current_chapter', this.current_chapter);
 		this.openChapter();
 	},
 	redirectToNextChapter: function() {
@@ -116,13 +122,11 @@ var Story = {
 		window.location.href = 'http://' + Config.root_url + Config.subdirectory + Config.sub_url + next_chapter;
 	},
 	openChapter: function() {
-		// if the chapter has already been opened, we can stop here.
-		if(this.chapter_open_status[this.current_chapter]) {
-			return;
-		} else {
-			// if not, just set the open status to true.
+		Likes.init();
+		if(!this.chapter_open_status[this.current_chapter]) {
 			this.chapter_open_status[this.current_chapter] = true
 		}
+		$.cookie('current_chapter', this.current_chapter, { expires: 7 });
 		if(this.current_chapter != this.chapters)
 			LikesModal.init(this.current_chapter);
 		this.setWidth(this.current_chapter);
@@ -446,17 +450,24 @@ var Likes = {
 	remaining: null,
 	limit: null,
 	chapter: null,
-	//chapter_like_limits: {1:300, 2:300, 3:300, 4:300, 5:300, 6:300},
+	fbApiInit: false,
+	use_remote: false,
+	limit_reached: false,
 	init: function() {
+		this.like_processed = false;
 		this.chapter = Story.current_chapter;
 		this.bindFacebookLike();
 		this.setLimit(function() {
-				$.get('config.php?setting=use_fb', function(data) {
+			$.get('config.php?setting=use_fb', function(data) {
 				if(data == 1) {
-					Likes.getFbCounts();
+					Likes.use_remote = true;
 				} else {
-					Likes.getLocalCounts();
+					Likes.use_remote = false;
 				}
+				Likes.getCounts(Likes.chapter, function() {
+					if(Likes.isLimitReached())
+						Likes.limit_reached = true;
+				});
 			}, 'json');
 		});
 	},
@@ -466,26 +477,29 @@ var Likes = {
 			callback();
 		}, 'json');
 	},
-	getLocalCounts: function() {
-		$.get('likes.php?chapter=' + this.chapter, function(data) {
-			Likes.count = data.count;
-			Likes.remaining = data.limit < data.count ? 0 : (data.limit - data.count);
-			Likes.displayCounts();
-			Likes.displayPercentageBar();
-		}, 'json');
-	},
 	bindFacebookLike: function() {
-		$('.facebook-like').fbjlike({
-			buttonWidth: 100,
-		  	siteTitle:'Join My Village - Story of Maya',
-		  	onlike:function(response){
-		  		Likes.recordLike();
-		  		LikesModal.showThanks();
-		  	},
-		  	onunlike:function(response){
-		  		LikesModal.showThanks();
-		  	},
-		  	lang:'en_US'
+		// clean fb like
+		$('.facebook-like').remove();
+		$('.facebook-like-wrapper').html('<div class="facebook-like"><fb:like send="false" layout="button_count" width="50" show_faces="false"></fb:like></div>');
+		if(this.fbApiInit) {
+			FB.Event.subscribe('edge.create',
+		    function(response) {
+		    	console.log('You liked ' + response);
+		    	Likes.processLike();
+		    });
+		  	FB.Event.subscribe('edge.remove', function(response) {
+		    	console.log('You unliked ' + response);
+		    	Likes.processLike();
+			});
+			FB.XFBML.parse(document.getElementById('facebook-like'));
+		}
+	},
+	processLike: function() {
+		LikesModal.showThanks(function() {
+			Likes.getCounts(Likes.chapter, function() {
+				//if(Likes.isLimitReached())
+				//	Story.openNextChapter();
+			})
 		});
 	},
 	recordLike: function() {
@@ -493,19 +507,27 @@ var Likes = {
 			
 		});
 	},
-	getFbCounts: function() {
-		var url = Config.getUrl();
-		if(Story.current_chapter > 1) {
-			url += Config.sub_url + Story.current_chapter;
+	getCounts: function( chapter, callback ) {
+		if(this.use_remote == false) {
+			$.get('likes.php?chapter=' + chapter, function(data) {
+				Likes.setCounts(data.count, data.limit);
+			}, 'json')
+		} else {
+			var url = Story.getUrl(chapter);
+			var query = 'http://graph.facebook.com/fql?q=SELECT url, normalized_url, share_count, like_count, comment_count, total_count, commentsbox_count, comments_fbid, click_count FROM link_stat WHERE url="' + url + '"';
+			//console.log(query);
+			$.getJSON(query, function(data) {
+				Likes.setCounts(data.data[0].like_count, Likes.limit);
+				if(callback)
+					callback();
+			});
 		}
-		var query = 'http://graph.facebook.com/fql?q=SELECT url, normalized_url, share_count, like_count, comment_count, total_count, commentsbox_count, comments_fbid, click_count FROM link_stat WHERE url="' + url + '"';
-		//console.log(query);
-		$.getJSON(query, function(data) {
-			Likes.count = data.data[0].like_count;
-			Likes.remaining = Likes.limit - Likes.count;
-			Likes.displayCounts();
-			Likes.displayPercentageBar();
-		});
+	},
+	setCounts: function(count, limit) {
+		Likes.count = count;
+		Likes.remaining = limit < count ? 0 : (limit - count);
+		Likes.displayCounts();
+		Likes.displayPercentageBar();
 	},
 	displayCounts: function() {
 		$('#likes-modal .likes-count span.count').text(Likes.count);
@@ -529,7 +551,7 @@ var Likes = {
 		$('#likes-modal #percentage-bar #percentage').animate({width: percentage + '%'}, 4000);
 	},
 	isLimitReached: function() {
-		if(this.count >= this.limit) {
+		if(Likes.count >= Likes.limit) {
 			return true;
 		} else {
 			return false;
@@ -557,7 +579,7 @@ var LikesModal = {
 			intro: 'Female teachers are reluctant to come to rural villages...they need a safe place to live.',
 			like_message: 'TO HELP TEACHERS AND SUPPLIES GET TO MAYA\'S VILLAGE, LIKE THIS POST',
 			next_chapter_message: 'Maya\'s school will open, and Chapter Three will be revealed. Stay tuned!',
-			position: 5297
+			position: 4213
 		},
 		// Chapter 3
 		{
@@ -589,12 +611,21 @@ var LikesModal = {
 		},
 	],
 	init: function( chapter ) {
-		Likes.init();
+		this.reset();
+		this.bindClick();
 		this.modal = $('#likes-modal');
 		this.chapter = chapter;
 		this.show();
 	},
+	bindClick: function() {
+		$('#likes-modal #thanks #congrats a#continue').click(function() {
+			$('#likes-modal').animate({opacity: 0}, 2000, function() {
+				Story.openNextChapter();
+			});
+		});
+	},
 	show: function() {
+		$('#likes-modal').animate({opacity: 1}, 2000);
 		$('#likes-modal #intro').html(this.content[this.chapter-1].intro);
 		$('#likes-modal .like-message').html(this.content[this.chapter-1].like_message);
 		$('#likes-modal .next-chapter-message').html(this.content[this.chapter-1].next_chapter_message);
@@ -602,16 +633,23 @@ var LikesModal = {
 		this.modal.css('left', Story.chapterStartPoint(this.chapter)+this.content[this.chapter-1].position);
 		this.modal.animate({opacity: 1}, 2000);
 	},
-	showThanks: function() {
+	showThanks: function(callback) {
 		var next_chapter = Story.next_chapter;
 		$('#likes-modal #info').fadeOut(1000, function() {
 			if(Likes.isLimitReached()) {
-				$('#likes-modal #thanks #congrats a#continue').attr('href', '/?chapter=' + Story.next_chapter);
 				$('#likes-modal #thanks #congrats').fadeIn(1000);
 			} else {
 				$('#likes-modal #thanks #message').fadeIn(1000);
 			}
+			callback();
 		});
+		$('#likes-modal #thanks').fadeIn(1000);
+	},
+	reset: function() {
+		$('#likes-modal #info').fadeIn(1000);
+		$('#likes-modal #thanks').fadeOut(1000);
+		$('#likes-modal #thanks #message').hide();
+		$('#likes-modal #thanks #congrats').hide();
 	},
 	hide: function() {
 		this.modal.animate({opacity: 0}, 2000);
