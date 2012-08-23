@@ -485,7 +485,6 @@ var Likes = {
 				Likes.getCounts(Likes.chapter, function() {
 					if(Likes.isLimitReached())
 						Likes.limit_reached = true;
-					console.log(callback);
 					if(callback)
 						callback();
 				});
