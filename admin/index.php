@@ -102,7 +102,7 @@ function get_data($url)
           <thead>
             <tr>
               <th>Chapter #</th>
-              <th>Likes Count</th>
+              <th>Local Likes Count</th>
               <th>Facebook Likes Count</th>
               <th>Likes Remaining</th>
               <th>Limit</th>
