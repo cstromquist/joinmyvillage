@@ -114,8 +114,11 @@ var Story = {
 		return total;
 	},
 	openNextChapter: function () {
-		Story[this.current_chapter].status = false;
-		this.current_chapter = this.current_chapter + 1;
+		// make sure we only increment below the high chapter
+		if(this.current_chapter < Story.chapters) {
+			Story[this.current_chapter].status = false;
+                	this.current_chapter = this.current_chapter + 1;
+		}
 		this.openChapter();
 	},
 	redirectToNextChapter: function() {
@@ -125,13 +128,13 @@ var Story = {
 	openChapter: function() {
 		Likes.init(function() {
 			// check to make sure this chapter can be opened.  If not, go to previous chapter until we find an open one.
-			if(!Likes.limit_reached) {
-				if(Story.current_chapter != 1) {
-					Story.current_chapter = Story.current_chapter-1;
-					Story.openChapter();
-					return;
-				}
-			}
+			//if(!Likes.limit_reached) {
+			//	if(Story.current_chapter != 1) {
+			//		Story.current_chapter = Story.current_chapter-1;
+			//		Story.openChapter();
+			//		return;
+			//	}
+			//}
 		});
 		if(!this.chapter_open_status[this.current_chapter]) {
 			this.chapter_open_status[this.current_chapter] = true
@@ -498,19 +501,13 @@ var Likes = {
 		}, 'json');
 	},
 	bindFacebookLike: function() {
-		// clean fb like
-		$('.facebook-like').remove();
-		$('.facebook-like-wrapper').html('<div class="facebook-like"><fb:like send="false" layout="button_count" width="50" show_faces="false"></fb:like></div>');
+		//console.log('binding facebook like before if...')
 		if(this.fbApiInit) {
-			FB.Event.subscribe('edge.create',
-		    function(response) {
-		    	console.log('You liked ' + response);
-		    	Likes.processLike();
-		    });
-		  	FB.Event.subscribe('edge.remove', function(response) {
-		    	console.log('You unliked ' + response);
-		    	Likes.processLike();
-			});
+			//console.log('initializing FB like button...');
+			var url = Story.getUrl();
+			// clean fb like
+	                $('.facebook-like').remove();
+        	        $('.facebook-like-wrapper').html('<div class="facebook-like"><fb:like send="false" href="' + url + '" layout="button_count" width="50" show_faces="false"></fb:like></div>');
 			FB.XFBML.parse(document.getElementById('facebook-like'));
 		}
 	},
@@ -522,6 +519,7 @@ var Likes = {
 				//console.log('showing thanks...');
 			});
 		})
+		//console.log('after processing like...');
 	},
 	recordLike: function() {
 		$.post('likes.php',{chapter: this.chapter}, function(data) {
@@ -529,6 +527,7 @@ var Likes = {
 		});
 	},
 	getCounts: function( chapter, callback ) {
+		console.log('getting counts...');
 		if(this.use_remote == false) {
 			$.get('likes.php?chapter=' + chapter, function(data) {
 				Likes.setCounts(data.count, data.limit);
@@ -538,12 +537,20 @@ var Likes = {
 		} else {
 			var url = Story.getUrl(chapter);
 			var query = 'http://graph.facebook.com/fql?q=SELECT url, normalized_url, share_count, like_count, comment_count, total_count, commentsbox_count, comments_fbid, click_count FROM link_stat WHERE url="' + url + '"';
-			//console.log(query);
-			$.getJSON(query, function(data) {
-				Likes.setCounts(data.data[0].like_count, Likes.limit);
+			console.log(query);
+			FB.api(
+			  {
+			    method: 'links.getStats',
+			    urls: url
+			  },
+			  function(response) {
+			    //console.log('setting counts...');
+				Likes.setCounts(response[0].like_count, Likes.limit);
+				//console.log('calling back...');
 				if(callback)
 					callback();
-			});
+			  }
+			);
 		}
 	},
 	setCounts: function(count, limit) {
@@ -642,9 +649,12 @@ var LikesModal = {
 	},
 	bindClick: function() {
 		$('#likes-modal #thanks #congrats a#continue').click(function() {
-			$('#likes-modal').animate({opacity: 0}, 2000, function() {
-				Story.openNextChapter();
-			});
+			if(!$(this).attr('disabled')) {
+				$('#likes-modal').animate({opacity: 0}, 2000, function() {
+					Story.openNextChapter();
+				});
+			};
+			$(this).attr('disabled', true);
 		});
 	},
 	show: function() {
@@ -660,8 +670,10 @@ var LikesModal = {
 		var next_chapter = Story.next_chapter;
 		$('#likes-modal #info').fadeOut(1000, function() {
 			if(Likes.isLimitReached()) {
+				$('#likes-modal #thanks #message').hide();
 				$('#likes-modal #thanks #congrats').fadeIn(1000);
 			} else {
+				$('#likes-modal #thanks #congrats').hide();
 				$('#likes-modal #thanks #message').fadeIn(1000);
 			}
 			if(callback)
@@ -674,6 +686,7 @@ var LikesModal = {
 		$('#likes-modal #thanks').fadeOut(1000);
 		$('#likes-modal #thanks #message').hide();
 		$('#likes-modal #thanks #congrats').hide();
+		$('#likes-modal #thanks #congrats a#continue').attr('disabled', false);
 	},
 	hide: function() {
 		this.modal.animate({opacity: 0}, 2000);
@@ -975,10 +988,3 @@ var Animations = {
 			animate({bottom:'514px'}, 1400, 'linear', Animations.animatePlane)
 	}
 }
-
-/*********************
- * Initialize Story
- *********************/
-jQuery(function( $ ) {
-	Story.init();
-});
