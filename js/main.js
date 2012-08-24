@@ -36,8 +36,6 @@ var Story = {
 		this.current_chapter = this.getChapter();
 		this.next_chapter = this.current_chapter + 1;
 		this.openStory();
-		if(this.current_chapter == 7)
-			$('.facebook-like').fbjlike({buttonWidth: 100});
 	},
 	openStory: function(showModal) {
 		if(!$.cookie('current_chapter') || showModal == true) {
@@ -512,7 +510,8 @@ var Likes = {
 		}
 	},
 	processLike: function() {
-		//console.log('processing like...');
+		console.log('processing like...');
+		alert('processing like...');
 		Likes.getCounts(Likes.chapter, function() {
 			//console.log('getting counts...');
 			LikesModal.showThanks(function() {
@@ -919,7 +918,7 @@ var Maya = {
 		$(window).bind('scroll', function() {
 			if(Maya.pause_animation == false) {
 				var yPos = $('#footer').position().top;
-				$('#maya').css('bottom', 100-$(window).scrollTop() + 'px');
+				$('#maya').css('bottom', 75-$(window).scrollTop() + 'px');
 				var xPos = $(window).scrollLeft();
 				// set up Maya to animate every 100 pixels
 				var increment = 100;

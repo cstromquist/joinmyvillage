@@ -57,6 +57,10 @@
 					Story.init();
                 });
 	    	});
+	    	jQuery(function( $ ) {
+				//console.log('initializing story...');
+				Story.init();
+            });
         };
         // Load the SDK Asynchronously
         (function(d){
