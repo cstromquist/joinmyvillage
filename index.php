@@ -1,3 +1,4 @@
+<?php $config = unserialize(file_get_contents('config')); ?>
 <?php $chapter = $_GET['chapter'] ? $_GET['chapter'] : 1; ?>
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
@@ -9,14 +10,14 @@
     <title>Help Educate a Girl</title>
     <meta name="description" content="When you and your friends click, it helps girls. Over 60 million girls are denied access to education. Follow our story and see how easy it is to make a difference.">
     <meta name="viewport" content="width=device-width">
-	<link rel="canonical" href="http://<?php echo $_SERVER['SERVER_NAME'] ?>/storyofmaya/<?php if($chapter != 1): ?>?chapter=<?php echo $chapter ?><?php endif ?>"/>
+	<link rel="canonical" href="http://<?php echo $_SERVER['SERVER_NAME'] ?>/<?php if($chapter != 1): ?>?chapter=<?php echo $chapter ?><?php endif ?>"/>
 	<meta property="fb:app_id" content="461563293883641" />
 	<meta property="og:title" content="Help Educate a Girl" />
 	<meta property="og:site_name" content="join my village, empower women, getting women out of poverty" />
 	<meta property="og:description" content="When you and your friends click, it helps girls. Over 60 million girls are denied access to education. Follow our story and see how easy it is to make a difference." />
-	<meta property="og:url" content="http://<?php echo $_SERVER['SERVER_NAME'] ?>/storyofmaya/<?php if($chapter != 1): ?>?chapter=<?php echo $chapter ?><?php endif ?>" />
+	<meta property="og:url" content="http://<?php echo $_SERVER['SERVER_NAME'] ?>/<?php if($chapter != 1): ?>?chapter=<?php echo $chapter ?><?php endif ?>" />
 	<meta property="og:type" content="website" />
-	<meta property="og:image" content="http://<?php echo $_SERVER['SERVER_NAME'] ?>/storyofmaya/img/JMV_BTS_<?php echo $chapter ?>.gif" />
+	<meta property="og:image" content="http://<?php echo $_SERVER['SERVER_NAME'] ?>/img/JMV_BTS_<?php echo $chapter ?>.gif" />
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
 	<link rel="stylesheet" href="css/reset.css">
@@ -31,7 +32,7 @@
 	<script>
 		window.fbAsyncInit = function() {
           FB.init({
-            appId      : '461563293883641', // App ID
+            appId      : '<?php echo $config['fb_app_id'] ?>', // App ID
             status     : true, // check login status
             cookie     : true, // enable cookies to allow the server to access the session
             xfbml      : true  // parse XFBML
@@ -688,7 +689,7 @@
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
-        var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+        var _gaq=[['_setAccount','<?php echo $config['ga_id'] ?>',['_trackPageview']];
         (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
         g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
         s.parentNode.insertBefore(g,s)}(document,'script'));

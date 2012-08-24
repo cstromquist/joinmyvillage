@@ -21,7 +21,7 @@ if($_POST) {
 	$config = $_POST['config'];
 	$file = "../config";
 	file_put_contents($file,serialize($config));
-	$message = "Like limits successfully saved.";
+	$message = "Settings successfully saved.";
 }
 $a = array();
 for($i=0; $i<6; $i++) {
@@ -125,19 +125,26 @@ function get_data($url)
             <?php endfor; ?>
           </tbody>
         </table>
-        <h1>Config</h1>
-        <p>Set where you want your like data to pull from.  If you want to pull all Like data from Facebook, simply select that option and click Update.</p>
-        <p>Note: Anytime a user clicks Like, the data will be saved locally regardless of where you have chosen the Facebook or Local option.</p>
-        <label class="radio">
-          <input type="radio" name="config[use_fb]" id="optionsRadios2" value="1" <?php if ($config['use_fb']): ?>checked="checked"<?php endif; ?>>
-	      Get Like Data from Facebook
-        </label>
-        <label class="radio">
-          <input type="radio" name="config[use_fb]" id="optionsRadios2" value="0" <?php if (!$config['use_fb']): ?>checked="checked"<?php endif; ?>>
-	      Use Local Like Data
-        </label>
-        <button type="submit" class="btn btn-success">Update</button>
-        </form>		
+        <legend>Data Source</legend>
+	        <p>Set where you want your like data to pull from.  If you want to pull all Like data from Facebook, simply select that option and click Update.</p>
+	        <label class="radio">
+	          <input type="radio" name="config[use_fb]" id="optionsRadios2" value="1" <?php if ($config['use_fb']): ?>checked="checked"<?php endif; ?>>
+		      Get Like Data from Facebook
+	        </label>
+	        <label class="radio">
+	          <input type="radio" name="config[use_fb]" id="optionsRadios2" value="0" <?php if (!$config['use_fb']): ?>checked="checked"<?php endif; ?>>
+		      Use Local Like Data
+	        </label>
+	        <p>Note: Anytime a user clicks Like, the data will be saved locally regardless of where you have chosen the Facebook or Local option.</p>
+	    <legend>Settings</legend>
+		  	<label>Google Analytics ID</label>
+		  	<input type="text" name="config[ga_id]" placeholder="UA-XXXXX-X" value="<?php echo $config['ga_id']; ?>">
+		  	<label>Facebook App ID</label>
+		  	<input type="text" name="config[fb_app_id]" placeholder="XXXXXXXXXXXX" value="<?php echo $config['fb_app_id']; ?>">
+        	<div class="form-actions">
+			  <button type="submit" class="btn btn-primary">Save changes</button>
+			</div>
+        </form>	
     </div> <!-- /container -->
 
   </body>
