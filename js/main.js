@@ -311,17 +311,23 @@ var Story = {
 		    	if (Maya.xPosition() > Story.chapterStartPoint(3) + 1450 && Maya.current_life_stage == 'child') {
 		    		Maya.lifeTransition('teen'); // Maya becomes a teenager
 		    	}
-		    	if (Maya.xPosition() > Story.chapterStartPoint(3) + 2000) {
-		    		$('#chapter-3 #bubble-1').
-		    			animate({opacity:1}, 1000).
-		    			delay(3000).
-		    			fadeOut(4000)
+		    	if (Maya.xPosition() > Story.chapterStartPoint(3) + 2000 && !$('#chapter-3 #bubble-1').attr('disabled')) {
+		    		$('#chapter-3 #bubble-1').animate({opacity:1}, 1000);
 		    	}
 		    	if (Maya.xPosition() > Story.chapterStartPoint(3) + 2100) {
-		    		$('#chapter-3 #bubble-2').
-		    			animate({opacity:1}, 1000).
-		    			delay(3000).
-		    			fadeOut(4000)
+		    		$('#chapter-3 #bubble-2').animate({opacity:1}, 1000);
+		    	}
+		    	if (Maya.xPosition() > Story.chapterStartPoint(3) + 2200 && !$('#chapter-3 #bubble-1').attr('disabled')) {
+		    		$('#chapter-3 #bubble-1').removeClass('bubble-marriage').
+						addClass('bubble-burst').
+						attr('disabled', true).
+						fadeOut(2000);
+		    	}
+		    	if (Maya.xPosition() > Story.chapterStartPoint(3) + 2500 && !$('#chapter-3 #bubble-2').attr('disabled')) {
+		    		$('#chapter-3 #bubble-2').removeClass('bubble-baby').
+						addClass('bubble-burst-right').
+						attr('disabled', true).
+						fadeOut(2000);
 		    	}
 		    	if (Maya.xPosition() > Story.chapterStartPoint(3) + 2300 && Story[3].plane_flown != true) {
 		    		$("#plane-1").animate({left: '+=600px'}, 2000)
