@@ -87,7 +87,7 @@
 			</div>
 			<div class="content-right">
 				<h1>YOU CAN HELP</h1>
-					<p>By watching and liking Maya's story, you'll unlock donations to Join My Village, an initiative of General Mills, Merck/MSD and CARE International that supports projects in India and Malawi to educate and empower girls like Maya&mdash;turning the tide not just for them, but for our planet.</p>
+					<p>By watching and liking Maya's story, you'll unlock donations to Join My Village, an initiative of General Mills, Merck/MSD and CARE USA that supports projects in India and Malawi to educate and empower girls like Maya&mdash;turning the tide not just for them, but for our planet.</p>
 					<a href="#" class="button">TAKE A LOOK</a>
 			</div>
 			<div class="clear"></div>
@@ -168,7 +168,7 @@
 				</div>
 				<div id="box-3" class="box">
 					<div class="box-content">
-						<p>Already by age 8, Maya is helping her family by tending to the animals and working in the fields.</p>
+						<p>By age 8, Maya is already helping her family by tending to the animals and working in the fields.</p>
 					</div>
 					<div class="box-footer"></div>
 				</div>
@@ -180,7 +180,7 @@
 				</div>
 				<div id="box-5" class="box">
 					<div class="box-content">
-						<p>Maya's brothers go to primary school, but Maya doesn't have that chance. Her culture doesn't support girls going to school.</p>
+						<p>Maya's brothers go to primary school, but Maya doesn't have that chance. Her community doesn't support girls going to school.</p>
 					</div>
 					<div class="box-footer"></div>
 				</div>
@@ -318,7 +318,7 @@
 				</div>
 				<div id="box-4" class="box">
 					<div class="box-content">
-						<p>Going to secondary school means having choices. It means a chance to become a nurse, teacher, police officer, or pilot.</p>
+						<p>Going to secondary school means having choices. It means a chance to become something &mdash; maybe a nurse, teacher, police officer, or pilot.</p>
 					</div>
 					<div class="box-footer"></div>
 				</div>
@@ -371,7 +371,7 @@
 				<!-- BEGIN BOXES -->
 				<div id="box-1" class="box">
 					<div class="box-content">
-						<p>Yay! Enough likes means Maya got a scholarship to Secondary School!</p>
+						<p>Enough likes means Maya received a scholarship to secondary school!</p>
 					</div>
 					<div class="box-footer"></div>
 				</div>
@@ -596,13 +596,13 @@
 				</div>
 				<div id="box-2" class="box">
 					<div class="box-content">
-						<p>Every day, Join My Village makes a difference in the lives of thousands of girls and womaen in Malawi and India.</p>
+						<p>Every day, Join My Village makes a difference in the lives of thousands of girls and women in Malawi and India.</p>
 					</div>
 					<div class="box-footer"></div>
 				</div>
 				<div id="box-3" class="box">
 					<div class="box-content">
-						<p>Through education, Maya and girls like her are able to develop the skills they need to succeed. To prosper. To be healthy.</p>
+						<p>Through education, Maya and girls like her are able to develop the skills they need to succeed. To be healthy. To prosper.</p>
 					</div>
 					<div class="box-footer"></div>
 				</div>
@@ -658,9 +658,9 @@
 					<div class="modal-content">
 						<div class="content-left">
 							<h1>HELP MORE<br />GIRLS LIKE MAYA</h1>
-							<p>Every time you share or like a page on <a href="http://www.joinmyvillage.com" target="_blank">joinmyvillage.com</a>, money is donated to CARE by General Mills and Merck to support women and girls in Malawi and India</p>
+							<p>Every time you share or like a page on <a href="http://www.joinmyvillage.com" target="_blank">joinmyvillage.com</a>, money is donated to CARE by General Mills and Merck/MSD to support women and girls in Malawi and India.</p>
 							<div class="footer">
-								<div class="modal-footer-copy">* General Mills will donate up to $1.5 million by December 31, 2012 to CARE.</div>
+								<div class="modal-footer-copy">* General Mills and Merck will donate up to $1.5 million by December 31, 2012 to CARE.</div>
 							</div>
 						</div>
 						<div class="content-right">

@@ -19,7 +19,7 @@
 var Config = {
 	uuid: function(a,b){for(b=a='';a++<36;b+=a*51&52?(a^15?8^Math.random()*(a^20?16:4):4).toString(16):'-');return b},
 	root_url: document.domain,
-	subdirectory: '/storyofmaya/',
+	subdirectory: '/',
 	sub_url: '?chapter=',
 	getUrl: function() {
 		return this.root_url + this.subdirectory;
@@ -43,7 +43,7 @@ var Story = {
 			var modal = $('#modal-entry');
 			modal.fadeIn('slow');
 			modal.modal({
-				position: ["20%","30%"],
+				/*position: ["20%","30%"],*/
 				onClose: function (dialog) {
 				dialog.data.animate({left:'-=2000px'}, 2000, function () {
 					dialog.overlay.slideUp(1200, function () {
@@ -750,7 +750,7 @@ var Flags = {
 		// Chapter 3
 		[
 			'In India, Join My Village supports <a href="http://joinmyvillage.com/project/kgbv-school-support" target="_blank">KGBV schools—upper primary schools for girls</a> that help them prepare for secondary school while gaining important social skills including working in groups, problem solving, critical thinking, persistence in the face of difficulty and respect for others and themselves.',
-			'Join My Village has provided over 800 <a href="http://joinmyvillage.com/project/scholarships" target="_blank">secondary boarding school scholarships</a> in Malawi to help more girls get higher education.'
+			'Join My Village has provided more than 800 <a href="http://joinmyvillage.com/project/scholarships" target="_blank">secondary boarding school scholarships</a> in Malawi to help more girls get higher education.'
 		],
 		// Chapter 4
 		[
@@ -785,7 +785,7 @@ var Flags = {
 			$('#jmv-modal .modal-content img').attr('src', 'img/jmv_banners/c' + chapter + '_f' + flag_num + '.jpg');
 			//$('#jmv-modal').fadeIn('slow');
 			$('#jmv-modal').modal({
-				position: ["20%","35%"],
+				/*position: ["20%","35%"],*/
 				closeHTML: '<a class="modal-close"></a>',
 				closeClass: 'modal-close'
 				
