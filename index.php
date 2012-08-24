@@ -1,6 +1,6 @@
 <?php $chapter = $_GET['chapter'] ? $_GET['chapter'] : 1; ?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
@@ -38,20 +38,22 @@
           });
           FB.Event.subscribe('edge.create',
 		    function(response) {
+		    	//console.log('Liked: ' + response);
 		    	Likes.processLike();
 		    });
 		  FB.Event.subscribe('edge.remove', function(response) {
+		    	//console.log('Unliked: ' + response);
 		    	Likes.processLike();
 			});
 		  FB.getLoginStatus(function(response){
 	        	Likes.fbApiInit = true;
-			/*********************
-	                 * Initialize Story
-        	         *********************/
-	                jQuery(function( $ ) {
-                	        console.log('initializing story...');
-        	                Story.init();
-	                });
+				/*********************
+				 * Initialize Story
+				 *********************/
+               	jQuery(function( $ ) {
+					console.log('initializing story...');
+					Story.init();
+                });
 	    	});
         };
         // Load the SDK Asynchronously

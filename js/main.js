@@ -501,9 +501,9 @@ var Likes = {
 		}, 'json');
 	},
 	bindFacebookLike: function() {
-		console.log('binding facebook like before if...')
+		//console.log('binding facebook like before if...')
 		if(this.fbApiInit) {
-			console.log('initializing FB like button...');
+			//console.log('initializing FB like button...');
 			var url = Story.getUrl();
 			// clean fb like
 	                $('.facebook-like').remove();
@@ -519,6 +519,7 @@ var Likes = {
 				//console.log('showing thanks...');
 			});
 		})
+		//console.log('after processing like...');
 	},
 	recordLike: function() {
 		$.post('likes.php',{chapter: this.chapter}, function(data) {
@@ -526,6 +527,7 @@ var Likes = {
 		});
 	},
 	getCounts: function( chapter, callback ) {
+		console.log('getting counts...');
 		if(this.use_remote == false) {
 			$.get('likes.php?chapter=' + chapter, function(data) {
 				Likes.setCounts(data.count, data.limit);
@@ -535,12 +537,20 @@ var Likes = {
 		} else {
 			var url = Story.getUrl(chapter);
 			var query = 'http://graph.facebook.com/fql?q=SELECT url, normalized_url, share_count, like_count, comment_count, total_count, commentsbox_count, comments_fbid, click_count FROM link_stat WHERE url="' + url + '"';
-			//console.log(query);
-			$.getJSON(query, function(data) {
-				Likes.setCounts(data.data[0].like_count, Likes.limit);
+			console.log(query);
+			FB.api(
+			  {
+			    method: 'links.getStats',
+			    urls: url
+			  },
+			  function(response) {
+			    //console.log('setting counts...');
+				Likes.setCounts(response[0].like_count, Likes.limit);
+				//console.log('calling back...');
 				if(callback)
 					callback();
-			});
+			  }
+			);
 		}
 	},
 	setCounts: function(count, limit) {
