@@ -98,7 +98,7 @@ a:visited {
   width: 5409px;
   overflow: hidden;
   position: absolute;
-  height: 100px;
+  height: 75px;
 }
 .clear {
   clear: both;
@@ -138,7 +138,7 @@ a:visited {
   position: absolute;
 }
 .x0 {
-  bottom: 100px;
+  bottom: 75px;
   color: #fff;
   font-size: .65em;
 }
