@@ -527,7 +527,7 @@ var Likes = {
 		});
 	},
 	getCounts: function( chapter, callback ) {
-		console.log('getting counts...');
+		//console.log('getting counts...');
 		if(this.use_remote == false) {
 			$.get('likes.php?chapter=' + chapter, function(data) {
 				Likes.setCounts(data.count, data.limit);
@@ -536,8 +536,6 @@ var Likes = {
 			}, 'json')
 		} else {
 			var url = Story.getUrl(chapter);
-			var query = 'http://graph.facebook.com/fql?q=SELECT url, normalized_url, share_count, like_count, comment_count, total_count, commentsbox_count, comments_fbid, click_count FROM link_stat WHERE url="' + url + '"';
-			console.log(query);
 			FB.api(
 			  {
 			    method: 'links.getStats',

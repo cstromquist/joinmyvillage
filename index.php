@@ -52,7 +52,7 @@
 				 * Initialize Story
 				 *********************/
                	jQuery(function( $ ) {
-					console.log('initializing story...');
+					//console.log('initializing story...');
 					Story.init();
                 });
 	    	});
