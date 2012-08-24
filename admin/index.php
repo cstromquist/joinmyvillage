@@ -141,6 +141,10 @@ function get_data($url)
 		  	<input type="text" name="config[ga_id]" placeholder="UA-XXXXX-X" value="<?php echo $config['ga_id']; ?>">
 		  	<label>Facebook App ID</label>
 		  	<input type="text" name="config[fb_app_id]" placeholder="XXXXXXXXXXXX" value="<?php echo $config['fb_app_id']; ?>">
+		  	<label>Site Title</label>
+		  	<input type="text" name="config[site_title]" placeholder="Enter the Site Title" value="<?php echo $config['site_title']; ?>">
+		  	<label>Site Description</label>
+		  	<textarea rows="7" name="config[site_description]"><?php echo $config['site_description']; ?></textarea>
         	<div class="form-actions">
 			  <button type="submit" class="btn btn-primary">Save changes</button>
 			</div>

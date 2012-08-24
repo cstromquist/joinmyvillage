@@ -1,6 +1,6 @@
 <?php $config = unserialize(file_get_contents('config')); ?>
 <?php $chapter = $_GET['chapter'] ? $_GET['chapter'] : 1; ?>
-<?php $subdir = '/storyofmaya/'; ?>
+<?php $subdir = '/'; ?>
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:og="http://ogp.me/ns#"
@@ -8,14 +8,14 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Help Educate a Girl</title>
-    <meta name="description" content="When you and your friends click, it helps girls. Over 60 million girls are denied access to education. Follow our story and see how easy it is to make a difference.">
+    <title><?php echo $config['site_title'] ?></title>
+    <meta name="description" content="<?php echo $config['site_title'] ?>">
     <meta name="viewport" content="width=device-width">
 	<link rel="canonical" href="http://<?php echo $_SERVER['SERVER_NAME'] . $subdir ?><?php if($chapter != 1): ?>?chapter=<?php echo $chapter ?><?php endif ?>"/>
 	<meta property="fb:app_id" content="461563293883641" />
-	<meta property="og:title" content="Help Educate a Girl" />
+	<meta property="og:title" content="<?php echo $config['site_title'] ?>" />
 	<meta property="og:site_name" content="join my village, empower women, getting women out of poverty" />
-	<meta property="og:description" content="When you and your friends click, it helps girls. Over 60 million girls are denied access to education. Follow our story and see how easy it is to make a difference." />
+	<meta property="og:description" content="<?php echo $config['site_description'] ?>" />
 	<meta property="og:url" content="http://<?php echo $_SERVER['SERVER_NAME'] . $subdir ?><?php if($chapter != 1): ?>?chapter=<?php echo $chapter ?><?php endif ?>" />
 	<meta property="og:type" content="website" />
 	<meta property="og:image" content="http://<?php echo $_SERVER['SERVER_NAME'] . $subdir ?>img/JMV_BTS_<?php echo $chapter ?>.gif" />
@@ -690,7 +690,7 @@
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
-        var _gaq=[['_setAccount','<?php echo $config['ga_id'] ?>',['_trackPageview']];
+        var _gaq=[['_setAccount','<?php echo $config['ga_id'] ?>'],['_trackPageview']];
         (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
         g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
         s.parentNode.insertBefore(g,s)}(document,'script'));
