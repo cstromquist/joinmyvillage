@@ -717,8 +717,8 @@ var Scroll = {
 		// un-lock scroll position
 		var html = $('html');
 		var scrollPosition = html.data('scroll-position');
-		html.css('overflow', html.data('previous-overflow'));
-		window.scrollTo(scrollPosition[0], scrollPosition[1])
+		html.css('overflow', 'visible');
+		window.scrollTo(scrollPosition[0], scrollPosition[1]);
 	},
 	scroll: function() {
 		window.scrollBy(50,0);
