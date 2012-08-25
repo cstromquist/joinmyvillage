@@ -49,18 +49,14 @@
 			});
 		  FB.getLoginStatus(function(response){
 	        	Likes.fbApiInit = true;
-				/*********************
-				 * Initialize Story
-				 *********************/
-               	jQuery(function( $ ) {
-					//console.log('initializing story...');
-					Story.init();
-                });
-	    	});
-	    	jQuery(function( $ ) {
+			/*********************
+			 * Initialize Story
+			 *********************/
+	    		jQuery(function( $ ) {
 				//console.log('initializing story...');
 				Story.init();
-            });
+            		});
+		});
         };
         // Load the SDK Asynchronously
         (function(d){
