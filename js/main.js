@@ -214,19 +214,20 @@ var Story = {
 		},
 		blinkKeyboard: function() {
 			if(!$('#instructions').attr('disabled')) {
+				console.log('blinking...');
 				$('#instructions').
-					fadeOut(1500, function() {
+					animate({opacity: 0}, 1500, function() {
 						$(this).
 							removeClass('keyboard').
 							addClass('instructions');
 					}).
-					fadeIn(1500).
-					fadeOut(1500, function() {
+					animate({opacity: 1}, 1500).
+					animate({opacity: 0}, 1500, function() {
 						$(this).
 							removeClass('instructions').
 							addClass('keyboard');
 					}).
-					fadeIn(1500, Story[1].blinkKeyboard);
+					animate({opacity: 1}, 1500, Story[1].blinkKeyboard);
 			}
 		},
 		blinkLearnMore: function() {
@@ -239,6 +240,7 @@ var Story = {
 				if (Maya.xPosition() > 400) {
 					$('#instructions').hide();
 					$('#instructions').attr('disabled', true);
+					console.log('disabling instructions...')
 				}
 		    	if (Maya.xPosition() > 2000 && Maya.xPosition() < 3000) {
 		    		Animations.animateCrops(1);
