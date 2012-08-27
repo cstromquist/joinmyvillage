@@ -334,7 +334,7 @@ var Story = {
 		    		Animations.animatePlane();
 		    	}
 		    	if (Maya.xPosition() > $('#chapter-3 #tree-4').position().left - 600 && !$('#chapter-3 #tree-4 img').attr('disabled')) {
-		    		$('#chapter-3 #tree-4 img').attr('src', '../img/animations/moneytree.gif').attr('disabled', true);
+		    		$('#chapter-3 #tree-4 img').attr('src', 'img/animations/moneytree.gif').attr('disabled', true);
 		    		$('#chapter-3 #tree-4').
 		    			removeClass('tree-money-start').css('height', 451);
 		    		
