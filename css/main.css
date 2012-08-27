@@ -73,8 +73,6 @@ a:visited {
   background-image: -ms-linear-gradient(top, #bde9f2, #dcfeff);
   background-image: linear-gradient(top, #bde9f2, #dcfeff);
   height: auto !important;
-  /* real browsers */
-
   height: 100%;
   /* IE6: treaded as min-height*/
 

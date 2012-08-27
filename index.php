@@ -1,7 +1,7 @@
 <?php $num = rand(1000, 1000000) * rand(100, 10000); ?>
 <?php $config = unserialize(file_get_contents('config')); ?>
 <?php $chapter = $_GET['chapter'] ? $_GET['chapter'] : 1; ?>
-<?php $subdir = '/storyofmaya/'; ?>
+<?php $subdir = '/'; ?>
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:og="http://ogp.me/ns#"
@@ -52,14 +52,7 @@
 			});
 		  FB.getLoginStatus(function(response){
 	        	Likes.fbApiInit = true;
-			/*********************
-			 * Initialize Story
-			 *********************/
-	    		jQuery(function( $ ) {
-				//console.log('initializing story...');
-				Story.init();
-            		});
-		});
+			});
         };
         // Load the SDK Asynchronously
         (function(d){
@@ -357,7 +350,9 @@
 				<div id="tree-3" class="tree-medium layer-level-97"></div>
 				<div id="bush-3" class="bush-large layer-level-102 x0"></div>
 				<div id="grass-3" class="grass-medium layer-level-99 x0"></div>
-				<div id="tree-4" class="tree-money layer-level-102 x0"></div>
+				<div id="tree-4" class="tree-money-start layer-level-102 x0">
+					<img />
+				</div>
 				<div id="flag-2" class="flag layer-level-98"></div>
 				<div id="grass-4" class="grass-small layer-level-99 x0"></div>
 				<div id="tree-5" class="tree-small layer-level-98"></div>
@@ -696,7 +691,7 @@
         var _gaq=[['_setAccount','<?php echo $config['ga_id'] ?>'],['_trackPageview']];
         (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
         g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-        s.parentNode.insezrtBefore(g,s)}(document,'script'));
+        s.parentNode.insertBefore(g,s)}(document,'script'));
     </script>
 </body>
 </html>

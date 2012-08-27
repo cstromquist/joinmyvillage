@@ -19,7 +19,7 @@
 var Config = {
 	uuid: function(a,b){for(b=a='';a++<36;b+=a*51&52?(a^15?8^Math.random()*(a^20?16:4):4).toString(16):'-');return b},
 	root_url: document.domain,
-	subdirectory: '/storyofmaya/',
+	subdirectory: '/',
 	sub_url: '?chapter=',
 	getUrl: function() {
 		return this.root_url + this.subdirectory;
@@ -289,7 +289,6 @@ var Story = {
 	3: {
 		status: false,
 		plane_flown: false,
-		money_tree_shown: false,
 		open: function() {
 			Maya.enter('child');
 			this.animate();
@@ -311,19 +310,19 @@ var Story = {
 		    	if (Maya.xPosition() > Story.chapterStartPoint(3) + 1450 && Maya.current_life_stage == 'child') {
 		    		Maya.lifeTransition('teen'); // Maya becomes a teenager
 		    	}
-		    	if (Maya.xPosition() > Story.chapterStartPoint(3) + 2000 && !$('#chapter-3 #bubble-1').attr('disabled')) {
+		    	if (Maya.xPosition() > $('#chapter-3 #bubble-1').position().left - 200 && !$('#chapter-3 #bubble-1').attr('disabled')) {
 		    		$('#chapter-3 #bubble-1').animate({opacity:1}, 1000);
 		    	}
-		    	if (Maya.xPosition() > Story.chapterStartPoint(3) + 2100) {
+		    	if (Maya.xPosition() > $('#chapter-3 #bubble-2').position().left - 200 && !$('#chapter-3 #bubble-2').attr('disabled')) {
 		    		$('#chapter-3 #bubble-2').animate({opacity:1}, 1000);
 		    	}
-		    	if (Maya.xPosition() > Story.chapterStartPoint(3) + 2200 && !$('#chapter-3 #bubble-1').attr('disabled')) {
+		    	if (Maya.xPosition() > $('#chapter-3 #bubble-1').position().left + 50 && !$('#chapter-3 #bubble-1').attr('disabled')) {
 		    		$('#chapter-3 #bubble-1').removeClass('bubble-marriage').
 						addClass('bubble-burst').
 						attr('disabled', true).
 						fadeOut(2000);
 		    	}
-		    	if (Maya.xPosition() > Story.chapterStartPoint(3) + 2500 && !$('#chapter-3 #bubble-2').attr('disabled')) {
+		    	if (Maya.xPosition() > $('#chapter-3 #bubble-2').position().left + 50 && !$('#chapter-3 #bubble-2').attr('disabled')) {
 		    		$('#chapter-3 #bubble-2').removeClass('bubble-baby').
 						addClass('bubble-burst-right').
 						attr('disabled', true).
@@ -334,8 +333,11 @@ var Story = {
 		    		Story[3].plane_flown = true;
 		    		Animations.animatePlane();
 		    	}
-		    	if (Maya.xPosition() > Story.chapterStartPoint(3) + 2900 && Story[3].money_tree_shown != true) {
-		    		//FIXME: Add the money tree animation
+		    	if (Maya.xPosition() > $('#chapter-3 #tree-4').position().left - 600 && !$('#chapter-3 #tree-4 img').attr('disabled')) {
+		    		$('#chapter-3 #tree-4 img').attr('src', '../img/animations/moneytree.gif').attr('disabled', true);
+		    		$('#chapter-3 #tree-4').
+		    			removeClass('tree-money-start').css('height', 451);
+		    		
 		    	}
 	    	});
 		},
@@ -991,3 +993,10 @@ var Animations = {
 			animate({bottom:'514px'}, 1400, 'linear', Animations.animatePlane)
 	}
 }
+/*********************
+ * Initialize Story
+ *********************/
+jQuery(function( $ ) {
+	//console.log('initializing story...');
+	Story.init();
+});
