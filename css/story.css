@@ -151,13 +151,25 @@
   bottom: -25px !important;
 }
 .bubble-baby {
-  background: transparent url(../img/animations/bubble_baby.gif) no-repeat;
+  background: transparent url(../img/bubble_baby.png) no-repeat;
   width: 93px;
   height: 92px;
   opacity: 0;
 }
 .bubble-marriage {
-  background: transparent url(../img/animations/bubble_marriage.gif) no-repeat;
+  background: transparent url(../img/bubble_marriage.png) no-repeat;
+  width: 94px;
+  height: 92px;
+  opacity: 0;
+}
+.bubble-burst {
+  background: transparent url(../img/bubble_burst.png) no-repeat;
+  width: 94px;
+  height: 92px;
+  opacity: 0;
+}
+.bubble-burst-right {
+  background: transparent url(../img/bubble_burst_right.png) no-repeat;
   width: 94px;
   height: 92px;
   opacity: 0;
