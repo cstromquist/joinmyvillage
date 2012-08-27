@@ -1,3 +1,4 @@
+<?php $num = rand(1000, 1000000) * rand(100, 10000); ?>
 <?php $config = unserialize(file_get_contents('config')); ?>
 <?php $chapter = $_GET['chapter'] ? $_GET['chapter'] : 1; ?>
 <?php $subdir = '/storyofmaya/'; ?>
@@ -7,6 +8,8 @@
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title><?php echo $config['site_title'] ?></title>
     <meta name="description" content="<?php echo $config['site_title'] ?>">
@@ -685,7 +688,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
     <script src="js/vendor/jquery.cookie.js"></script>
     <script src="js/plugins.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/main.js?id=<?php echo $num ?>"></script>
     <script type="text/javascript" src="js/vendor/jquery.simplemodal-1.4.2.js"></script>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
@@ -693,7 +696,7 @@
         var _gaq=[['_setAccount','<?php echo $config['ga_id'] ?>'],['_trackPageview']];
         (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
         g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-        s.parentNode.insertBefore(g,s)}(document,'script'));
+        s.parentNode.insezrtBefore(g,s)}(document,'script'));
     </script>
 </body>
 </html>
