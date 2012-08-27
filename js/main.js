@@ -492,8 +492,6 @@ var Likes = {
 				Likes.getCounts(Likes.chapter, function() {
 					if(Likes.isLimitReached())
 						Likes.limit_reached = true;
-					if(callback)
-						callback();
 				});
 			}, 'json');
 		});
@@ -556,8 +554,9 @@ var Likes = {
 		}
 	},
 	setCounts: function(count, limit) {
-		Likes.count = count;
-		Likes.remaining = limit < count ? 0 : (limit - count);
+		Likes.count = Number(count);
+		Likes.limit = Number(limit);
+		Likes.remaining = Likes.limit < Likes.count ? 0 : (Likes.limit - Likes.count);
 		Likes.displayCounts();
 		Likes.displayPercentageBar();
 	},
@@ -672,9 +671,11 @@ var LikesModal = {
 		var next_chapter = Story.next_chapter;
 		$('#likes-modal #info').fadeOut(1000, function() {
 			if(Likes.isLimitReached()) {
+				//console.log('Goal reached...');
 				$('#likes-modal #thanks #message').hide();
 				$('#likes-modal #thanks #congrats').fadeIn(1000);
 			} else {
+				//console.log('Goal not reached...');
 				$('#likes-modal #thanks #congrats').hide();
 				$('#likes-modal #thanks #message').fadeIn(1000);
 			}
