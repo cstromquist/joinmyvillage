@@ -140,7 +140,7 @@
 			</div>
 			<div id="maya" class="x0">
 				<div id="stars" class="stars"></div>
-				<div id="keyboard" class="keyboard"></div>
+				<div id="instructions" class="keyboard"><span>USE THE ARROW<br />KEYS TO MOVE MAYA</span></div>
 			</div>
 			<!-- BEGIN CHAPTER 1 -->
 			<div id="chapter-1" class="chapter">

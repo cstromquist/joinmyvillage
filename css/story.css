@@ -346,6 +346,19 @@
   width: 93px;
   height: 173px;
 }
+.instructions {
+  width: 176px;
+  bottom: 155px;
+  left: -58px;
+  position: relative;
+  opacity: .4;
+  background-color: #372f23;
+  font-family: BrandonBlk;
+  font-size: 1.3em;
+  text-align: center;
+  padding: 15px 0 15px 0;
+  display: none;
+}
 .keyboard {
   background: transparent url(../img/keyboard.png) no-repeat;
   width: 176px;
@@ -353,7 +366,11 @@
   bottom: 155px;
   left: -58px;
   position: relative;
-  opacity: 0;
+  opacity: 1;
+  display: none;
+}
+.keyboard span {
+  display: none;
 }
 .learn-more {
   background: transparent url(../img/learn_more.png) no-repeat;
