@@ -487,6 +487,7 @@
 				<div id="grass-2" class="grass-small layer-level-99 x0"></div>
 				<div id="tree-2" class="tree-medium layer-level-102 x0"></div>
 				<div id="clinic-1" class="medical-clinic layer-level-99 x0"></div>
+				<div id="clinic-sign" class="medical-clinic-sign layer-level-98 x0"></div>
 				<div id="woman-1" class="woman-pregnant-1 layer-level-99 x0"></div>
 				<div id="woman-2" class="woman-pregnant-2 layer-level-99 x0"></div>
 				<div id="woman-3" class="woman-pregnant-3 layer-level-99 x0"></div>
