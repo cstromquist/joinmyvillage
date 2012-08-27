@@ -492,8 +492,12 @@ var Likes = {
 					Likes.use_remote = false;
 				}
 				Likes.getCounts(Likes.chapter, function() {
-					if(Likes.isLimitReached())
+					if(Likes.isLimitReached()) {
 						Likes.limit_reached = true;
+						LikesModal.showThanks();
+					}
+					if(callback)
+						callback();
 				});
 			}, 'json');
 		});
