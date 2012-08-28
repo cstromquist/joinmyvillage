@@ -195,7 +195,7 @@ var Story = {
 			this.bindScrollPoints();
 			Maya.enter('child');
 			Boxes.show(1,1); //slide in the first box
-			$('#flag-1').click(function(){
+			$('#flag-11').click(function(){
 				$('#learn-more').hide();
 			});
 		},
@@ -249,11 +249,11 @@ var Story = {
 		    		Animations.animateCrops(1);
 		    	}
 		    	if (Maya.xPosition() > 2800 && Maya.xPosition() < 3300) {
-		    		$('#girl-1').animate({bottom: '110px'}, 3500);
+		    		$('#girl-11').animate({bottom: '110px'}, 3500);
 		    	}
 		    	if (Maya.xPosition() > 3800 && Maya.xPosition() < 4000) {
-		    		$('#boy-1').animate({bottom: '110px'}, 4500);
-					$('#boy-2').animate({bottom: '120px'}, 4000);
+		    		$('#boy-11').animate({bottom: '110px'}, 4500);
+					$('#boy-12').animate({bottom: '120px'}, 4000);
 		    	}
 	    	});
 		},
@@ -267,7 +267,7 @@ var Story = {
 		open: function() {
 			Maya.enter('child');
 			this.bindScrollPoints();
-			Animations.water_position = $('#chapter-2 #water-front-1').position().left;
+			Animations.water_position = $('#chapter-2 #water-front-21').position().left;
 			Animations.chapter = 2; 
 			Animations.animateWater();
 			this.animateParachutes();
@@ -275,20 +275,20 @@ var Story = {
 		animateParachutes: function() {
 			if(Story.current_chapter == 2) {
 				// float parachutes
-				$('#chapter-2 #parachute-1').
+				$('#chapter-2 #parachute-21').
 					animate({top:'200px'}, 2500, 'linear').
 					animate({top:'120px'}, 2500, 'linear', Story[2].animateParachutes);
-				$('#chapter-2 #parachute-2').
+				$('#chapter-2 #parachute-22').
 					animate({left:'-=50px'}, 3500, 'linear').
 					animate({left:'+=50px'}, 3500, 'linear');
-				$('#chapter-2 #parachute-3').
+				$('#chapter-2 #parachute-23').
 					animate({top:'+=50px'}, 4500, 'linear').
 					animate({top:'-=50px'}, 4500, 'linear');
 			}
 		},
 		bindScrollPoints: function() {
 			$(window).bind('scroll', function() {
-				var bubble = $('#chapter-2 #bubble-1');
+				var bubble = $('#chapter-2 #bubble-21');
 				if (Maya.xPosition() > Story.chapterStartPoint(2) + 4400 && bubble.css('opacity') == 0) {
 		    		bubble.animate({opacity:1}, 1000);
 		    	}
@@ -313,7 +313,7 @@ var Story = {
 		animateParachutes: function() {
 			if(Story.current_chapter == 3) {
 				// float parachutes
-				$('#chapter-3 #parachute-1').
+				$('#chapter-3 #parachute-31').
 					animate({top:'+=200px'}, 5500, 'linear').
 					animate({top:'-=200px'}, 5500, 'linear', Story[3].animateParachutes);
 			}
@@ -323,32 +323,32 @@ var Story = {
 		    	if (Maya.xPosition() > Story.chapterStartPoint(3) + 1450 && Maya.current_life_stage == 'child') {
 		    		Maya.lifeTransition('teen'); // Maya becomes a teenager
 		    	}
-		    	if (Maya.xPosition() > $('#chapter-3 #bubble-1').position().left - 200 && !$('#chapter-3 #bubble-1').attr('disabled')) {
+		    	if (Maya.xPosition() > $('#chapter-3 #bubble-31').position().left - 200 && !$('#chapter-3 #bubble-31').attr('disabled')) {
 		    		$('#chapter-3 #bubble-1').animate({opacity:1}, 1000);
 		    	}
-		    	if (Maya.xPosition() > $('#chapter-3 #bubble-2').position().left - 200 && !$('#chapter-3 #bubble-2').attr('disabled')) {
+		    	if (Maya.xPosition() > $('#chapter-3 #bubble-32').position().left - 200 && !$('#chapter-3 #bubble-32').attr('disabled')) {
 		    		$('#chapter-3 #bubble-2').animate({opacity:1}, 1000);
 		    	}
-		    	if (Maya.xPosition() > $('#chapter-3 #bubble-1').position().left + 50 && !$('#chapter-3 #bubble-1').attr('disabled')) {
+		    	if (Maya.xPosition() > $('#chapter-3 #bubble-31').position().left + 50 && !$('#chapter-3 #bubble-31').attr('disabled')) {
 		    		$('#chapter-3 #bubble-1').removeClass('bubble-marriage').
 						addClass('bubble-burst').
 						attr('disabled', true).
 						fadeOut(2000);
 		    	}
-		    	if (Maya.xPosition() > $('#chapter-3 #bubble-2').position().left + 50 && !$('#chapter-3 #bubble-2').attr('disabled')) {
+		    	if (Maya.xPosition() > $('#chapter-3 #bubble-32').position().left + 50 && !$('#chapter-3 #bubble-32').attr('disabled')) {
 		    		$('#chapter-3 #bubble-2').removeClass('bubble-baby').
 						addClass('bubble-burst-right').
 						attr('disabled', true).
 						fadeOut(2000);
 		    	}
 		    	if (Maya.xPosition() > Story.chapterStartPoint(3) + 2300 && Story[3].plane_flown != true) {
-		    		$("#plane-1").animate({left: '+=600px'}, 2000)
+		    		$("#plane-31").animate({left: '+=600px'}, 2000)
 		    		Story[3].plane_flown = true;
 		    		Animations.animatePlane();
 		    	}
-		    	if (Maya.xPosition() > $('#chapter-3 #tree-4').position().left - 600 && !$('#chapter-3 #tree-4 img').attr('disabled')) {
-		    		$('#chapter-3 #tree-4 img').attr('src', 'img/animations/moneytree.gif').attr('disabled', true);
-		    		$('#chapter-3 #tree-4').
+		    	if (Maya.xPosition() > $('#chapter-3 #tree-34').position().left - 600 && !$('#chapter-3 #tree-34 img').attr('disabled')) {
+		    		$('#chapter-3 #tree-34 img').css('display', 'block').attr('src', 'img/animations/moneytree.gif').attr('disabled', true);
+		    		$('#chapter-3 #tree-34').
 		    			removeClass('tree-money-start').css('height', 451);
 		    		
 		    	}
@@ -393,11 +393,11 @@ var Story = {
 			this.bindScrollPoints();
 		},
 		animate: function() {
-			var stars = $('#girl-1 #stars');
+			var stars = $('#girl-51 #stars-51');
 			stars.css({bottom: '50px'});
 			stars.animate({opacity:1}, 2000).animate({opacity:0}, 2000);
 			
-			var stars = $('#girl-2 #stars');
+			var stars = $('#girl-52 #stars-52');
 			stars.css({bottom: '50px'});
 			stars.animate({opacity:1}, 2000).animate({opacity:0}, 2000);
 		},
@@ -410,7 +410,7 @@ var Story = {
 		    		Maya.lifeTransition('pregnant'); // Maya becomes pregnant
 		    	}
 		    	if (Maya.xPosition() > Story.chapterStartPoint(5) + 1300 && Story[5].man_chosen != true) {
-		    		var chosen_man = $('#chapter-5 #man-3');
+		    		var chosen_man = $('#chapter-5 #man-53');
 		    		chosen_man.removeClass('man-3').addClass('husband-animation').animate({left: '+=650px'}, 4000)
 		    		Story[5].man_chosen = true;
 		    		
@@ -430,7 +430,7 @@ var Story = {
 			this.animate();
 		},
 		animate: function() {
-			Animations.water_position = $('#chapter-6 #water-front-1').position().left;
+			Animations.water_position = $('#chapter-6 #water-front-61').position().left;
 			Animations.chapter = 6; 
 			Animations.animateWater();
 		},
@@ -464,6 +464,8 @@ var Story = {
 				if(Maya.xPosition() >= Story.chapterStartPoint(7) + 2980 && Story[7].end == false) {
 					Maya.pause_animation = true;
 					$('#maya').css('background-position', 0);
+					$('#maya').css('left', Maya.xPosition());
+					$('#maya').css('position', 'absolute');
 					$('#maya').removeClass('maya-woman').addClass('maya-animation').animate({left: '+=350px'}, 4000, function() {
 						$(this).fadeOut();
 					})
@@ -764,13 +766,13 @@ var Flags = {
 	content: [
 		// Chapter 1
 		[ 
-			'Meet <a href="http://www.joinmyvillage.com" target="_blank">Join My Village</a>, a unique online intiative working through CARE to lift women and girls out of poverty in India and Malawi through education and community initiatives...to empower women and girls to strengthen themselves, their families, their communities&mdash;and the world.',
+			'Meet <a href="http://www.joinmyvillage.com" target="_blank">Join My Village</a>, a unique online initiative working through CARE to lift women and girls out of poverty in India and Malawi through education and community initiatives...to empower women and girls to strengthen themselves, their families, their communities&mdash;and the world.',
 			'Education is a birthright for all children. But only 1 out of 3 girls graduates from primary school in developing countries, leaving them stuck in a <a href="http://joinmyvillage.com/what-is-jmv" target="_blank">cycle of poverty.</a>',
 			'<a href="http://joinmyvillage.com/how-it-works" target="_blank">Our support model is a little different</a>. It involves action on your part. Each Facebook post you like and every click on our website releases $1 from General Mills and Merck to fund the important work of empowering girls through CARE.'
 		],
 		// Chapter 2
 		[
-			'In India, Join My Village supports an accelerated learning program, called <a href="http://joinmyvillage.com/project/accelerated-learning" target="_blank">Udaan</a>, targeting older girls who have not completed primary school. The program brings them up to a fifth-grade level in just 11 months—and 95% go onto secondary school or college.',
+			'In India, Join My Village supports an accelerated learning program, called <a href="http://joinmyvillage.com/project/accelerated-learning" target="_blank">Udaan</a>, targeting older girls who have not completed primary school. The program brings them up to a fifth-grade level in just 11 months&mdash;and 95% choose to continue their education.',
 			'Join My Village is working in Malawi to build <a href="http://joinmyvillage.com/project/primary-school-support" target="_blank">new teacher housing</a> that will bring more female teachers to rural villages—bringing more mentors and reducing class size.'
 		],
 		// Chapter 3
@@ -802,9 +804,9 @@ var Flags = {
 		}
 	},
 	setupClick: function(chapter, index) {
-		$('#chapter-' + chapter + ' #flag-' + index).click(function() {
+		$('#chapter-' + chapter + ' #flag-' + chapter + index).click(function() {
 			var chapter = $(this).parent().attr('id').substr(8,9);
-			var flag_num = this.id.substr(5,6);
+			var flag_num = this.id.substr(6,7);
 			Flags.x = $(this).position().left;
 			//$('#jmv-modal').css('left', x - 200);
 			$('#jmv-modal .modal-content p').html(Flags.content[chapter-1][flag_num-1]);
@@ -849,7 +851,7 @@ var Boxes = {
 		});
 	},
 	show: function( chapter, box_num ) {
-		var box = $('#chapter-' + chapter + ' #box-' + box_num);
+		var box = $('#chapter-' + chapter + ' #box-' + chapter + box_num);
 		if(box.attr('enabled'))
 			return;
 		var p = box.css('bottom');
@@ -866,7 +868,7 @@ var Boxes = {
 	showBoxes: function( chapter ) {
 		var boxes = $('#chapter-' + chapter + ' .box').length;
 		for(var i=1; i<=boxes; i++) {
-			var box = $('#chapter-' + chapter + ' #box-' + i);
+			var box = $('#chapter-' + chapter + ' #box-' + chapter + i);
 			if (Maya.xPosition() > this.xPosition( box ) - 450) {
 				Boxes.show(chapter, i);
 			}
@@ -930,8 +932,8 @@ var Maya = {
 		$('#maya').fadeOut(300, function() {
 			Maya.setBg(bg_pos, lifestage)
 			$(this).fadeIn(300);
-			stars.css({bottom: '50px'});
-			stars.animate({opacity:1}, 1000).animate({opacity:0}, 1000);
+			//stars.css({bottom: '50px'});
+			//stars.animate({opacity:1}, 1000).animate({opacity:0}, 1000);
 			Maya.pause_animation = false;
 		})
 	},
@@ -988,24 +990,24 @@ var Animations = {
 	water_position: null,
 	chapter: null,
 	animateCrops: function( chapter ) {
-		$('#chapter-' + chapter + ' #crop-1 img').animate({width:35,height:53}, 1000);
-		$('#chapter-' + chapter + ' #crop-2 img').delay(200).animate({width:40,height:61}, 1000);
-		$('#chapter-' + chapter + ' #crop-3 img').delay(1200).animate({width:55,height:84}, 1000);
-		$('#chapter-' + chapter + ' #crop-4 img').delay(800).animate({width:45,height:69}, 1000);
-		$('#chapter-' + chapter + ' #crop-5 img').delay(400).animate({width:50,height:76}, 1000);
+		$('#chapter-' + chapter + ' #crop-' + chapter + '1 img').animate({width:35,height:53}, 1000);
+		$('#chapter-' + chapter + ' #crop-' + chapter + '2 img').delay(200).animate({width:40,height:61}, 1000);
+		$('#chapter-' + chapter + ' #crop-' + chapter + '3 img').delay(1200).animate({width:55,height:84}, 1000);
+		$('#chapter-' + chapter + ' #crop-' + chapter + '4 img').delay(800).animate({width:45,height:69}, 1000);
+		$('#chapter-' + chapter + ' #crop-' + chapter + '5 img').delay(400).animate({width:50,height:76}, 1000);
 	},
 	animateWater: function() {
 		var start = Animations.water_position;
 		var end = start - 30;
-		$('#chapter-' + Animations.chapter + ' #water-front-1').
+		$('#chapter-' + Animations.chapter + ' #water-front-' + Animations.chapter + '1').
 	      animate({opacity:0.9, left: start + 'px'},800,'linear').
 	      animate({opacity:0.92, left: end + 'px'},800,'linear', Animations.animateWater);
-	    $('#chapter-' + Animations.chapter + ' #water-back-1').
+	    $('#chapter-' + Animations.chapter + ' #water-back-' + Animations.chapter + '1').
 	      animate({opacity:0.9, left: end + 'px'},800,'linear').
 	      animate({opacity:0.92, left: start + 'px'},800,'linear');
 	},
 	animatePlane: function() {
-		$('#plane-1').
+		$('#plane-31').
 			animate({bottom:'574px'}, 1400, 'linear').
 			animate({bottom:'514px'}, 1400, 'linear', Animations.animatePlane)
 	}
