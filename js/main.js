@@ -449,7 +449,7 @@ var Story = {
 		status: false,
 		end: false,
 		open: function() {
-			Maya.enter('woman', false);
+			Maya.enter('woman', true);
 			this.bindScrollPoints();
 		},
 		animate: function() {
@@ -943,7 +943,13 @@ var Maya = {
 	},
 	setBg: function(bg_pos, lifestage) {
 		$('#maya').css('background-position', bg_pos + 'px');
-		$('#maya').removeClass('maya-' + this.current_life_stage).addClass('maya-' + lifestage);
+		$('#maya').
+			removeClass('maya-child').
+			removeClass('maya-teen').
+			removeClass('maya-woman').
+			removeClass('maya-pregnant').
+			removeClass('maya-mother').
+			addClass('maya-' + lifestage);
 	},
 	animate: function() {
 		$(window).bind('scroll', function() {
