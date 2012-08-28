@@ -58,20 +58,19 @@ var Story = {
 		}
 	},
 	begin: function() {
-		//console.log('Beginning story...');
 		Likes.init(function() {
 			if (Story.validateChapter()) {
 				//console.log('Chapter ' + Story.current_chapter + ' is valid and can be opened...');
 				Story.bindFixedElements();
-				this.setWidth();
+				Story.setWidth();
 				Story.openChapter();
 			} else {
 				//console.log('Chapter ' + Story.current_chapter + ' is not yet available...');
 				Story.setChapter(Story.previous_chapter);
 				Story.begin();
 			}
+			//console.log(Likes);
 		});
-		//window.location.hash('#chapter-' + this.current_chapter);
 	},
 	end: function() {
 		var modal = $('#modal-end');
@@ -134,7 +133,6 @@ var Story = {
 			// make sure to validate
 			Story.begin();
 		}
-		this.openChapter();
 	},
 	redirectToNextChapter: function() {
 		var next_chapter = this.current_chapter + 1;
@@ -142,7 +140,7 @@ var Story = {
 	},
 	validateChapter: function() {
 		// check to make sure the previous chapter can be opened.  If not, go to previous chapter until we find an open one.
-		if(Story.previous_chapter != 1 && !Likes[Story.previous_chapter].limit_reached) {
+		if(Story.current_chapter != 1 && !Likes[Story.previous_chapter].limit_reached) {
 			return false;
 		}
 		return true;
@@ -179,7 +177,6 @@ var Story = {
 		$('html, body').stop().animate({
             scrollLeft: Story.chapterStartPoint(Story.current_chapter)
         }, 3000, function() {
-        	// open chapter after scrolling user!
         	Story[Story.current_chapter].status = true;
         	Story[Story.current_chapter].open();
         	Boxes.init();
@@ -523,20 +520,16 @@ var Likes = {
 					});
 			});
 			// get previous chapter counts if not chapter 1
-			if (Likes.chapter != 1) {
-				Likes.getCounts(Likes.previous_chapter, function(count) {
-					Likes.setCounts(Likes.previous_chapter, count, function() {
-						if(callback)
-							callback();
-					});
-				});					
-			}
+			Likes.getCounts(Likes.previous_chapter, function(count) {
+				Likes.setCounts(Likes.previous_chapter, count, function() {
+				if(callback)
+					callback();
+				});
+			});
 		}, 'json');
 	},
 	bindFacebookLike: function() {
-		//console.log('binding facebook like before if...')
 		if(this.fbApiInit) {
-			//console.log('initializing FB like button...');
 			var url = Story.getUrl();
 			// clean fb like
 	                $('.facebook-like').remove();
@@ -545,14 +538,10 @@ var Likes = {
 		}
 	},
 	processLike: function() {
-		//console.log('processing like...');
 		Likes.getCounts(Likes.chapter, function() {
-			//console.log('getting counts...');
 			LikesModal.showThanks(function() {
-				//console.log('showing thanks...');
 			});
 		})
-		//console.log('after processing like...');
 	},
 	recordLike: function() {
 		$.post('likes.php',{chapter: this.chapter}, function(data) {
@@ -560,7 +549,6 @@ var Likes = {
 		});
 	},
 	getCounts: function( chapter, callback ) {
-		//console.log('getting counts...');
 		if(this.use_remote == false) {
 			$.get('likes.php?chapter=' + chapter, function(data) {
 				if(callback)
@@ -709,11 +697,9 @@ var LikesModal = {
 		var next_chapter = Story.next_chapter;
 		$('#likes-modal #info').fadeOut(1000, function() {
 			if(Likes.isLimitReached(Story.current_chapter)) {
-				//console.log('Goal reached...');
 				$('#likes-modal #thanks #message').hide();
 				$('#likes-modal #thanks #congrats').fadeIn(1000);
 			} else {
-				//console.log('Goal not reached...');
 				$('#likes-modal #thanks #congrats').hide();
 				$('#likes-modal #thanks #message').fadeIn(1000);
 			}
