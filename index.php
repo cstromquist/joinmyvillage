@@ -104,7 +104,7 @@
 				<div class="modal-content">
 					<h2>JOIN MY VILLAGE CONNECTION</h2>
 					<img src="img/loading.gif" alt="Loading..." />
-					<div id="video"><iframe width="480" height="360" src="http://www.youtube.com/embed/xc3Ijmu-wZc" frameborder="0" allowfullscreen></iframe></div>
+					<div id="video"></div>
 					<p></p>
 				</div>
 			</div>

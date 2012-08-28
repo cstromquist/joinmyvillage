@@ -43,7 +43,7 @@ var Story = {
 			var modal = $('#modal-entry');
 			modal.fadeIn('slow');
 			modal.modal({
-				/*position: ["20%","30%"],*/
+				position: ['15%',],
 				onClose: function (dialog) {
 				dialog.data.animate({left:'-=2000px'}, 2000, function () {
 					dialog.overlay.slideUp(1200, function () {
@@ -806,6 +806,7 @@ var Flags = {
 			Flags.x = $(this).position().left;
 			if(chapter == 1 && flag_num == 2) {
 				$('#jmv-modal .modal-content img').hide();
+				$('#jmv-modal .modal-content #video').html('<iframe width="480" height="360" src="http://www.youtube.com/embed/xc3Ijmu-wZc" frameborder="0" allowfullscreen></iframe>');
 				$('#jmv-modal .modal-content #video').show();
 			} else {
 				$('#jmv-modal .modal-content #video').hide();
@@ -816,7 +817,7 @@ var Flags = {
 			$('#jmv-modal .modal-content p').html(Flags.content[chapter-1][flag_num-1]);
 			//$('#jmv-modal').fadeIn('slow');
 			$('#jmv-modal').modal({
-				/*position: ["20%","35%"],*/
+				position: ['20%',],
 				closeHTML: '<a class="modal-close"></a>',
 				closeClass: 'modal-close'
 				
