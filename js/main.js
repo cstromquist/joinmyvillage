@@ -214,7 +214,6 @@ var Story = {
 		},
 		blinkKeyboard: function() {
 			if(!$('#instructions').attr('disabled')) {
-				console.log('blinking...');
 				$('#instructions').
 					animate({opacity: 0}, 1500, function() {
 						$(this).
@@ -240,7 +239,6 @@ var Story = {
 				if (Maya.xPosition() > 400) {
 					$('#instructions').hide();
 					$('#instructions').attr('disabled', true);
-					console.log('disabling instructions...')
 				}
 		    	if (Maya.xPosition() > 2000 && Maya.xPosition() < 3000) {
 		    		Animations.animateCrops(1);
@@ -808,9 +806,16 @@ var Flags = {
 			var chapter = $(this).parent().attr('id').substr(8,9);
 			var flag_num = this.id.substr(6,7);
 			Flags.x = $(this).position().left;
-			//$('#jmv-modal').css('left', x - 200);
+			if(chapter == 1 && flag_num == 2) {
+				$('#jmv-modal .modal-content img').hide();
+				$('#jmv-modal .modal-content #video').show();
+			} else {
+				$('#jmv-modal .modal-content #video').hide();
+				var img = $('#jmv-modal .modal-content img');
+				img.attr('src', 'img/jmv_banners/c' + chapter + '_f' + flag_num + '.jpg');
+				img.show();
+			}
 			$('#jmv-modal .modal-content p').html(Flags.content[chapter-1][flag_num-1]);
-			$('#jmv-modal .modal-content img').attr('src', 'img/jmv_banners/c' + chapter + '_f' + flag_num + '.jpg');
 			//$('#jmv-modal').fadeIn('slow');
 			$('#jmv-modal').modal({
 				/*position: ["20%","35%"],*/
