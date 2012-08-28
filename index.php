@@ -1,7 +1,7 @@
 <?php $num = rand(1000, 1000000) * rand(100, 10000); ?>
 <?php $config = unserialize(file_get_contents('config')); ?>
 <?php $chapter = $_GET['chapter'] ? $_GET['chapter'] : 1; ?>
-<?php $subdir = '/'; ?>
+<?php $subdir = '/storyofmaya/'; ?>
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:og="http://ogp.me/ns#"
