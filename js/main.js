@@ -19,7 +19,7 @@
 var Config = {
 	uuid: function(a,b){for(b=a='';a++<36;b+=a*51&52?(a^15?8^Math.random()*(a^20?16:4):4).toString(16):'-');return b},
 	root_url: document.domain,
-	subdirectory: '/storyofmaya/',
+	subdirectory: '/',
 	sub_url: '?chapter=',
 	getUrl: function() {
 		return this.root_url + this.subdirectory;
@@ -58,6 +58,8 @@ var Story = {
 		}
 	},
 	begin: function() {
+		if(this.current_chapter != this.chapters)
+			LikesModal.init(this.current_chapter);
 		Likes.init(function() {
 			if (Story.validateChapter()) {
 				//console.log('Chapter ' + Story.current_chapter + ' is valid and can be opened...');
@@ -110,7 +112,7 @@ var Story = {
 		return width;
 	},
 	getUrl: function(chapter) {
-		chapter = chapter ? chapter : Story.current_chapter;
+		chapter = chapter ? Number(chapter) : Story.current_chapter;
 		var url = Config.getUrl();
 		if(chapter > 1) {
 			url += Config.sub_url + chapter;
@@ -149,8 +151,6 @@ var Story = {
 			this.chapter_open_status[this.current_chapter] = true
 		}
 		$.cookie('current_chapter', this.current_chapter, { expires: 7 });
-		if(this.current_chapter != this.chapters)
-			LikesModal.init(this.current_chapter);
 		this.setWidth(this.current_chapter);
 		// open all chapters before this one
 		for(var i=1; i<=Story.current_chapter; i++) {
@@ -510,17 +510,9 @@ var Likes = {
 			} else {
 				Likes.use_remote = false;
 			}
-			Likes.getCounts(Likes.chapter, function(count) {
-				Likes.setCounts(Likes.chapter, count, function() {
-					if(Likes[Likes.chapter].limit_reached) {
-						LikesModal.showThanks();
-					} else {
-						Likes.displayCounts();
-                                        	Likes.displayPercentageBar();
-					}
-				});
-			});
-			// get previous chapter counts if not chapter 1
+			// 
+			Likes.processLikeData();
+			// get previous chapter counts
 			Likes.getCounts(Likes.previous_chapter, function(count) {
 				Likes.setCounts(Likes.previous_chapter, count, function() {
 				if(callback)
@@ -530,23 +522,28 @@ var Likes = {
 		}, 'json');
 	},
 	bindFacebookLike: function() {
-		if(this.fbApiInit) {
-			var url = Story.getUrl();
-			// clean fb like
-	                $('.facebook-like').remove();
-        	        $('.facebook-like-wrapper').html('<div class="facebook-like"><fb:like send="false" href="' + url + '" layout="button_count" width="50" show_faces="false"></fb:like></div>');
-			FB.XFBML.parse(document.getElementById('facebook-like'));
-		}
+		var url = Story.getUrl();		
+		// clean fb like
+        $('.facebook-like').remove();
+		$('.facebook-like-wrapper').html('<div class="facebook-like"><fb:like send="false" href="' + url + '" layout="button_count" width="50" show_faces="false"></fb:like></div>');
+		FB.XFBML.parse(document.getElementById('facebook-like'));
 	},
-	processLike: function() {
-		Likes.getCounts(Likes.chapter, function() {
-			LikesModal.showThanks(function() {
+	processLikeData: function() {
+		var cookie = this.getCookie();
+		Likes.getCounts(Likes.chapter, function(count) {
+			Likes.setCounts(Likes.chapter, count, function() {
+				Likes.displayCounts();
+				Likes.displayPercentageBar();
+				if(cookie[Likes.chapter-1]) {
+					LikesModal.showThanks();
+				}
 			});
-		})
+		});
 	},
 	recordLike: function() {
 		$.post('likes.php',{chapter: this.chapter}, function(data) {
-			
+			Likes.setCookie();
+			Likes.processLikeData();
 		});
 	},
 	getCounts: function( chapter, callback ) {
@@ -614,6 +611,18 @@ var Likes = {
 		} else {
 			return false;
 		}
+	},
+	getCookie: function() {
+		var obj = JSON.parse($.cookie('likes'));
+		if(!obj)
+			obj = Array();
+		return obj;
+	},
+	setCookie: function() {
+		var data = this.getCookie();
+		data[Likes.chapter-1] = true;
+		$.cookie('likes', JSON.stringify(data, null, 2));
+		return data;
 	}
 }
 
@@ -695,7 +704,6 @@ var LikesModal = {
 		this.modal.animate({opacity: 1}, 2000);
 	},
 	showThanks: function(callback) {
-		var next_chapter = Story.next_chapter;
 		$('#likes-modal #info').fadeOut(1000, function() {
 			if(Likes[Story.current_chapter].limit_reached) {
 				$('#likes-modal #thanks #message').hide();
@@ -710,8 +718,8 @@ var LikesModal = {
 		$('#likes-modal #thanks').fadeIn(1000);
 	},
 	reset: function() {
-		$('#likes-modal #info').fadeIn(1000);
-		$('#likes-modal #thanks').fadeOut(1000);
+		$('#likes-modal #info').show();
+		$('#likes-modal #thanks').fadeOut();
 		$('#likes-modal #thanks #message').hide();
 		$('#likes-modal #thanks #congrats').hide();
 		$('#likes-modal #thanks #congrats a#continue').attr('disabled', false);
@@ -719,7 +727,6 @@ var LikesModal = {
 	hide: function() {
 		this.modal.animate({opacity: 0}, 2000);
 	}
-	
 }
 
 
