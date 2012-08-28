@@ -33,36 +33,6 @@
 </head>
 <body>
 	<div id="fb-root"></div>
-	<script>
-		window.fbAsyncInit = function() {
-          FB.init({
-            appId      : '<?php echo $config['fb_app_id'] ?>', // App ID
-            status     : true, // check login status
-            cookie     : true, // enable cookies to allow the server to access the session
-            xfbml      : true  // parse XFBML
-          });
-          FB.Event.subscribe('edge.create',
-		    function(response) {
-		    	//console.log('Liked: ' + response);
-		    	Likes.processLike();
-		    });
-		  FB.Event.subscribe('edge.remove', function(response) {
-		    	//console.log('Unliked: ' + response);
-		    	Likes.processLike();
-			});
-		  FB.getLoginStatus(function(response){
-	        	Likes.fbApiInit = true;
-			});
-        };
-        // Load the SDK Asynchronously
-        (function(d){
-           var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-           if (d.getElementById(id)) {return;}
-           js = d.createElement('script'); js.id = id; js.async = true;
-           js.src = "//connect.facebook.net/en_US/all.js";
-           ref.parentNode.insertBefore(js, ref);
-         }(document));
-	</script>
 	<!--[if lt IE 9]>
         <p class="chromeframe">You are using an outdated browser for this site. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
     <![endif]-->
@@ -687,7 +657,43 @@
     <script src="js/plugins.js"></script>
     <script src="js/main.js?id=<?php echo $num ?>"></script>
     <script type="text/javascript" src="js/vendor/jquery.simplemodal-1.4.2.js"></script>
-
+	<script>
+		window.fbAsyncInit = function() {
+          FB.init({
+            appId      : '<?php echo $config['fb_app_id'] ?>', // App ID
+            status     : true, // check login status
+            cookie     : true, // enable cookies to allow the server to access the session
+            xfbml      : true  // parse XFBML
+          });
+          FB.Event.subscribe('edge.create',
+		    function(response) {
+		    	//console.log('Liked: ' + response);
+		    	Likes.processLike();
+		    });
+		  FB.Event.subscribe('edge.remove', function(response) {
+		    	//console.log('Unliked: ' + response);
+		    	Likes.processLike();
+			});
+		  FB.getLoginStatus(function(response){
+	        	Likes.fbApiInit = true;
+			});
+			/*********************
+			 * Initialize Story
+			 *********************/
+			jQuery(function( $ ) {
+				//console.log('initializing story...');
+				Story.init();
+			});
+        };
+        // Load the SDK Asynchronously
+        (function(d){
+           var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+           if (d.getElementById(id)) {return;}
+           js = d.createElement('script'); js.id = id; js.async = true;
+           js.src = "//connect.facebook.net/en_US/all.js";
+           ref.parentNode.insertBefore(js, ref);
+         }(document));
+	</script>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
         var _gaq=[['_setAccount','<?php echo $config['ga_id'] ?>'],['_trackPageview']];
