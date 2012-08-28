@@ -204,7 +204,7 @@ var Story = {
 			//Story.animateObject('#hill-1', 2800, 800);
 			
 			// cloud animations
-			$("#cloud-1").
+			$("#cloud-11").
 		    animate({left:'+=-600px', opacity:0.0}, 27000).
 		    animate({left:'+=600px'},0).
 		    animate({opacity:0.8},3000);
