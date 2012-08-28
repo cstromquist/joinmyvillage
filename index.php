@@ -70,6 +70,8 @@
 		<!-- BEGIN MAIN AREA -->
 		<div id="story">
 			<div id="jmv-modal" class="modal">
+				<div id="border-top"></div>
+				<div id="border-left"></div>
 				<div class="modal-icon"></div>
 				<div class="modal-content">
 					<h2>JOIN MY VILLAGE CONNECTION</h2>
@@ -667,12 +669,11 @@
           });
           FB.Event.subscribe('edge.create',
 		    function(response) {
-		    	//console.log('Liked: ' + response);
-		    	Likes.processLike();
+		    	console.log('Liked: ' + response);
+		    	Likes.recordLike();
 		    });
 		  FB.Event.subscribe('edge.remove', function(response) {
-		    	//console.log('Unliked: ' + response);
-		    	Likes.processLike();
+		    	
 			});
 		  FB.getLoginStatus(function(response){
 	        	Likes.fbApiInit = true;

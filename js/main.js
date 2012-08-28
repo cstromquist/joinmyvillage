@@ -835,9 +835,10 @@ var Flags = {
 				position: ['20%',],
 				closeHTML: '<a class="modal-close"></a>',
 				closeClass: 'modal-close'
-				
 			});
-
+			var height = Number($('#jmv-modal').css('height').substr(0,3));
+			console.log(height);
+			$('#jmv-modal #border-left').css('height', height - 49);
 			$(window).bind('scroll', function() {
 				if (Maya.xPosition() > Flags.x) {
 					$('#modal-overlay').fadeOut(500);
