@@ -512,11 +512,13 @@ var Likes = {
 			}
 			Likes.getCounts(Likes.chapter, function(count) {
 				Likes.setCounts(Likes.chapter, count, function() {
-					Likes.displayCounts();
-					Likes.displayPercentageBar();
-					if(Likes[Likes.chapter].limit_reached)
+					if(Likes[Likes.chapter].limit_reached) {
 						LikesModal.showThanks();
-					});
+					} else {
+						Likes.displayCounts();
+                                        	Likes.displayPercentageBar();
+					}
+				});
 			});
 			// get previous chapter counts if not chapter 1
 			Likes.getCounts(Likes.previous_chapter, function(count) {
@@ -695,7 +697,7 @@ var LikesModal = {
 	showThanks: function(callback) {
 		var next_chapter = Story.next_chapter;
 		$('#likes-modal #info').fadeOut(1000, function() {
-			if(Likes.isLimitReached(Story.current_chapter)) {
+			if(Likes[Story.current_chapter].limit_reached) {
 				$('#likes-modal #thanks #message').hide();
 				$('#likes-modal #thanks #congrats').fadeIn(1000);
 			} else {
