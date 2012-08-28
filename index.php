@@ -104,7 +104,7 @@
 				<div class="modal-content">
 					<h2>JOIN MY VILLAGE CONNECTION</h2>
 					<img src="img/loading.gif" alt="Loading..." />
-					<div id="video"><script src="http://player.ooyala.com/player.js?height=345&deepLinkEmbedCode=k5MTE1MzoX-4FKtByoPkBL1pGmXfaIoy&embedCode=k5MTE1MzoX-4FKtByoPkBL1pGmXfaIoy&width=460&video_pcode=trbmg6yt9Lv7oTT1Jfop7CHlWCa7"></script></div>
+					<div id="video"><iframe width="480" height="360" src="http://www.youtube.com/embed/xc3Ijmu-wZc" frameborder="0" allowfullscreen></iframe></div>
 					<p></p>
 				</div>
 			</div>

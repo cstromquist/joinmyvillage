@@ -565,7 +565,7 @@
 }
 #video {
   display: none;
-  margin: 0 0 15px 8px;
+  margin-bottom: 15px;
 }
 .woman-1 {
   background: transparent url(../img/c_woman_1.png) no-repeat;
