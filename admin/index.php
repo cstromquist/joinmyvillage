@@ -105,7 +105,7 @@ function get_data($url)
               <th>Local Likes Count</th>
               <th>Facebook Likes Count</th>
               <th>Likes Remaining</th>
-              <th>Limit</th>
+              <th>Likes Goal</th>
             </tr>
           </thead>
           <tbody>
