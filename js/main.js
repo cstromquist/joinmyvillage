@@ -215,18 +215,16 @@ var Story = {
 		blinkKeyboard: function() {
 			if(!$('#instructions').attr('disabled')) {
 				$('#instructions').
+					removeClass('instructions').
+					addClass('keyboard').
+					animate({opacity: 1}, 1500).
 					animate({opacity: 0}, 1500, function() {
 						$(this).
 							removeClass('keyboard').
 							addClass('instructions');
 					}).
-					animate({opacity: 1}, 1500).
-					animate({opacity: 0}, 1500, function() {
-						$(this).
-							removeClass('instructions').
-							addClass('keyboard');
-					}).
-					animate({opacity: 1}, 1500, Story[1].blinkKeyboard);
+					animate({opacity: .4}, 1500).
+					animate({opacity: 0}, 1500, Story[1].blinkKeyboard);
 			}
 		},
 		blinkLearnMore: function() {
