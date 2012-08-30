@@ -657,7 +657,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
     <script src="js/vendor/jquery.cookie.js"></script>
     <script src="js/plugins.js"></script>
-    <script src="js/main.js?id=<?php echo $num ?>"></script>
+    <script src="js/main.min.js?id=<?php echo $num ?>"></script>
     <script type="text/javascript" src="js/vendor/jquery.simplemodal-1.4.2.js"></script>
 	<script>
 		window.fbAsyncInit = function() {
