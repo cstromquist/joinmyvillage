@@ -34,7 +34,7 @@
 <body>
 	<div id="fb-root"></div>
 	<!--[if lt IE 9]>
-        <p class="chromeframe">You are using an outdated browser for this site. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+    <div class="chromeframe">This site is best viewed in Internet Explorer 9, Chrome, Firefox or Safari. <a href="http://browsehappy.com/">Please upgrade your browser for the full site experience.</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</div>
     <![endif]-->
 
 	<!-- BEGIN MODALS -->
@@ -668,7 +668,6 @@
           });
           FB.Event.subscribe('edge.create',
 		    function(response) {
-		    	console.log('Liked: ' + response);
 		    	Likes.recordLike();
 		    });
 		  FB.Event.subscribe('edge.remove', function(response) {
@@ -681,7 +680,6 @@
 			 * Initialize Story
 			 *********************/
 			jQuery(function( $ ) {
-				//console.log('initializing story...');
 				Story.init();
 			});
         };
