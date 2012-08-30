@@ -1,1 +1,160 @@
-.chromeframe{position:fixed;top:30%;left:45%;z-index:10000;background:#fff;border:1px solid #f00;padding:20px;width:200px}@font-face{font-family:BrandonBlk;src:url(../fonts/Brandon_blk.otf)}@font-face{font-family:BrandonLight;src:url(../fonts/Brandon_light.otf)}html,body{margin:0;padding:0;height:100%;background-color:#76664f;font-family:BrandonLight}a:link,a:hover,a:active,a:visited{color:#ed6f31}#header .social-media{position:fixed}#header .jmv-logo{position:fixed}.social-media{position:absolute;z-index:2;top:30px;right:155px}.social-media .share{float:left;margin-left:10px}.jmv-logo{background:transparent url(../img/logo_jmv.png) no-repeat top left;position:absolute;top:17px;left:20px;width:279px;height:46px;text-indent:-500px}#header{background-color:#fff;height:79px}#container{position:relative;background-color:#bde9f2;background-image:-webkit-linear-gradient(top,#bde9f2,#dcfeff);background-image:-moz-linear-gradient(top,#bde9f2,#dcfeff);background-image:-o-linear-gradient(top,#bde9f2,#dcfeff);background-image:-ms-linear-gradient(top,#bde9f2,#dcfeff);background-image:linear-gradient(top,#bde9f2,#dcfeff);height:auto!important;height:100%;min-height:100%;width:5409px;overflow:hidden}#story{background-color:#bde9f2;background-image:-webkit-linear-gradient(top,#bde9f2,#dcfeff);background-image:-moz-linear-gradient(top,#bde9f2,#dcfeff);background-image:-o-linear-gradient(top,#bde9f2,#dcfeff);background-image:-ms-linear-gradient(top,#bde9f2,#dcfeff);background-image:linear-gradient(top,#bde9f2,#dcfeff)}#footer{background:#76664f;bottom:0;width:5409px;overflow:hidden;position:absolute;height:75px}.clear{clear:both}.common_layer{position:absolute}.layer-level-102{z-index:102;position:absolute}.layer-level-101{z-index:101;position:absolute}.layer-level-100{z-index:100;position:absolute}.layer-level-99{z-index:99;position:absolute}.layer-level-98{z-index:98;position:absolute}.layer-level-97{z-index:97;position:absolute}.layer-level-96{z-index:96;position:absolute}.x0{bottom:75px;color:#fff;font-size:.65em}.x0 content{margin-top:50px}.x-150{bottom:-150px}
+.chromeframe {
+  position: fixed;
+  top: 30%;
+  left: 45%;
+  z-index: 10000;
+  background: #fff;
+  border: 1px solid #ff0000;
+  padding: 20px;
+  width: 200px;
+}
+@font-face {
+  font-family: BrandonBlk;
+  src: url(../fonts/Brandon_blk.otf);
+}
+@font-face {
+  font-family: BrandonLight;
+  src: url(../fonts/Brandon_light.otf);
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  /* needed for container min-height */
+
+  background-color: #76664F;
+  font-family: BrandonLight;
+}
+a:link,
+a:hover,
+a:active,
+a:visited {
+  color: #ed6f31;
+}
+/**************************
+ * BEGIN LAYOUT DEFINITIONS
+ **************************/
+#header .social-media {
+  position: fixed;
+}
+#header .jmv-logo {
+  position: fixed;
+}
+.social-media {
+  position: absolute;
+  z-index: 2;
+  top: 30px;
+  right: 155px;
+}
+.social-media .share {
+  float: left;
+  margin-left: 10px;
+}
+/* HIDE COMMENT */
+.fb_edge_widget_with_comment {
+  position: absolute;
+}
+.fb_edge_widget_with_comment span.fb_edge_comment_widget iframe.fb_ltr {
+  display: none !important;
+}
+.jmv-logo {
+  background: transparent url(../img/logo_jmv.png) no-repeat top left;
+  position: absolute;
+  top: 17px;
+  left: 20px;
+  width: 279px;
+  height: 46px;
+  text-indent: -500px;
+}
+#header {
+  background-color: #fff;
+  height: 79px;
+}
+#container {
+  position: relative;
+  /* needed for footer positioning*/
+
+  background-color: #bde9f2;
+  background-image: -webkit-linear-gradient(top, #bde9f2, #dcfeff);
+  background-image: -moz-linear-gradient(top, #bde9f2, #dcfeff);
+  background-image: -o-linear-gradient(top, #bde9f2, #dcfeff);
+  background-image: -ms-linear-gradient(top, #bde9f2, #dcfeff);
+  background-image: linear-gradient(top, #bde9f2, #dcfeff);
+  height: auto !important;
+  height: 100%;
+  /* IE6: treaded as min-height*/
+
+  min-height: 100%;
+  /* real browsers */
+
+  width: 5409px;
+  overflow: hidden;
+}
+#story {
+  background-color: #bde9f2;
+  background-image: -webkit-linear-gradient(top, #bde9f2, #dcfeff);
+  background-image: -moz-linear-gradient(top, #bde9f2, #dcfeff);
+  background-image: -o-linear-gradient(top, #bde9f2, #dcfeff);
+  background-image: -ms-linear-gradient(top, #bde9f2, #dcfeff);
+  background-image: linear-gradient(top, #bde9f2, #dcfeff);
+}
+#footer {
+  background: #76664f;
+  bottom: 0;
+  width: 5409px;
+  overflow: hidden;
+  position: absolute;
+  height: 75px;
+}
+.clear {
+  clear: both;
+}
+/*
+ * 102 is the highest z-index (1 higher than Maya's z-index)
+ */
+.common_layer {
+  position: absolute;
+}
+.layer-level-102 {
+  z-index: 102;
+  position: absolute;
+}
+.layer-level-101 {
+  z-index: 101;
+  position: absolute;
+}
+.layer-level-100 {
+  z-index: 100;
+  position: absolute;
+}
+.layer-level-99 {
+  z-index: 99;
+  position: absolute;
+}
+.layer-level-98 {
+  z-index: 98;
+  position: absolute;
+}
+.layer-level-97 {
+  z-index: 97;
+  position: absolute;
+}
+.layer-level-96 {
+  z-index: 96;
+  position: absolute;
+}
+.x0 {
+  bottom: 75px;
+  color: #fff;
+  font-size: .65em;
+}
+.x0 content {
+  margin-top: 50px;
+}
+.x-150 {
+  bottom: -150px;
+}
+/************************
+ * END LAYOUT DEFINITIONS
+ ************************/
