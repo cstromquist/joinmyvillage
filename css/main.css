@@ -45,17 +45,13 @@ a:visited {
   position: absolute;
   z-index: 2;
   top: 30px;
-  right: 155px;
+  right: 25px;
 }
 .social-media .share {
   float: left;
   margin-left: 10px;
 }
-/* HIDE COMMENT */
-.fb_edge_widget_with_comment {
-  position: absolute;
-}
-.fb_edge_widget_with_comment span.fb_edge_comment_widget iframe.fb_ltr {
+.fb_edge_comment_widget {
   display: none !important;
 }
 .jmv-logo {
