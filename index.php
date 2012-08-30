@@ -1,7 +1,7 @@
 <?php $num = rand(1000, 1000000) * rand(100, 10000); ?>
 <?php $config = unserialize(file_get_contents('config')); ?>
 <?php $chapter = $_GET['chapter'] ? $_GET['chapter'] : 1; ?>
-<?php $subdir = '/storyofmaya/'; ?>
+<?php $subdir = '/'; ?>
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:og="http://ogp.me/ns#"
@@ -15,7 +15,7 @@
     <meta name="description" content="<?php echo $config['site_title'] ?>">
     <meta name="viewport" content="width=device-width">
 	<link rel="canonical" href="http://<?php echo $_SERVER['SERVER_NAME'] . $subdir ?><?php if($chapter != 1): ?>?chapter=<?php echo $chapter ?><?php endif ?>"/>
-	<meta property="fb:app_id" content="461563293883641" />
+	<meta property="fb:app_id" content="<?php echo $config['fb_app_id'] ?>" />
 	<meta property="og:title" content="<?php echo $config['site_title'] ?>" />
 	<meta property="og:site_name" content="join my village, empower women, getting women out of poverty" />
 	<meta property="og:description" content="<?php echo $config['site_description'] ?>" />
@@ -62,7 +62,7 @@
 		<div id="header">
 			<div class="jmv-logo"><p>JOIN MY VILLAGE</p></div>
 			<div class="social-media">
-				<div id="facebook" class="share"><fb:like href="http://<?php echo $_SERVER['SERVER_NAME'] ?>/storyofmaya/" send="false" layout="button_count" width="100" show_faces="false"></fb:like></div>
+				<div id="facebook" class="share"><fb:like href="http://<?php echo $_SERVER['SERVER_NAME'] ?><?php echo $subdir ?>" send="false" layout="button_count" width="100" show_faces="false"></fb:like></div>
 				<div id="twitter" class="share"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Check out Join My Village!">Tweet</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div>
 			</div>
@@ -656,7 +656,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
     <script src="js/vendor/jquery.cookie.js"></script>
     <script src="js/plugins.js"></script>
-    <script src="js/main.min.js?id=<?php echo $num ?>"></script>
+    <script src="js/main.js?id=<?php echo $num ?>"></script>
     <script type="text/javascript" src="js/vendor/jquery.simplemodal-1.4.2.js"></script>
 	<script>
 		window.fbAsyncInit = function() {

@@ -6,7 +6,9 @@
 * Join My Village Story - Provides functionality to transition user through the Join My Village story.
 *
 * 
-* @author Chris Stromquist <chris@esolutionswebservices.com> @cstromquist
+* @author Chris Stromquist <chris@esolutionswebservices.com>
+* 	@cstromquist
+* 	http://www.linkedin.com/pub/chris-stromquist/7/298/581
 *
 * $Id: main.js 43 2009-05-15 19:28:53Z chris $
 * @version 1.0
@@ -19,7 +21,7 @@
 var Config = {
 	uuid: function(a,b){for(b=a='';a++<36;b+=a*51&52?(a^15?8^Math.random()*(a^20?16:4):4).toString(16):'-');return b},
 	root_url: document.domain,
-	subdirectory: '/storyofmaya/',
+	subdirectory: '/',
 	sub_url: '?chapter=',
 	getUrl: function() {
 		return this.root_url + this.subdirectory;
@@ -49,7 +51,7 @@ var Story = {
 				position: ['15%',],
 				onClose: function (dialog) {
 				dialog.data.animate({left:'-=2000px'}, 2000, function () {
-					dialog.overlay.slideUp(1200, function () {
+					dialog.overlay.fadeOut(1200, function () {
 						Scroll.enableScrolling();
 						$.modal.close(); // must call this!
 					});
@@ -475,7 +477,7 @@ var Story = {
 					$('#maya').css('background-position', 0);
 					$('#maya').css('left', Maya.xPosition());
 					$('#maya').css('position', 'absolute');
-					$('#maya').removeClass('maya-woman').addClass('maya-animation').animate({left: '+=350px'}, 4000, function() {
+					$('#maya').removeClass('maya-woman').addClass('maya-animation').animate({left: '+=300px'}, 3000, function() {
 						$(this).fadeOut();
 					})
 		    		Story[7].end = true;
@@ -690,7 +692,7 @@ var LikesModal = {
 	bindClick: function() {
 		$('#likes-modal #thanks #congrats a#continue').click(function() {
 			if(!$(this).attr('disabled')) {
-				$('#likes-modal').animate({opacity: 0}, 2000, function() {
+				$('#likes-modal').animate({opacity: 0}, 1000, function() {
 					Story.openNextChapter();
 				});
 			};
@@ -973,7 +975,7 @@ var Maya = {
 		$(window).bind('scroll', function() {
 			if(Maya.pause_animation == false) {
 				var yPos = $('#footer').position().top;
-				$('#maya').css('bottom', 75-$(window).scrollTop() + 'px');
+				$('#maya').css('bottom', 74-$(window).scrollTop() + 'px');
 				var xPos = $(window).scrollLeft();
 				// set up Maya to animate every 100 pixels
 				var increment = 100;
