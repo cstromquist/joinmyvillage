@@ -1,7 +1,7 @@
 <?php
 
 $domain = $_SERVER['SERVER_NAME'] . "/";
-$subdir = "storyofmaya/";
+$subdir = "";
 $url = $domain . $subdir;
 
 $data = array(
