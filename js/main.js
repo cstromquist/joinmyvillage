@@ -9,6 +9,7 @@
 * @author Chris Stromquist <chris@esolutionswebservices.com>
 * 	@cstromquist
 * 	http://www.linkedin.com/pub/chris-stromquist/7/298/581
+* 	www.esolutionswebservices.com
 *
 * $Id: main.js 43 2009-05-15 19:28:53Z chris $
 * @version 1.0
@@ -119,9 +120,9 @@ var Story = {
 	getUrl: function(chapter) {
 		chapter = chapter ? Number(chapter) : Story.current_chapter;
 		var url = Config.getUrl();
-		if(chapter > 1) {
+		//if(chapter > 1) {
 			url += Config.sub_url + chapter;
-		}
+		//}
 		return url;
 	},
 	chapterStartPoint: function( chapter ) {
