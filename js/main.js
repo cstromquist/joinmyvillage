@@ -11,7 +11,7 @@
 * 	http://www.linkedin.com/pub/chris-stromquist/7/298/581
 * 	www.esolutionswebservices.com
 *
-* $Id: main.js 43 2009-05-15 19:28:53Z chris $
+* $Id: main.js 43 2012-08-31 21:28:53Z chris $
 * @version 1.0
 *
 * @copyright (C) 2012 by Chris Stromquist - eSolutions Web Services
