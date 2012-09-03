@@ -23,7 +23,6 @@
 	<meta property="og:type" content="website" />
 	<meta property="og:image" content="http://<?php echo $_SERVER['SERVER_NAME'] . $subdir ?>img/JMV_BTS_<?php echo $chapter ?>.gif" />
 
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
 	<link rel="stylesheet" href="css/reset.css">
 	<link rel="stylesheet" href="css/story.css">
 	<link rel="stylesheet" media="only screen and (max-device-width: 1024px)" href="css/ipad.css" type="text/css" />
@@ -656,7 +655,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
     <script src="js/vendor/jquery.cookie.js"></script>
     <script src="js/plugins.js"></script>
-    <script src="js/main.js?id=<?php echo $num ?>"></script>
+    <script src="js/main.min.js?id=<?php echo $num ?>"></script>
     <script type="text/javascript" src="js/vendor/jquery.simplemodal-1.4.2.js"></script>
 	<script>
 		window.fbAsyncInit = function() {
