@@ -665,12 +665,11 @@
             cookie     : true, // enable cookies to allow the server to access the session
             xfbml      : true  // parse XFBML
           });
-          FB.Event.subscribe('edge.create',
-		    function(response) {
+          FB.Event.subscribe('edge.create', function(response) {
 		    	Likes.recordLike();
 		    });
 		  FB.Event.subscribe('edge.remove', function(response) {
-		    	
+		    	Likes.recordLike();
 			});
 		  FB.getLoginStatus(function(response){
 	        	Likes.fbApiInit = true;

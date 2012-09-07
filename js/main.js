@@ -68,15 +68,12 @@ var Story = {
 			LikesModal.init(this.current_chapter);
 		Likes.init(function() {
 			if (Story.validateChapter()) {
-				//console.log('Chapter ' + Story.current_chapter + ' is valid and can be opened...');
 				Story.bindFixedElements();
 				Story.openChapter();
 			} else {
-				//console.log('Chapter ' + Story.current_chapter + ' is not yet available...');
 				Story.setChapter(Story.previous_chapter);
 				Story.begin();
 			}
-			//console.log(Likes);
 		});
 	},
 	end: function() {
@@ -540,7 +537,7 @@ var Likes = {
 			Likes.setCounts(Likes.chapter, count, function() {
 				Likes.displayCounts();
 				Likes.displayPercentageBar();
-				if(cookie[Likes.chapter-1]) {
+				if(cookie[Likes.chapter-1] || Likes[Story.current_chapter].limit_reached) {
 					LikesModal.showThanks();
 				}
 			});
