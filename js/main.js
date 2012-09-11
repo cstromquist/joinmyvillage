@@ -117,9 +117,9 @@ var Story = {
 	getUrl: function(chapter) {
 		chapter = chapter ? Number(chapter) : Story.current_chapter;
 		var url = Config.getUrl();
-		//if(chapter > 1) {
+		if(chapter > 1) {
 			url += Config.sub_url + chapter;
-		//}
+		}
 		return url;
 	},
 	chapterStartPoint: function( chapter ) {
@@ -566,9 +566,9 @@ var Likes = {
 			  },
 			  function(response) {
 				if(callback)
-					callback(response[0].like_count);
+					callback(response[0].total_count);
 				else
-					return response[0].like_count;
+					return response[0].total_count;
 			  }
 			);
 		}
