@@ -61,9 +61,12 @@
 		<div id="header">
 			<div class="jmv-logo"><p>JOIN MY VILLAGE</p></div>
 			<div class="social-media">
-				<div id="facebook" class="share"><iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2F<?php echo $_SERVER['SERVER_NAME'] . $subdir ?>&amp;send=false&amp;layout=button_count&amp;width=100&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21&amp;appId=<?php echo $config['fb_app_id'] ?>" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe></div>
+				<div id="like-explanation">
+					Your Likes help us reveal the next chapter in Maya's story. Make sure to click Like at the end.
+				</div>
 				<div id="twitter" class="share"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Check out Join My Village!">Tweet</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div>
+				<div id="facebook" class="share"><div class="facebook-like-wrapper"><div class="facebook-like"><fb:like send="false" layout="button_count" width="50" show_faces="false"></fb:like></div></div></div>
 			</div>
 		</div>
 		<!-- BEGIN MAIN AREA -->
@@ -669,7 +672,7 @@
 		    	Likes.recordLike();
 		    });
 		  FB.Event.subscribe('edge.remove', function(response) {
-		    	Likes.recordLike();
+		    	
 			});
 		  FB.getLoginStatus(function(response){
 	        	Likes.fbApiInit = true;

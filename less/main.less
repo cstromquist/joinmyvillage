@@ -49,6 +49,11 @@ a:visited {
  **************************/
 #header .social-media {
   position:fixed;
+  height: 100px;
+  width: 600px;
+  background: transparent url(../img/header_social_bg.png) no-repeat top left;
+  color: #ffffff;
+  font-size: 1.2em;
 }
 
 #header .jmv-logo {
@@ -58,17 +63,27 @@ a:visited {
 .social-media {
   position: absolute;
   z-index: 2;
-  top: 30px;
-  right: 25px;
+  top: 0;
+  right: 15px;
 }
 
-.social-media .share {
+.social-media #facebook {
+  position: absolute;
+  left: 392px;
+  margin: 32px 10px 0 0;
+  height: 24px;
+  overflow: hidden;
+}
+
+.social-media #twitter {
+  float: right;
+  margin: 35px 10px 0 0;
+}
+
+.social-media #like-explanation {
   float: left;
-  margin-left: 10px;
-}
-
-.fb_edge_comment_widget {
-  display: none !important;
+  width: 360px;
+  margin: 25px 0 0 30px;
 }
 
 .jmv-logo {

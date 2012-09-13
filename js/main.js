@@ -84,7 +84,7 @@ var Story = {
 	bindFixedElements: function() {
 		var lastScroll = 0;
 		$(window).bind('scroll', function() {
-			$('#header .social-media').css('top', 35-$(window).scrollTop() + 'px');
+			$('#header .social-media').css('top', '0px');
 			$('#header .jmv-logo').css('top', 20-$(window).scrollTop() + 'px');
 		});
 	},
