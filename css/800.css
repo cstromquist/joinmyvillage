@@ -1,0 +1,12 @@
+#container {
+	height: 1000px!important;
+ 	min-height: 1000px!important;
+}
+
+#header .social-media {
+	background: none !important;
+}
+
+#header .social-media #like-explanation {
+	display: none;
+}

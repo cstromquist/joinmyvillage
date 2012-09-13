@@ -25,7 +25,7 @@
 
 	<link rel="stylesheet" href="css/reset.css">
 	<link rel="stylesheet" href="css/story.css">
-	<link rel="stylesheet" media="only screen and (max-device-width: 1024px)" href="css/ipad.css" type="text/css" />
+	<link rel="stylesheet" media="only screen and (max-device-width: 800px)" href="css/800.css" type="text/css" />
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/modals.css">
     <script src="js/vendor/modernizr-2.6.1.min.js"></script>
