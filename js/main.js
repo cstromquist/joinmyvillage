@@ -333,19 +333,21 @@ var Story = {
 		    		Maya.lifeTransition('teen'); // Maya becomes a teenager
 		    	}
 		    	if (Maya.xPosition() > $('#chapter-3 #bubble-31').position().left - 200 && !$('#chapter-3 #bubble-31').attr('disabled')) {
-		    		$('#chapter-3 #bubble-1').animate({opacity:1}, 1000);
+		    		console.log('bubble-31');
+		    		$('#chapter-3 #bubble-31').animate({opacity:1}, 1000);
 		    	}
 		    	if (Maya.xPosition() > $('#chapter-3 #bubble-32').position().left - 200 && !$('#chapter-3 #bubble-32').attr('disabled')) {
-		    		$('#chapter-3 #bubble-2').animate({opacity:1}, 1000);
+		    		console.log('bubble-32');
+		    		$('#chapter-3 #bubble-32').animate({opacity:1}, 1000);
 		    	}
 		    	if (Maya.xPosition() > $('#chapter-3 #bubble-31').position().left + 50 && !$('#chapter-3 #bubble-31').attr('disabled')) {
-		    		$('#chapter-3 #bubble-1').removeClass('bubble-marriage').
+		    		$('#chapter-3 #bubble-31').removeClass('bubble-marriage').
 						addClass('bubble-burst').
 						attr('disabled', true).
 						fadeOut(2000);
 		    	}
 		    	if (Maya.xPosition() > $('#chapter-3 #bubble-32').position().left + 50 && !$('#chapter-3 #bubble-32').attr('disabled')) {
-		    		$('#chapter-3 #bubble-2').removeClass('bubble-baby').
+		    		$('#chapter-3 #bubble-32').removeClass('bubble-baby').
 						addClass('bubble-burst-right').
 						attr('disabled', true).
 						fadeOut(2000);
